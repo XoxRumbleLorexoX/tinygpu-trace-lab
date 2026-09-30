@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-09-16",
+  "scope": "Read-only application audit; documentation and generated evidence only.",
+  "url": "http://127.0.0.1:5175/tinygpu-trace-lab/",
+  "browser": "153.0.8010.12",
+  "headless": true,
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "reducedMotion": "reduce",
+  "method": "Playwright UI button clicks and DOM observations. Not a keyboard-only audit.",
+  "checks": [
+    {
+      "name": "Learning 2D to 3D preserves selection",
+      "pass": true,
+      "detail": {
+        "before": {
+          "position": "24",
+          "architecture": "Writeback THREAD 3 / PC 4",
+          "thread": "Inspect thread 3",
+          "inspector": "Registers",
+          "registers": "R00R17R267R32R49R50R60R70R80R90R100R110R120",
+          "explanation": "WritebackThread 3: R4 changes from 0 to 9. Next PC: 5."
+        },
+        "after": {
+          "position": "24",
+          "architecture": "Writeback THREAD 3 / PC 4",
+          "thread": "Inspect thread 3",
+          "inspector": "Registers",
+          "registers": "R00R17R267R32R49R50R60R70R80R90R100R110R120",
+          "explanation": "WritebackThread 3: R4 changes from 0 to 9. Next PC: 5."
+        }
+      }
+    },
+    {
+      "name": "Learning 3D to 2D preserves selection",
+      "pass": true,
+      "detail": {
+        "position": "24",
+        "architecture": "Writeback THREAD 3 / PC 4",
+        "thread": "Inspect thread 3",
+        "inspector": "Registers",
+        "registers": "R00R17R267R32R49R50R60R70R80R90R100R110R120",
+        "explanation": "WritebackThread 3: R4 changes from 0 to 9. Next PC: 5."
+      }
+    },
+    {
+      "name": "Learning selection survives Compare round trip",
+      "pass": true,
+      "detail": {
+        "position": "24",
+        "architecture": "Writeback THREAD 3 / PC 4",
+        "thread": "Inspect thread 3",
+        "inspector": "Registers",
+        "registers": "R00R17R267R32R49R50R60R70R80R90R100R110R120",
+        "explanation": "WritebackThread 3: R4 changes from 0 to 9. Next PC: 5."
+      }
+    },
+    {
+      "name": "Learning selection survives Computation graph round trip",
+      "pass": true,
+      "detail": {
+        "position": "24",
+        "architecture": "Writeback THREAD 3 / PC 4",
+        "thread": "Inspect thread 3",
+        "inspector": "Registers",
+        "registers": "R00R17R267R32R49R50R60R70R80R90R100R110R120",
+        "explanation": "WritebackThread 3: R4 changes from 0 to 9. Next PC: 5."
+      }
+    },
+    {
+      "name": "Learning selection survives Hardware round trip",
+      "pass": true,
+      "detail": {
+        "position": "24",
+        "architecture": "Writeback THREAD 3 / PC 4",
+        "thread": "Inspect thread 3",
+        "inspector": "Registers",
+        "registers": "R00R17R267R32R49R50R60R70R80R90R100R110R120",
+        "explanation": "WritebackThread 3: R4 changes from 0 to 9. Next PC: 5."
+      }
+    },
+    {
+      "name": "Classic abstraction buttons change actual detail",
+      "pass": false,
+      "detail": {
+        "initialEvent": "19",
+        "levels": [
+          {
+            "level": "Core View",
+            "event": "19",
+            "selected": true,
+            "workspaceTextUnchanged": true,
+            "sceneMapUnchanged": true,
+            "sceneClass": "scene overview-focus"
+          },
+          {
+            "level": "Pipeline View",
+            "event": "19",
+            "selected": true,
+            "workspaceTextUnchanged": true,
+            "sceneMapUnchanged": true,
+            "sceneClass": "scene overview-focus"
+          },
+          {
+            "level": "Register View",
+            "event": "19",
+            "selected": true,
+            "workspaceTextUnchanged": true,
+            "sceneMapUnchanged": true,
+            "sceneClass": "scene overview-focus"
+          },
+          {
+            "level": "Logic/Gate View",
+            "event": "19",
+            "selected": true,
+            "workspaceTextUnchanged": true,
+            "sceneMapUnchanged": true,
+            "sceneClass": "scene overview-focus"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Learning selection survives Classic explorer round trip",
+      "pass": true,
+      "detail": {
+        "position": "24",
+        "architecture": "Writeback THREAD 3 / PC 4",
+        "thread": "Inspect thread 3",
+        "inspector": "Registers",
+        "registers": "R00R17R267R32R49R50R60R70R80R90R100R110R120",
+        "explanation": "WritebackThread 3: R4 changes from 0 to 9. Next PC: 5."
+      }
+    },
+    {
+      "name": "Classic explorer retains replay and abstraction after leaving",
+      "pass": false,
+      "detail": {
+        "before": {
+          "event": "19",
+          "level": "Logic/Gate View"
+        },
+        "after": {
+          "event": "18",
+          "selection": [
+            "Vector AdditionBaseline data-parallel load, add, store flow.",
+            "GPU Overview"
+          ]
+        }
+      }
+    }
+  ],
+  "pageErrors": [],
+  "sourceInspection": {
+    "classicAbstraction": "App.tsx level state is used only for selected-button styling; GpuScene takes event and cameraMode, not level.",
+    "classicPersistence": "Explorer owns independent state and is conditionally mounted by LearningLab.",
+    "learningPersistence": "LearningLab owns frame, focusedThread and inspection outside the conditional view panels."
+  },
+  "limitations": [
+    "One default vector-add run, desktop Chromium only.",
+    "Canvas creation was observed; no new 3D pixel, camera or mesh-picking test.",
+    "No human learner or screen-reader results.",
+    "Not a new full regression or hardware test run.",
+    "Initial selector probe timed out because accessible name included a stage number; corrected scoped selector used. No result claimed for the aborted probe."
+  ]
+}

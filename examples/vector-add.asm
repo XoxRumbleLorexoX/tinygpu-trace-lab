@@ -1,0 +1,12 @@
+; C[i] = A[i] + B[i]
+CONST R1, 0
+ADD R2, %threadIdx, R1
+LDR R3, [R2]
+CONST R4, 64
+ADD R5, R2, R4
+LDR R6, [R5]
+ADD R7, R3, R6
+CONST R8, 128
+ADD R9, R2, R8
+STR R7, [R9]
+RET

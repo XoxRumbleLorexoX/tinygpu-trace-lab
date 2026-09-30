@@ -1,0 +1,12 @@
+{
+  "format": "tinygpu-program-1",
+  "modelVersion": "teaching-1",
+  "name": "Counted loop",
+  "source": "; Three additions, one result\nCONST R0, 3\nCONST R1, 0\n\nLOOP:\nADD R1, R1, 2\nSUB R0, R0, 1\nCMP R0, 0\nBRnzp p LOOP\nSTR R1, [200]\nRET",
+  "initialMemory": {},
+  "expectedMemory": { "200": 6 },
+  "blockDim": 1,
+  "blockCount": 1,
+  "laneWidth": 4,
+  "numberMode": "integer"
+}

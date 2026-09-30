@@ -1,0 +1,64 @@
+%Error: hardware/original/core.sv:116:5: syntax error, unexpected ')', expecting IDENTIFIER-for-type
+  116 |     ) scheduler_instance (
+      |     ^
+        ... See the manual at https://verilator.org/verilator_doc.html?v=5.052 for more assistance.
+%Error: hardware/original/core.sv:175:13: syntax error, unexpected ')', expecting IDENTIFIER-for-type
+  175 |             ) register_instance (
+      |             ^
+%Warning-NULLPORT: hardware/original/dcr.sv:14:1: Null port on module (perhaps extraneous comma)
+   14 | );
+      | ^
+                   ... For warning description see https://verilator.org/warn/NULLPORT?v=5.052
+                   ... Use "/* verilator lint_off NULLPORT */" and lint_on around source to disable this message.
+%Warning-NULLPORT: hardware/original/fetcher.sv:27:1: Null port on module (perhaps extraneous comma)
+   27 | );
+      | ^
+%Error: hardware/original/gpu.sv:193:13: syntax error, unexpected ')', expecting IDENTIFIER-for-type
+  193 |             ) core_instance (
+      |             ^
+%Error: hardware/original/scheduler.sv:18:1: syntax error, unexpected ')', expecting IDENTIFIER or IDENTIFIER-for-pathpulse or randomize
+   18 | ) (
+      | ^
+%Error: hardware/original/scheduler.sv:20:5: syntax error, unexpected input
+   20 |     input wire reset,
+      |     ^~~~~
+%Error: hardware/original/scheduler.sv:21:5: syntax error, unexpected input
+   21 |     input wire start,
+      |     ^~~~~
+%Error: hardware/original/scheduler.sv:24:5: syntax error, unexpected input
+   24 |     input reg decoded_mem_read_enable,
+      |     ^~~~~
+%Error: hardware/original/scheduler.sv:25:5: syntax error, unexpected input
+   25 |     input reg decoded_mem_write_enable,
+      |     ^~~~~
+%Error: hardware/original/scheduler.sv:26:5: syntax error, unexpected input
+   26 |     input reg decoded_ret,
+      |     ^~~~~
+%Error: hardware/original/scheduler.sv:29:5: syntax error, unexpected input
+   29 |     input reg [2:0] fetcher_state,
+      |     ^~~~~
+%Error: hardware/original/scheduler.sv:30:5: syntax error, unexpected input
+   30 |     input reg [1:0] lsu_state [THREADS_PER_BLOCK-1:0],
+      |     ^~~~~
+%Error: hardware/original/scheduler.sv:33:5: syntax error, unexpected output
+   33 |     output reg [7:0] current_pc,
+      |     ^~~~~~
+%Error: hardware/original/scheduler.sv:34:5: syntax error, unexpected input
+   34 |     input reg [7:0] next_pc [THREADS_PER_BLOCK-1:0],
+      |     ^~~~~
+%Error: hardware/original/scheduler.sv:37:5: syntax error, unexpected output
+   37 |     output reg [2:0] core_state,
+      |     ^~~~~~
+%Error: hardware/original/scheduler.sv:38:5: syntax error, unexpected output
+   38 |     output reg done
+      |     ^~~~~~
+%Error: hardware/original/scheduler.sv:49:5: syntax error, unexpected always
+   49 |     always @(posedge clk) begin 
+      |     ^~~~~~
+%Error: hardware/original/scheduler.sv:80:21: syntax error, unexpected for
+   80 |                     for (int i = 0; i < THREADS_PER_BLOCK; i++) begin
+      |                     ^~~
+%Error: hardware/original/scheduler.sv:80:37: syntax error, unexpected IDENTIFIER
+   80 |                     for (int i = 0; i < THREADS_PER_BLOCK; i++) begin
+      |                                     ^
+%Error: Exiting due to 18 error(s)

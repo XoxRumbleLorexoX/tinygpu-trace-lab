@@ -1,0 +1,1427 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-09-16",
+  "scope": "Documentation-only local development keyboard audit; not accessibility certification.",
+  "url": "http://127.0.0.1:5175/tinygpu-trace-lab/",
+  "browser": "153.0.8010.12",
+  "browserMode": "headless",
+  "reducedMotion": "reduce",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "protectedFileCount": 110,
+  "protectedFileDigest": "50d64238a3c78610e821bf4ac230e2da5f909e6f61696990a3ed5663e9efff96",
+  "interactionMethod": "Page setup via navigation/reload/viewport; application actions via keyboard only. DOM and locators used for inspection.",
+  "checks": [
+    {
+      "name": "Keyboard prediction accepted",
+      "pass": true,
+      "detail": "Correct. Now follow the values through execution.",
+      "outcome": "passed"
+    },
+    {
+      "name": "Keyboard load checkpoint",
+      "pass": true,
+      "detail": "MemoryThread 0 reads 2 from address 0.",
+      "outcome": "passed"
+    },
+    {
+      "name": "Execute R4 not yet committed",
+      "pass": true,
+      "detail": "ExecuteADD uses R1 = 2, R3 = 4 to produce 6. The destination is not committed until writeback.",
+      "outcome": "passed"
+    },
+    {
+      "name": "Writeback R4 commits six",
+      "pass": true,
+      "detail": "R4 value",
+      "outcome": "passed"
+    },
+    {
+      "name": "Store output six",
+      "pass": true,
+      "detail": "6",
+      "outcome": "passed"
+    },
+    {
+      "name": "Lesson completed by keyboard",
+      "pass": true,
+      "detail": "Completion button changed",
+      "outcome": "passed"
+    },
+    {
+      "name": "Rewind output unwritten",
+      "pass": true,
+      "detail": "--",
+      "outcome": "passed"
+    },
+    {
+      "name": "Changed input gives 14,6,9,9",
+      "pass": true,
+      "detail": ["14", "6", "9", "9"],
+      "outcome": "passed"
+    },
+    {
+      "name": "Graph node keyboard activation",
+      "pass": true,
+      "detail": "SELECTED OPERATIONADD T0ADD R4, R1, R3InputsR110t0-op0R34t0-op3Dependenciest0-op0t0-op3Result14View source event",
+      "outcome": "passed"
+    },
+    {
+      "name": "Graph resources keyboard change",
+      "pass": false,
+      "detail": "ProvenanceSelected operation inputsConsumers of memory[0]Consumers of memory[1]Consumers of memory[2]Consumers of memory[3]Consumers of memory[64]Consumers of memory[65]Consumers of memory[66]Consumers of memory[67]Processing units1248Scheduling policySource orderLongest remaining path9 ticks / 36 with one unitSame output",
+      "classification": "probe superseded: native Home/End ignored in this headless environment",
+      "outcome": "superseded"
+    },
+    {
+      "name": "Graph policy keyboard change",
+      "pass": false,
+      "detail": "source-order",
+      "classification": "probe superseded: native Home/End ignored in this headless environment",
+      "outcome": "superseded"
+    },
+    {
+      "name": "Graph resources via keyboard type-selection",
+      "pass": true,
+      "detail": "ProvenanceSelected operation inputsConsumers of memory[0]Consumers of memory[1]Consumers of memory[2]Consumers of memory[3]Consumers of memory[64]Consumers of memory[65]Consumers of memory[66]Consumers of memory[67]Processing units1248Scheduling policySource orderLongest remaining path36 ticks / 36 with one unitSame output",
+      "outcome": "passed"
+    },
+    {
+      "name": "Graph policy via keyboard type-selection",
+      "pass": true,
+      "detail": "critical-path",
+      "outcome": "passed"
+    },
+    {
+      "name": "Graph replay keyboard step",
+      "pass": true,
+      "detail": "1",
+      "outcome": "passed"
+    },
+    {
+      "name": "Source navigation restores relevant keyboard focus",
+      "pass": false,
+      "detail": {
+        "sourceFocus": {
+          "tag": "BODY",
+          "name": null,
+          "text": "\n    TinyGPU Trace LabCOMPUTATION, MADE VISIBLELocal simulationLearning labCompareComputation graphP"
+        },
+        "nextFocus": {
+          "tag": "BUTTON",
+          "name": null,
+          "text": "2D"
+        },
+        "event": "WritebackThread 0: R4 changes from 0 to 14. Next PC: 5."
+      },
+      "outcome": "failed"
+    },
+    {
+      "name": "Compare lane width changes real issues by keyboard",
+      "pass": true,
+      "detail": "18instruction issues100%used lane slots",
+      "outcome": "passed"
+    },
+    {
+      "name": "Keyboard-created conflicting stores rejected",
+      "pass": true,
+      "detail": [
+        "Concurrent lanes write the same address. This teaching model rejects data races."
+      ],
+      "outcome": "passed"
+    },
+    {
+      "name": "Keyboard-authored studio program matches expectation",
+      "pass": true,
+      "detail": "Memory outputs / finalAddressObservedExpectedCheck20077Match",
+      "outcome": "passed"
+    },
+    {
+      "name": "Studio source-line action focuses exact source",
+      "pass": false,
+      "detail": {
+        "studioSourceFocus": {
+          "tag": "BODY",
+          "name": null
+        },
+        "selectedSource": {
+          "focused": false,
+          "selection": ""
+        }
+      },
+      "classification": "probe superseded: sampled before requestAnimationFrame focus update",
+      "outcome": "superseded"
+    },
+    {
+      "name": "Studio source-line focus after scheduled update",
+      "pass": true,
+      "detail": {
+        "focused": true,
+        "selection": "STR R0, [200]"
+      },
+      "outcome": "passed"
+    },
+    {
+      "name": "Adder keyboard inputs show overflow",
+      "pass": true,
+      "detail": "0Overflow: carry out = 1",
+      "outcome": "passed"
+    },
+    {
+      "name": "Gate detail keyboard selection",
+      "pass": true,
+      "detail": "FULL ADDER / BIT 7XOR, AND, ORsum = (1 XOR 0) XOR 1 = 0carry = (A AND B) OR (carry-in AND (A XOR B)) = 1",
+      "outcome": "passed"
+    },
+    {
+      "name": "Hardware sample keyboard selection",
+      "pass": true,
+      "detail": "56",
+      "outcome": "passed"
+    },
+    {
+      "name": "Kernel variant changes by keyboard",
+      "pass": true,
+      "detail": {
+        "variantValue": "kernel-scheduler-reset",
+        "kernelStatus": "Complete observed agreement"
+      },
+      "outcome": "passed"
+    },
+    {
+      "name": "Hardware time slider responds to keyboard",
+      "pass": true,
+      "detail": {
+        "value": "1500",
+        "max": "1500"
+      },
+      "outcome": "passed"
+    },
+    {
+      "name": "Classic explorer keyboard stepping",
+      "pass": true,
+      "detail": {
+        "before": "18",
+        "after": "19"
+      },
+      "outcome": "passed"
+    },
+    {
+      "name": "Classic abstraction selection preserves selected event",
+      "pass": true,
+      "detail": {
+        "expected": "19",
+        "actual": "19"
+      },
+      "outcome": "passed"
+    },
+    {
+      "name": "Classic comparison has an accessible name",
+      "pass": false,
+      "detail": {
+        "ariaLabel": null,
+        "labelledBy": null,
+        "title": null,
+        "associatedLabels": []
+      },
+      "outcome": "failed"
+    },
+    {
+      "name": "Narrow 2D component keyboard selection",
+      "pass": true,
+      "detail": "Component activated; inspector available",
+      "classification": "probe superseded: inspector existence did not establish selected component",
+      "outcome": "superseded"
+    },
+    {
+      "name": "Narrow graph node brought into viewport",
+      "pass": true,
+      "detail": {
+        "name": "Narrow graph offscreen node",
+        "tabs": 46,
+        "tag": "g",
+        "focusVisible": true,
+        "outline": "rgb(37, 130, 91) solid 2px",
+        "boxShadow": "none",
+        "rect": {
+          "x": 299,
+          "y": 656.59375,
+          "width": 142,
+          "height": 42
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "text": "t3-op4: ADD R4, R1, R3"
+      },
+      "classification": "probe superseded: checked top-left only, not full node visibility",
+      "outcome": "superseded"
+    },
+    {
+      "name": "Narrow source navigation restores keyboard focus",
+      "pass": false,
+      "detail": {
+        "tag": "BODY",
+        "name": null
+      },
+      "outcome": "failed"
+    },
+    {
+      "name": "Narrow focused graph node fully visible",
+      "pass": false,
+      "detail": {
+        "node": {
+          "left": 299,
+          "right": 441,
+          "top": 656.59375,
+          "bottom": 698.59375,
+          "width": 142
+        },
+        "container": {
+          "left": 15,
+          "right": 375,
+          "top": 352.59375,
+          "bottom": 722.59375,
+          "scrollLeft": 271,
+          "clientWidth": 360,
+          "scrollWidth": 760,
+          "overflow": "auto"
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "fullyVisible": false
+      },
+      "outcome": "failed"
+    },
+    {
+      "name": "T3 graph inspector identifies requested operation",
+      "pass": true,
+      "detail": "SELECTED OPERATION\nADD T3\nADD R4, R1, R3\nInputs\nR1\n7\nt3-op0\nR3\n2\nt3-op3\nDependencies\nt3-op0\nt3-op3\nResult\n\n9\n\nView source event",
+      "outcome": "passed"
+    },
+    {
+      "name": "T3 graph source navigation preserves thread selection",
+      "pass": false,
+      "detail": {
+        "focus": "BODY",
+        "focusedThread": "Inspect thread 0",
+        "explanation": "WritebackThread 0: R4 changes from 0 to 6. Next PC: 5."
+      },
+      "outcome": "failed"
+    },
+    {
+      "name": "Narrow ALU activation shows selected operands and result",
+      "pass": true,
+      "detail": "Predict the result\n\nWhat will C[0] contain when this program finishes?\n\nCheck\nProgram\nRegisters\nMemory\nOperands\nR1\nregister\n7\nR3\nregister\n2\nResult\n9\n\nValues captured before this instruction commits.\n\nThe idea\n\nEach output has two inputs, two loads, one addition, and one store. Independent elements can share an instruction issue.\n\nExperiment\n\nChange A[0]. Predict which output changes before running again.\n\nComplete lesson",
+      "outcome": "passed"
+    },
+    {
+      "name": "Desktop T3 source navigation preserves thread selection",
+      "pass": false,
+      "detail": {
+        "inspector": "SELECTED OPERATION\nADD T3\nADD R4, R1, R3\nInputs\nR1\n7\nt3-op0\nR3\n2\nt3-op3\nDependencies\nt3-op0\nt3-op3\nResult\n\n9\n\nView source event",
+        "focus": "BODY",
+        "focusedThread": "Inspect thread 0",
+        "explanation": "WritebackThread 0: R4 changes from 0 to 6. Next PC: 5."
+      },
+      "outcome": "failed"
+    },
+    {
+      "name": "Desktop source navigation retains destination focus",
+      "pass": false,
+      "detail": {
+        "focus": "BODY",
+        "focusedThread": "Inspect thread 0",
+        "explanation": "WritebackThread 0: R4 changes from 0 to 6. Next PC: 5."
+      },
+      "outcome": "failed"
+    }
+  ],
+  "focusSamples": [
+    {
+      "name": "Your prediction",
+      "tabs": 56,
+      "tag": "INPUT",
+      "focusVisible": true,
+      "outline": "rgb(36, 57, 44) none 3px",
+      "boxShadow": "rgba(34, 211, 238, 0.4) 0px 0px 0px 3px",
+      "rect": {
+        "x": 1149,
+        "y": 197.96875,
+        "width": 179.25,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Your prediction"
+    },
+    {
+      "name": "Check",
+      "tabs": 1,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 1334.25,
+        "y": 197.96875,
+        "width": 79.75,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Check"
+    },
+    {
+      "name": "Observe a load",
+      "tabs": 68,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 242,
+        "y": 881.5,
+        "width": 91.484375,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Observe a load"
+    },
+    {
+      "name": "Inspect arithmetic",
+      "tabs": 1,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 351.484375,
+        "y": 881.5,
+        "width": 106.25,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Inspect arithmetic"
+    },
+    {
+      "name": "Registers",
+      "tabs": 5,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 1198.875,
+        "y": 323.75,
+        "width": 45.125,
+        "height": 25
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Registers"
+    },
+    {
+      "name": "5 Writeback",
+      "tabs": 46,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 931.59375,
+        "y": 776,
+        "width": 167.390625,
+        "height": 35
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "5Writeback"
+    },
+    {
+      "name": "Follow a store",
+      "tabs": 15,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 475.734375,
+        "y": 881.5,
+        "width": 85.96875,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Follow a store"
+    },
+    {
+      "name": "Complete lesson",
+      "tabs": 7,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 1149,
+        "y": 812.390625,
+        "width": 133.390625,
+        "height": 32
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Complete lesson"
+    },
+    {
+      "name": "First event",
+      "tabs": 46,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 283,
+        "y": 827,
+        "width": 27,
+        "height": 30
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "First event"
+    },
+    {
+      "name": "A[0]",
+      "tabs": 40,
+      "tag": "INPUT",
+      "focusVisible": true,
+      "outline": "rgb(36, 57, 44) none 3px",
+      "boxShadow": "rgba(34, 211, 238, 0.4) 0px 0px 0px 3px",
+      "rect": {
+        "x": 242,
+        "y": 286,
+        "width": 47,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "A[0]"
+    },
+    {
+      "name": "Final event",
+      "tabs": 26,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 385,
+        "y": 827,
+        "width": 27,
+        "height": 30
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Final event"
+    },
+    {
+      "name": "Trace output C[0]",
+      "tabs": 45,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 722,
+        "y": 272,
+        "width": 47,
+        "height": 48
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Trace output C[0]"
+    },
+    {
+      "name": "Graph ADD node",
+      "tabs": 23,
+      "tag": "g",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 272,
+        "y": 807.5,
+        "width": 142,
+        "height": 42
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "t0-op4: ADD R4, R1, R3"
+    },
+    {
+      "name": "Graph processing units",
+      "tabs": 58,
+      "tag": "SELECT",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 461,
+        "y": 448.5,
+        "width": 79.609375,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Graph processing units"
+    },
+    {
+      "name": "Graph scheduling policy",
+      "tabs": 0,
+      "tag": "SELECT",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 552.609375,
+        "y": 448.5,
+        "width": 188,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Graph scheduling policy"
+    },
+    {
+      "name": "Next graph tick",
+      "tabs": 39,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 283,
+        "y": 755.5,
+        "width": 34,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Next graph tick"
+    },
+    {
+      "name": "Graph processing units retest",
+      "tabs": 35,
+      "tag": "SELECT",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 461,
+        "y": 448.5,
+        "width": 79.609375,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Graph processing units"
+    },
+    {
+      "name": "Graph units type-selection",
+      "tabs": 0,
+      "tag": "SELECT",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 461,
+        "y": 448.5,
+        "width": 79.609375,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Graph processing units"
+    },
+    {
+      "name": "Graph policy type-selection",
+      "tabs": 0,
+      "tag": "SELECT",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 552.609375,
+        "y": 448.5,
+        "width": 188,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Graph scheduling policy"
+    },
+    {
+      "name": "Next graph tick",
+      "tabs": 39,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 283,
+        "y": 755.5,
+        "width": 34,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Next graph tick"
+    },
+    {
+      "name": "View source event",
+      "tabs": 75,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 1201,
+        "y": 873.5,
+        "width": 197,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "View source event"
+    },
+    {
+      "name": "Compare",
+      "tabs": 39,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 148.390625,
+        "y": 74.5,
+        "width": 78.328125,
+        "height": 46
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Compare"
+    },
+    {
+      "name": "Compare lane width",
+      "tabs": 13,
+      "tag": "SELECT",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 1352,
+        "y": 168,
+        "width": 62,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Lane width"
+    },
+    {
+      "name": "Program studio",
+      "tabs": 93,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 409.578125,
+        "y": 74.5,
+        "width": 113.4375,
+        "height": 46
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Program studio"
+    },
+    {
+      "name": "Studio assembly source",
+      "tabs": 10,
+      "tag": "TEXTAREA",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 24,
+        "y": 421.796875,
+        "width": 315,
+        "height": 270
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Assembly source"
+    },
+    {
+      "name": "Program initial memory",
+      "tabs": 5,
+      "tag": "TEXTAREA",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 24,
+        "y": 930.796875,
+        "width": 151.5,
+        "height": 190
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Program initial memory"
+    },
+    {
+      "name": "Program expected memory",
+      "tabs": 1,
+      "tag": "TEXTAREA",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 187.5,
+        "y": 930.796875,
+        "width": 151.5,
+        "height": 190
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Program expected memory"
+    },
+    {
+      "name": "Run experiment",
+      "tabs": 33,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 1279.484375,
+        "y": 154.140625,
+        "width": 136.515625,
+        "height": 36
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Run experiment"
+    },
+    {
+      "name": "Program threads per block",
+      "tabs": 6,
+      "tag": "INPUT",
+      "focusVisible": true,
+      "outline": "rgb(37, 59, 46) none 3px",
+      "boxShadow": "rgba(34, 211, 238, 0.4) 0px 0px 0px 3px",
+      "rect": {
+        "x": 24,
+        "y": 730.296875,
+        "width": 151.5,
+        "height": 36
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Program threads per block"
+    },
+    {
+      "name": "Run experiment",
+      "tabs": 20,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 1279.484375,
+        "y": 154.140625,
+        "width": 136.515625,
+        "height": 36
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Run experiment"
+    },
+    {
+      "name": "Trace program output 200",
+      "tabs": 16,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 398,
+        "y": 212.296875,
+        "width": 58.359375,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Trace program output 200"
+    },
+    {
+      "name": "View source event",
+      "tabs": 10,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 1213,
+        "y": 801.796875,
+        "width": 187,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "View source event"
+    },
+    {
+      "name": "Source line 2",
+      "tabs": 7,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 388,
+        "y": 471.796875,
+        "width": 108.5625,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Source line 2"
+    },
+    {
+      "name": "Hardware",
+      "tabs": 35,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 549.5,
+        "y": 74.5,
+        "width": 81.28125,
+        "height": 46
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Hardware"
+    },
+    {
+      "name": "Adder input A",
+      "tabs": 23,
+      "tag": "INPUT",
+      "focusVisible": true,
+      "outline": "rgb(36, 57, 44) none 3px",
+      "boxShadow": "rgba(34, 211, 238, 0.4) 0px 0px 0px 3px",
+      "rect": {
+        "x": 242,
+        "y": 459.5,
+        "width": 56,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Adder input A"
+    },
+    {
+      "name": "Adder input B",
+      "tabs": 1,
+      "tag": "INPUT",
+      "focusVisible": true,
+      "outline": "rgb(36, 57, 44) none 3px",
+      "boxShadow": "rgba(34, 211, 238, 0.4) 0px 0px 0px 3px",
+      "rect": {
+        "x": 342.65625,
+        "y": 459.5,
+        "width": 56,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Adder input B"
+    },
+    {
+      "name": "Inspect adder bit 7",
+      "tabs": 1,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 242,
+        "y": 522,
+        "width": 139.5,
+        "height": 109.5
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Inspect adder bit 7"
+    },
+    {
+      "name": "Inspect hardware sample 5",
+      "tabs": 41,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 1034.703125,
+        "y": 741,
+        "width": 81.125,
+        "height": 26
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Inspect hardware sample 5"
+    },
+    {
+      "name": "Kernel source variant",
+      "tabs": 70,
+      "tag": "SELECT",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 320.90625,
+        "y": 872.5,
+        "width": 219,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Kernel source variant"
+    },
+    {
+      "name": "Kernel hardware time",
+      "tabs": 89,
+      "tag": "INPUT",
+      "focusVisible": true,
+      "outline": "rgb(36, 57, 44) none 3px",
+      "boxShadow": "rgba(34, 211, 238, 0.4) 0px 0px 0px 3px",
+      "rect": {
+        "x": 242,
+        "y": 656.5,
+        "width": 1172,
+        "height": 16
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Kernel hardware time"
+    },
+    {
+      "name": "Classic explorer",
+      "tabs": 67,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 653.234375,
+        "y": 74.5,
+        "width": 116.9375,
+        "height": 46
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Classic explorer"
+    },
+    {
+      "name": "Step Forward",
+      "tabs": 23,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 354,
+        "y": 737.296875,
+        "width": 38,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": ""
+    },
+    {
+      "name": "Classic Register View (extended traversal)",
+      "tabs": 136,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 14,
+        "y": 781.09375,
+        "width": 219,
+        "height": 44
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Register View"
+    },
+    {
+      "name": "Classic comparison select",
+      "tabs": 2,
+      "tag": "SELECT",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 14,
+        "y": 961.890625,
+        "width": 219,
+        "height": 36
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "CPU vs GPUOptimized vs Unoptimized KernelDifferent Block SizesDifferent Scheduling Policies"
+    },
+    {
+      "name": "Narrow 2D ALU component",
+      "tabs": 35,
+      "tag": "g",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 205.61817932128906,
+        "y": 770.821044921875,
+        "width": 138.03636169433594,
+        "height": 72.55755615234375
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "text": "Inspect ALU / LSU"
+    },
+    {
+      "name": "Computation graph",
+      "tabs": 33,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 228.546875,
+        "y": 61,
+        "width": 128.125,
+        "height": 41
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "text": "Computation graph"
+    },
+    {
+      "name": "Narrow graph offscreen node",
+      "tabs": 46,
+      "tag": "g",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 299,
+        "y": 656.59375,
+        "width": 142,
+        "height": 42
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "text": "t3-op4: ADD R4, R1, R3"
+    },
+    {
+      "name": "View source event",
+      "tabs": 19,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 15,
+        "y": 549.59375,
+        "width": 360,
+        "height": 34
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "text": "View source event"
+    },
+    {
+      "name": "Computation graph",
+      "tabs": 41,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 228.546875,
+        "y": 61,
+        "width": 128.125,
+        "height": 41
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "text": "Computation graph"
+    },
+    {
+      "name": "Narrow T3 verification",
+      "tabs": 46,
+      "tag": "g",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 299,
+        "y": 656.59375,
+        "width": 142,
+        "height": 42
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "text": "t3-op4: ADD R4, R1, R3"
+    },
+    {
+      "name": "View source event",
+      "tabs": 19,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 15,
+        "y": 549.59375,
+        "width": 360,
+        "height": 34
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "text": "View source event"
+    },
+    {
+      "name": "Inspect thread 3",
+      "tabs": 24,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 15,
+        "y": 704.59375,
+        "width": 360,
+        "height": 28
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "text": "Inspect thread 3"
+    },
+    {
+      "name": "Narrow 2D ALU verification",
+      "tabs": 46,
+      "tag": "g",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 205.61817932128906,
+        "y": 770.821044921875,
+        "width": 138.03636169433594,
+        "height": 72.55755615234375
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "text": "Inspect ALU / LSU"
+    },
+    {
+      "name": "Computation graph",
+      "tabs": 6,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 250.71875,
+        "y": 68.5,
+        "width": 136.109375,
+        "height": 46
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "Computation graph"
+    },
+    {
+      "name": "Desktop T3 verification",
+      "tabs": 47,
+      "tag": "g",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 797,
+        "y": 801.5,
+        "width": 142,
+        "height": 42
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "t3-op4: ADD R4, R1, R3"
+    },
+    {
+      "name": "View source event",
+      "tabs": 19,
+      "tag": "BUTTON",
+      "focusVisible": true,
+      "outline": "rgb(37, 130, 91) solid 2px",
+      "boxShadow": "none",
+      "rect": {
+        "x": 1201,
+        "y": 873.5,
+        "width": 197,
+        "height": 34
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "text": "View source event"
+    }
+  ],
+  "pageErrors": [],
+  "limitations": [
+    "Not a saved repeatable browser test suite.",
+    "Native-select Home/End probes superseded by printable type-selection.",
+    "One immediate studio focus probe sampled before requestAnimationFrame; settled check passed.",
+    "Initial narrow graph probe checked only top-left visibility; full bounds show clipping.",
+    "Initial component probe checked only inspector existence; selected operand content separately verified.",
+    "No human learner sessions or real screen-reader testing.",
+    "No new full regression suite or hardware rerun."
+  ]
+}

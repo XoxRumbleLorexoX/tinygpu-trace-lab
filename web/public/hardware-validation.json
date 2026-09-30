@@ -1,0 +1,1191 @@
+{
+  "format": "tinygpu-hardware-1",
+  "generatedAt": "2026-09-15T22:27:50.310Z",
+  "status": "passed",
+  "tool": "Icarus Verilog version 13.0 (stable) (v13_0)",
+  "sourceHash": "7179e3d819e6963c36db60b08eeef436c3abc893fa786795ce13797b6e7f8c9a",
+  "testbenchHash": "8188d4695d289cd6b2699af6c0e023169d4841c7949fb57fdb2faf18fce15fb1",
+  "waveformHash": "50a4ce86561d640f3b988dd5db79c23f6b38754474cb20cef2fdf406d128f87b",
+  "checked": 31,
+  "mismatches": 0,
+  "scope": "Preserved tiny-gpu ALU: bundled vector-add arithmetic, unsigned 8-bit boundaries, reset, enable, and EXECUTE gating. Not a complete GPU or timing validation.",
+  "exclusions": [
+    "CMP/NZP encoding",
+    "division by zero",
+    "memory controllers",
+    "complete kernels",
+    "scheduler",
+    "vendor timing"
+  ],
+  "lesson": {
+    "id": "vector-add",
+    "a": [
+      2,
+      5,
+      3,
+      7
+    ],
+    "b": [
+      4,
+      1,
+      6,
+      2
+    ],
+    "model": "simt",
+    "laneWidth": 4,
+    "numberMode": "uint8"
+  },
+  "samples": [
+    {
+      "opcode": "ADD",
+      "left": 64,
+      "right": 0,
+      "expected": 64,
+      "eventIndex": 48,
+      "instruction": "ADD R2, R2, %threadIdx",
+      "threadId": 0,
+      "operationId": "t0-op2",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 16,
+      "actual": 64
+    },
+    {
+      "opcode": "ADD",
+      "left": 64,
+      "right": 1,
+      "expected": 65,
+      "eventIndex": 49,
+      "instruction": "ADD R2, R2, %threadIdx",
+      "threadId": 1,
+      "operationId": "t1-op2",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 26,
+      "actual": 65
+    },
+    {
+      "opcode": "ADD",
+      "left": 64,
+      "right": 2,
+      "expected": 66,
+      "eventIndex": 50,
+      "instruction": "ADD R2, R2, %threadIdx",
+      "threadId": 2,
+      "operationId": "t2-op2",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 36,
+      "actual": 66
+    },
+    {
+      "opcode": "ADD",
+      "left": 64,
+      "right": 3,
+      "expected": 67,
+      "eventIndex": 51,
+      "instruction": "ADD R2, R2, %threadIdx",
+      "threadId": 3,
+      "operationId": "t3-op2",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 46,
+      "actual": 67
+    },
+    {
+      "opcode": "ADD",
+      "left": 2,
+      "right": 4,
+      "expected": 6,
+      "eventIndex": 88,
+      "instruction": "ADD R4, R1, R3",
+      "threadId": 0,
+      "operationId": "t0-op4",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 56,
+      "actual": 6
+    },
+    {
+      "opcode": "ADD",
+      "left": 5,
+      "right": 1,
+      "expected": 6,
+      "eventIndex": 89,
+      "instruction": "ADD R4, R1, R3",
+      "threadId": 1,
+      "operationId": "t1-op4",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 66,
+      "actual": 6
+    },
+    {
+      "opcode": "ADD",
+      "left": 3,
+      "right": 6,
+      "expected": 9,
+      "eventIndex": 90,
+      "instruction": "ADD R4, R1, R3",
+      "threadId": 2,
+      "operationId": "t2-op4",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 76,
+      "actual": 9
+    },
+    {
+      "opcode": "ADD",
+      "left": 7,
+      "right": 2,
+      "expected": 9,
+      "eventIndex": 91,
+      "instruction": "ADD R4, R1, R3",
+      "threadId": 3,
+      "operationId": "t3-op4",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 86,
+      "actual": 9
+    },
+    {
+      "opcode": "ADD",
+      "left": 128,
+      "right": 0,
+      "expected": 128,
+      "eventIndex": 128,
+      "instruction": "ADD R5, R5, %threadIdx",
+      "threadId": 0,
+      "operationId": "t0-op6",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 96,
+      "actual": 128
+    },
+    {
+      "opcode": "ADD",
+      "left": 128,
+      "right": 1,
+      "expected": 129,
+      "eventIndex": 129,
+      "instruction": "ADD R5, R5, %threadIdx",
+      "threadId": 1,
+      "operationId": "t1-op6",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 106,
+      "actual": 129
+    },
+    {
+      "opcode": "ADD",
+      "left": 128,
+      "right": 2,
+      "expected": 130,
+      "eventIndex": 130,
+      "instruction": "ADD R5, R5, %threadIdx",
+      "threadId": 2,
+      "operationId": "t2-op6",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 116,
+      "actual": 130
+    },
+    {
+      "opcode": "ADD",
+      "left": 128,
+      "right": 3,
+      "expected": 131,
+      "eventIndex": 131,
+      "instruction": "ADD R5, R5, %threadIdx",
+      "threadId": 3,
+      "operationId": "t3-op6",
+      "kind": "lesson",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 126,
+      "actual": 131
+    },
+    {
+      "opcode": "ADD",
+      "left": 0,
+      "right": 1,
+      "expected": 1,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 136,
+      "actual": 1
+    },
+    {
+      "opcode": "ADD",
+      "left": 255,
+      "right": 1,
+      "expected": 0,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 146,
+      "actual": 0
+    },
+    {
+      "opcode": "ADD",
+      "left": 255,
+      "right": 255,
+      "expected": 254,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 156,
+      "actual": 254
+    },
+    {
+      "opcode": "ADD",
+      "left": 17,
+      "right": 3,
+      "expected": 20,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 166,
+      "actual": 20
+    },
+    {
+      "opcode": "SUB",
+      "left": 0,
+      "right": 1,
+      "expected": 255,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 176,
+      "actual": 255
+    },
+    {
+      "opcode": "SUB",
+      "left": 255,
+      "right": 1,
+      "expected": 254,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 186,
+      "actual": 254
+    },
+    {
+      "opcode": "SUB",
+      "left": 255,
+      "right": 255,
+      "expected": 0,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 196,
+      "actual": 0
+    },
+    {
+      "opcode": "SUB",
+      "left": 17,
+      "right": 3,
+      "expected": 14,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 206,
+      "actual": 14
+    },
+    {
+      "opcode": "MUL",
+      "left": 0,
+      "right": 1,
+      "expected": 0,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 216,
+      "actual": 0
+    },
+    {
+      "opcode": "MUL",
+      "left": 255,
+      "right": 1,
+      "expected": 255,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 226,
+      "actual": 255
+    },
+    {
+      "opcode": "MUL",
+      "left": 255,
+      "right": 255,
+      "expected": 1,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 236,
+      "actual": 1
+    },
+    {
+      "opcode": "MUL",
+      "left": 17,
+      "right": 3,
+      "expected": 51,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 246,
+      "actual": 51
+    },
+    {
+      "opcode": "DIV",
+      "left": 0,
+      "right": 1,
+      "expected": 0,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 256,
+      "actual": 0
+    },
+    {
+      "opcode": "DIV",
+      "left": 255,
+      "right": 1,
+      "expected": 255,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 266,
+      "actual": 255
+    },
+    {
+      "opcode": "DIV",
+      "left": 255,
+      "right": 255,
+      "expected": 1,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 276,
+      "actual": 1
+    },
+    {
+      "opcode": "DIV",
+      "left": 17,
+      "right": 3,
+      "expected": 5,
+      "eventIndex": null,
+      "kind": "boundary",
+      "reset": 0,
+      "enable": 1,
+      "state": 5,
+      "time": 286,
+      "actual": 5
+    },
+    {
+      "opcode": "ADD",
+      "left": 6,
+      "right": 8,
+      "expected": 5,
+      "eventIndex": null,
+      "kind": "disabled-hold",
+      "reset": 0,
+      "enable": 0,
+      "state": 5,
+      "time": 296,
+      "actual": 5
+    },
+    {
+      "opcode": "ADD",
+      "left": 6,
+      "right": 8,
+      "expected": 5,
+      "eventIndex": null,
+      "kind": "non-execute-hold",
+      "reset": 0,
+      "enable": 1,
+      "state": 4,
+      "time": 306,
+      "actual": 5
+    },
+    {
+      "opcode": "ADD",
+      "left": 6,
+      "right": 8,
+      "expected": 0,
+      "eventIndex": null,
+      "kind": "reset",
+      "reset": 1,
+      "enable": 1,
+      "state": 5,
+      "time": 316,
+      "actual": 0
+    }
+  ],
+  "waveform": {
+    "scale": "1ns",
+    "endtime": 320,
+    "signals": [
+      {
+        "type": "reg",
+        "size": 1,
+        "refName": "!",
+        "signalName": "clk",
+        "module": "alu_trace_tb",
+        "name": "alu_trace_tb.clk",
+        "wave": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "5",
+            "1"
+          ],
+          [
+            "10",
+            "0"
+          ],
+          [
+            "15",
+            "1"
+          ],
+          [
+            "20",
+            "0"
+          ],
+          [
+            "25",
+            "1"
+          ],
+          [
+            "30",
+            "0"
+          ],
+          [
+            "35",
+            "1"
+          ],
+          [
+            "40",
+            "0"
+          ],
+          [
+            "45",
+            "1"
+          ],
+          [
+            "50",
+            "0"
+          ],
+          [
+            "55",
+            "1"
+          ],
+          [
+            "60",
+            "0"
+          ],
+          [
+            "65",
+            "1"
+          ],
+          [
+            "70",
+            "0"
+          ],
+          [
+            "75",
+            "1"
+          ],
+          [
+            "80",
+            "0"
+          ],
+          [
+            "85",
+            "1"
+          ],
+          [
+            "90",
+            "0"
+          ],
+          [
+            "95",
+            "1"
+          ],
+          [
+            "100",
+            "0"
+          ],
+          [
+            "105",
+            "1"
+          ],
+          [
+            "110",
+            "0"
+          ],
+          [
+            "115",
+            "1"
+          ],
+          [
+            "120",
+            "0"
+          ],
+          [
+            "125",
+            "1"
+          ],
+          [
+            "130",
+            "0"
+          ],
+          [
+            "135",
+            "1"
+          ],
+          [
+            "140",
+            "0"
+          ],
+          [
+            "145",
+            "1"
+          ],
+          [
+            "150",
+            "0"
+          ],
+          [
+            "155",
+            "1"
+          ],
+          [
+            "160",
+            "0"
+          ],
+          [
+            "165",
+            "1"
+          ],
+          [
+            "170",
+            "0"
+          ],
+          [
+            "175",
+            "1"
+          ],
+          [
+            "180",
+            "0"
+          ],
+          [
+            "185",
+            "1"
+          ],
+          [
+            "190",
+            "0"
+          ],
+          [
+            "195",
+            "1"
+          ],
+          [
+            "200",
+            "0"
+          ],
+          [
+            "205",
+            "1"
+          ],
+          [
+            "210",
+            "0"
+          ],
+          [
+            "215",
+            "1"
+          ],
+          [
+            "220",
+            "0"
+          ],
+          [
+            "225",
+            "1"
+          ],
+          [
+            "230",
+            "0"
+          ],
+          [
+            "235",
+            "1"
+          ],
+          [
+            "240",
+            "0"
+          ],
+          [
+            "245",
+            "1"
+          ],
+          [
+            "250",
+            "0"
+          ],
+          [
+            "255",
+            "1"
+          ],
+          [
+            "260",
+            "0"
+          ],
+          [
+            "265",
+            "1"
+          ],
+          [
+            "270",
+            "0"
+          ],
+          [
+            "275",
+            "1"
+          ],
+          [
+            "280",
+            "0"
+          ],
+          [
+            "285",
+            "1"
+          ],
+          [
+            "290",
+            "0"
+          ],
+          [
+            "295",
+            "1"
+          ],
+          [
+            "300",
+            "0"
+          ],
+          [
+            "305",
+            "1"
+          ],
+          [
+            "310",
+            "0"
+          ],
+          [
+            "315",
+            "1"
+          ],
+          [
+            "320",
+            "0"
+          ]
+        ]
+      },
+      {
+        "type": "reg",
+        "size": 1,
+        "refName": "\"",
+        "signalName": "reset",
+        "module": "alu_trace_tb",
+        "name": "alu_trace_tb.reset",
+        "wave": [
+          [
+            "0",
+            "1"
+          ],
+          [
+            "10",
+            "0"
+          ],
+          [
+            "310",
+            "1"
+          ]
+        ]
+      },
+      {
+        "type": "reg",
+        "size": 1,
+        "refName": "#",
+        "signalName": "enable",
+        "module": "alu_trace_tb",
+        "name": "alu_trace_tb.enable",
+        "wave": [
+          [
+            "0",
+            "1"
+          ],
+          [
+            "290",
+            "0"
+          ],
+          [
+            "300",
+            "1"
+          ]
+        ]
+      },
+      {
+        "type": "reg",
+        "size": 3,
+        "refName": "$",
+        "signalName": "core_state",
+        "module": "alu_trace_tb",
+        "name": "alu_trace_tb.core_state[2:0]",
+        "wave": [
+          [
+            "0",
+            "101"
+          ],
+          [
+            "300",
+            "100"
+          ],
+          [
+            "310",
+            "101"
+          ]
+        ]
+      },
+      {
+        "type": "reg",
+        "size": 2,
+        "refName": "%",
+        "signalName": "decoded_alu_arithmetic_mux",
+        "module": "alu_trace_tb",
+        "name": "alu_trace_tb.decoded_alu_arithmetic_mux[1:0]",
+        "wave": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "170",
+            "1"
+          ],
+          [
+            "210",
+            "10"
+          ],
+          [
+            "250",
+            "11"
+          ],
+          [
+            "290",
+            "0"
+          ]
+        ]
+      },
+      {
+        "type": "reg",
+        "size": 1,
+        "refName": "&",
+        "signalName": "decoded_alu_output_mux",
+        "module": "alu_trace_tb",
+        "name": "alu_trace_tb.decoded_alu_output_mux",
+        "wave": [
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "type": "reg",
+        "size": 8,
+        "refName": "'",
+        "signalName": "rs",
+        "module": "alu_trace_tb",
+        "name": "alu_trace_tb.rs[7:0]",
+        "wave": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "10",
+            "1000000"
+          ],
+          [
+            "50",
+            "10"
+          ],
+          [
+            "60",
+            "101"
+          ],
+          [
+            "70",
+            "11"
+          ],
+          [
+            "80",
+            "111"
+          ],
+          [
+            "90",
+            "10000000"
+          ],
+          [
+            "130",
+            "0"
+          ],
+          [
+            "140",
+            "11111111"
+          ],
+          [
+            "160",
+            "10001"
+          ],
+          [
+            "170",
+            "0"
+          ],
+          [
+            "180",
+            "11111111"
+          ],
+          [
+            "200",
+            "10001"
+          ],
+          [
+            "210",
+            "0"
+          ],
+          [
+            "220",
+            "11111111"
+          ],
+          [
+            "240",
+            "10001"
+          ],
+          [
+            "250",
+            "0"
+          ],
+          [
+            "260",
+            "11111111"
+          ],
+          [
+            "280",
+            "10001"
+          ],
+          [
+            "290",
+            "110"
+          ]
+        ]
+      },
+      {
+        "type": "reg",
+        "size": 8,
+        "refName": "(",
+        "signalName": "rt",
+        "module": "alu_trace_tb",
+        "name": "alu_trace_tb.rt[7:0]",
+        "wave": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "20",
+            "1"
+          ],
+          [
+            "30",
+            "10"
+          ],
+          [
+            "40",
+            "11"
+          ],
+          [
+            "50",
+            "100"
+          ],
+          [
+            "60",
+            "1"
+          ],
+          [
+            "70",
+            "110"
+          ],
+          [
+            "80",
+            "10"
+          ],
+          [
+            "90",
+            "0"
+          ],
+          [
+            "100",
+            "1"
+          ],
+          [
+            "110",
+            "10"
+          ],
+          [
+            "120",
+            "11"
+          ],
+          [
+            "130",
+            "1"
+          ],
+          [
+            "150",
+            "11111111"
+          ],
+          [
+            "160",
+            "11"
+          ],
+          [
+            "170",
+            "1"
+          ],
+          [
+            "190",
+            "11111111"
+          ],
+          [
+            "200",
+            "11"
+          ],
+          [
+            "210",
+            "1"
+          ],
+          [
+            "230",
+            "11111111"
+          ],
+          [
+            "240",
+            "11"
+          ],
+          [
+            "250",
+            "1"
+          ],
+          [
+            "270",
+            "11111111"
+          ],
+          [
+            "280",
+            "11"
+          ],
+          [
+            "290",
+            "1000"
+          ]
+        ]
+      },
+      {
+        "type": "wire",
+        "size": 8,
+        "refName": ")",
+        "signalName": "alu_out",
+        "module": "alu_trace_tb",
+        "name": "alu_trace_tb.alu_out[7:0]",
+        "wave": [
+          [
+            "0",
+            "x"
+          ],
+          [
+            "5",
+            "0"
+          ],
+          [
+            "15",
+            "1000000"
+          ],
+          [
+            "25",
+            "1000001"
+          ],
+          [
+            "35",
+            "1000010"
+          ],
+          [
+            "45",
+            "1000011"
+          ],
+          [
+            "55",
+            "110"
+          ],
+          [
+            "75",
+            "1001"
+          ],
+          [
+            "95",
+            "10000000"
+          ],
+          [
+            "105",
+            "10000001"
+          ],
+          [
+            "115",
+            "10000010"
+          ],
+          [
+            "125",
+            "10000011"
+          ],
+          [
+            "135",
+            "1"
+          ],
+          [
+            "145",
+            "0"
+          ],
+          [
+            "155",
+            "11111110"
+          ],
+          [
+            "165",
+            "10100"
+          ],
+          [
+            "175",
+            "11111111"
+          ],
+          [
+            "185",
+            "11111110"
+          ],
+          [
+            "195",
+            "0"
+          ],
+          [
+            "205",
+            "1110"
+          ],
+          [
+            "215",
+            "0"
+          ],
+          [
+            "225",
+            "11111111"
+          ],
+          [
+            "235",
+            "1"
+          ],
+          [
+            "245",
+            "110011"
+          ],
+          [
+            "255",
+            "0"
+          ],
+          [
+            "265",
+            "11111111"
+          ],
+          [
+            "275",
+            "1"
+          ],
+          [
+            "285",
+            "101"
+          ],
+          [
+            "315",
+            "0"
+          ]
+        ]
+      }
+    ]
+  }
+}

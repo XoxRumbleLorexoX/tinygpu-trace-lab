@@ -1,0 +1,4560 @@
+{
+  "format": "tinygpu-kernel-1",
+  "generatedAt": "2026-09-15T23:22:03.653Z",
+  "tool": "Verilator 5.052 2026-09-05 rev vUNKNOWN-built20260905",
+  "variant": "scheduler-reset-experiment",
+  "status": "passed",
+  "scope": "A temporary compatibility copy of the preserved GPU attempts one four-thread vector-add block through dispatcher, program/data controllers, cores, registers, ALUs and LSUs. 11 explicit source adaptations remove trailing commas and express unpacked-array resets as all-zero assignment patterns. An additional experimental behavioral change resets the scheduler wait accumulator on every WAIT evaluation. Original files remain unchanged. External testbench memory uses a configurable response delay.",
+  "exclusions": [
+    "Divergent branches",
+    "other kernels",
+    "multiple blocks",
+    "real-device timing",
+    "four-state X/Z equivalence"
+  ],
+  "configuration": {
+    "cores": 2,
+    "threadsPerBlock": 4,
+    "threads": 4,
+    "dataChannels": 2,
+    "programChannels": 1,
+    "clockPeriodNs": 10
+  },
+  "sourceHashes": {
+    "hardware/original/alu.sv": "7179e3d819e6963c36db60b08eeef436c3abc893fa786795ce13797b6e7f8c9a",
+    "hardware/original/controller.sv": "6ed6adddeb2e396dc156b9f2b590a719fd9c37d31beb5ca9068af89a573fb422",
+    "hardware/original/core.sv": "03bcbadfb4b30a2c5381dfb1fa4b7c09cac75ab4c8fbec6257dc102af83010ea",
+    "hardware/original/dcr.sv": "4d50fc4411205a21373de796162d0f07208cde2a591fc52548813404cc46590a",
+    "hardware/original/decoder.sv": "972b42313d97d5f6d82990b495edcf37034ac41b11c8307f3275a2a0d81cf950",
+    "hardware/original/dispatch.sv": "78329ecf4bf7c042cfd68804145c27aa3f6ef33907fffe317cb8823d52ece000",
+    "hardware/original/fetcher.sv": "669d83e6ac19ad542c59d643ca2597a63e113dcc4850eb578bbf8449ed3d26c3",
+    "hardware/original/gpu.sv": "322524dcbbdbd9a975c8ee0c5629cdcdcaece088e4bbfb9855369d1bada1f01c",
+    "hardware/original/lsu.sv": "75f791a30e301ac7bf0e06dcbd906e74195852021d779eaf1db4624750ef9ce3",
+    "hardware/original/pc.sv": "a256a4765c6344e455553b4f68b94ee29145fe051a4840da5289efeead3455fa",
+    "hardware/original/registers.sv": "8df411ddfbd97c33e451a4570c480853f63e54da52ccb3e861412a0d634823b7",
+    "hardware/original/scheduler.sv": "b28755ac2db8fc91c867d46512f32bdd8efcf758e0a2ee580a8b221e99b8375d"
+  },
+  "compiledSourceHashes": {
+    "hardware/original/alu.sv": "7179e3d819e6963c36db60b08eeef436c3abc893fa786795ce13797b6e7f8c9a",
+    "hardware/original/controller.sv": "c0bbedad5dbfdf2908b354a0ff94a3bb04339c3ad28ba515faa3e7944a3455b4",
+    "hardware/original/core.sv": "e84353fc78c6504506bf732217f74b1e80e3e20e3e9afa33f982f33399ce8dac",
+    "hardware/original/dcr.sv": "4d50fc4411205a21373de796162d0f07208cde2a591fc52548813404cc46590a",
+    "hardware/original/decoder.sv": "972b42313d97d5f6d82990b495edcf37034ac41b11c8307f3275a2a0d81cf950",
+    "hardware/original/dispatch.sv": "78329ecf4bf7c042cfd68804145c27aa3f6ef33907fffe317cb8823d52ece000",
+    "hardware/original/fetcher.sv": "669d83e6ac19ad542c59d643ca2597a63e113dcc4850eb578bbf8449ed3d26c3",
+    "hardware/original/gpu.sv": "59ac4cb04d515ebcd4b4a15b1942c74f91182c9def6eb5f468fcc868184ed9b2",
+    "hardware/original/lsu.sv": "75f791a30e301ac7bf0e06dcbd906e74195852021d779eaf1db4624750ef9ce3",
+    "hardware/original/pc.sv": "a256a4765c6344e455553b4f68b94ee29145fe051a4840da5289efeead3455fa",
+    "hardware/original/registers.sv": "8df411ddfbd97c33e451a4570c480853f63e54da52ccb3e861412a0d634823b7",
+    "hardware/original/scheduler.sv": "d967be3af9c827cef5edee0f4af93542452277666aaa58447b61d8f7f5540b58"
+  },
+  "sourceChanges": [
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 52,
+      "before": "mem_read_address <= 0;",
+      "after": "mem_read_address <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 55,
+      "before": "mem_write_address <= 0;",
+      "after": "mem_write_address <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 56,
+      "before": "mem_write_data <= 0;",
+      "after": "mem_write_data <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 59,
+      "before": "consumer_read_data <= 0;",
+      "after": "consumer_read_data <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 62,
+      "before": "current_consumer <= 0;",
+      "after": "current_consumer <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 63,
+      "before": "controller_state <= 0;",
+      "after": "controller_state <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/core.sv",
+      "line": 115,
+      "before": ".THREADS_PER_BLOCK(THREADS_PER_BLOCK),\n    ) scheduler_instance",
+      "after": ".THREADS_PER_BLOCK(THREADS_PER_BLOCK)\n    ) scheduler_instance",
+      "reason": "Remove illegal trailing instantiation or parameter comma"
+    },
+    {
+      "path": "hardware/original/core.sv",
+      "line": 174,
+      "before": ".DATA_BITS(DATA_MEM_DATA_BITS),\n            ) register_instance",
+      "after": ".DATA_BITS(DATA_MEM_DATA_BITS)\n            ) register_instance",
+      "reason": "Remove illegal trailing instantiation or parameter comma"
+    },
+    {
+      "path": "hardware/original/gpu.sv",
+      "line": 192,
+      "before": ".THREADS_PER_BLOCK(THREADS_PER_BLOCK),\n            ) core_instance",
+      "after": ".THREADS_PER_BLOCK(THREADS_PER_BLOCK)\n            ) core_instance",
+      "reason": "Remove illegal trailing instantiation or parameter comma"
+    },
+    {
+      "path": "hardware/original/gpu.sv",
+      "line": 133,
+      "before": ".mem_read_data(program_mem_read_data),\n    );",
+      "after": ".mem_read_data(program_mem_read_data)\n    );",
+      "reason": "Remove illegal trailing instantiation or parameter comma"
+    },
+    {
+      "path": "hardware/original/scheduler.sv",
+      "line": 17,
+      "before": "parameter THREADS_PER_BLOCK = 4,\n)",
+      "after": "parameter THREADS_PER_BLOCK = 4\n)",
+      "reason": "Remove illegal trailing instantiation or parameter comma"
+    }
+  ],
+  "executionChanges": [
+    {
+      "path": "hardware/original/scheduler.sv",
+      "line": 79,
+      "before": "reg any_lsu_waiting = 1'b0;",
+      "after": "reg any_lsu_waiting;\n                    any_lsu_waiting = 1'b0;",
+      "reason": "Experimental behavioral fix: clear the wait accumulator on every WAIT evaluation"
+    }
+  ],
+  "originalCompilation": {
+    "status": "failed",
+    "logFile": "kernel-original-compile.log",
+    "logHash": "87a9621ace7bbb868eaac57e7c026faf12c5515867de5184bad8187f0c8d6604"
+  },
+  "testbenchHash": "22ae5449b9dea558fd686bee88a0c98fda55da5754fcaa05ba77c15a03f0195d",
+  "program": {
+    "source": "LDR R1, [%threadIdx]\nCONST R2, 64\nADD R2, R2, %threadIdx\nLDR R3, [R2]\nADD R4, R1, R3\nCONST R5, 128\nADD R5, R5, %threadIdx\nSTR R4, [R5]\nRET",
+    "words": [
+      29168,
+      37440,
+      12847,
+      29472,
+      13331,
+      38272,
+      13663,
+      32852,
+      61440
+    ]
+  },
+  "cases": [
+    {
+      "id": "default",
+      "a": [
+        2,
+        5,
+        3,
+        7
+      ],
+      "b": [
+        4,
+        1,
+        6,
+        2
+      ],
+      "latency": 1,
+      "commits": [
+        {
+          "time": 316,
+          "core": 0,
+          "threadId": 3,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 7,
+          "expected": 7,
+          "eventIndex": 19,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 316,
+          "core": 0,
+          "threadId": 2,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 3,
+          "expected": 3,
+          "eventIndex": 18,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 316,
+          "core": 0,
+          "threadId": 1,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 5,
+          "expected": 5,
+          "eventIndex": 17,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 316,
+          "core": 0,
+          "threadId": 0,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 2,
+          "expected": 2,
+          "eventIndex": 16,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 426,
+          "core": 0,
+          "threadId": 3,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 39,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 426,
+          "core": 0,
+          "threadId": 2,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 38,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 426,
+          "core": 0,
+          "threadId": 1,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 37,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 426,
+          "core": 0,
+          "threadId": 0,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 36,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 536,
+          "core": 0,
+          "threadId": 3,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 67,
+          "expected": 67,
+          "eventIndex": 59,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 536,
+          "core": 0,
+          "threadId": 2,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 66,
+          "expected": 66,
+          "eventIndex": 58,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 536,
+          "core": 0,
+          "threadId": 1,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 65,
+          "expected": 65,
+          "eventIndex": 57,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 536,
+          "core": 0,
+          "threadId": 0,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 56,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 786,
+          "core": 0,
+          "threadId": 3,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 2,
+          "expected": 2,
+          "eventIndex": 79,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 786,
+          "core": 0,
+          "threadId": 2,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 78,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 786,
+          "core": 0,
+          "threadId": 1,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 1,
+          "expected": 1,
+          "eventIndex": 77,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 786,
+          "core": 0,
+          "threadId": 0,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 4,
+          "expected": 4,
+          "eventIndex": 76,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 896,
+          "core": 0,
+          "threadId": 3,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 9,
+          "expected": 9,
+          "eventIndex": 99,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 896,
+          "core": 0,
+          "threadId": 2,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 9,
+          "expected": 9,
+          "eventIndex": 98,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 896,
+          "core": 0,
+          "threadId": 1,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 97,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 896,
+          "core": 0,
+          "threadId": 0,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 96,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 1006,
+          "core": 0,
+          "threadId": 3,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 119,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1006,
+          "core": 0,
+          "threadId": 2,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 118,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1006,
+          "core": 0,
+          "threadId": 1,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 117,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1006,
+          "core": 0,
+          "threadId": 0,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 116,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1116,
+          "core": 0,
+          "threadId": 3,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 131,
+          "expected": 131,
+          "eventIndex": 139,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 1116,
+          "core": 0,
+          "threadId": 2,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 130,
+          "expected": 130,
+          "eventIndex": 138,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 1116,
+          "core": 0,
+          "threadId": 1,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 129,
+          "expected": 129,
+          "eventIndex": 137,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 1116,
+          "core": 0,
+          "threadId": 0,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 136,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        }
+      ],
+      "transactions": [
+        {
+          "kind": "read",
+          "time": 190,
+          "channel": 0,
+          "address": 0,
+          "actual": 2,
+          "expected": 2,
+          "eventIndex": 12,
+          "threadId": 0,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 190,
+          "channel": 1,
+          "address": 1,
+          "actual": 5,
+          "expected": 5,
+          "eventIndex": 13,
+          "threadId": 1,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 260,
+          "channel": 0,
+          "address": 2,
+          "actual": 3,
+          "expected": 3,
+          "eventIndex": 14,
+          "threadId": 2,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 260,
+          "channel": 1,
+          "address": 3,
+          "actual": 7,
+          "expected": 7,
+          "eventIndex": 15,
+          "threadId": 3,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 660,
+          "channel": 0,
+          "address": 64,
+          "actual": 4,
+          "expected": 4,
+          "eventIndex": 72,
+          "threadId": 0,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 660,
+          "channel": 1,
+          "address": 65,
+          "actual": 1,
+          "expected": 1,
+          "eventIndex": 73,
+          "threadId": 1,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 730,
+          "channel": 0,
+          "address": 66,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 74,
+          "threadId": 2,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 730,
+          "channel": 1,
+          "address": 67,
+          "actual": 2,
+          "expected": 2,
+          "eventIndex": 75,
+          "threadId": 3,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1240,
+          "channel": 0,
+          "address": 128,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 152,
+          "threadId": 0,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1240,
+          "channel": 1,
+          "address": 129,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 153,
+          "threadId": 1,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1310,
+          "channel": 0,
+          "address": 130,
+          "actual": 9,
+          "expected": 9,
+          "eventIndex": 154,
+          "threadId": 2,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1310,
+          "channel": 1,
+          "address": 131,
+          "actual": 9,
+          "expected": 9,
+          "eventIndex": 155,
+          "threadId": 3,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        }
+      ],
+      "states": [
+        {
+          "time": 60,
+          "core": 0,
+          "state": 0,
+          "pc": 0
+        },
+        {
+          "time": 70,
+          "core": 0,
+          "state": 1,
+          "pc": 0
+        },
+        {
+          "time": 130,
+          "core": 0,
+          "state": 2,
+          "pc": 0
+        },
+        {
+          "time": 140,
+          "core": 0,
+          "state": 3,
+          "pc": 0
+        },
+        {
+          "time": 150,
+          "core": 0,
+          "state": 4,
+          "pc": 0
+        },
+        {
+          "time": 300,
+          "core": 0,
+          "state": 5,
+          "pc": 0
+        },
+        {
+          "time": 310,
+          "core": 0,
+          "state": 6,
+          "pc": 0
+        },
+        {
+          "time": 320,
+          "core": 0,
+          "state": 1,
+          "pc": 1
+        },
+        {
+          "time": 380,
+          "core": 0,
+          "state": 2,
+          "pc": 1
+        },
+        {
+          "time": 390,
+          "core": 0,
+          "state": 3,
+          "pc": 1
+        },
+        {
+          "time": 400,
+          "core": 0,
+          "state": 4,
+          "pc": 1
+        },
+        {
+          "time": 410,
+          "core": 0,
+          "state": 5,
+          "pc": 1
+        },
+        {
+          "time": 420,
+          "core": 0,
+          "state": 6,
+          "pc": 1
+        },
+        {
+          "time": 430,
+          "core": 0,
+          "state": 1,
+          "pc": 2
+        },
+        {
+          "time": 490,
+          "core": 0,
+          "state": 2,
+          "pc": 2
+        },
+        {
+          "time": 500,
+          "core": 0,
+          "state": 3,
+          "pc": 2
+        },
+        {
+          "time": 510,
+          "core": 0,
+          "state": 4,
+          "pc": 2
+        },
+        {
+          "time": 520,
+          "core": 0,
+          "state": 5,
+          "pc": 2
+        },
+        {
+          "time": 530,
+          "core": 0,
+          "state": 6,
+          "pc": 2
+        },
+        {
+          "time": 540,
+          "core": 0,
+          "state": 1,
+          "pc": 3
+        },
+        {
+          "time": 600,
+          "core": 0,
+          "state": 2,
+          "pc": 3
+        },
+        {
+          "time": 610,
+          "core": 0,
+          "state": 3,
+          "pc": 3
+        },
+        {
+          "time": 620,
+          "core": 0,
+          "state": 4,
+          "pc": 3
+        },
+        {
+          "time": 770,
+          "core": 0,
+          "state": 5,
+          "pc": 3
+        },
+        {
+          "time": 780,
+          "core": 0,
+          "state": 6,
+          "pc": 3
+        },
+        {
+          "time": 790,
+          "core": 0,
+          "state": 1,
+          "pc": 4
+        },
+        {
+          "time": 850,
+          "core": 0,
+          "state": 2,
+          "pc": 4
+        },
+        {
+          "time": 860,
+          "core": 0,
+          "state": 3,
+          "pc": 4
+        },
+        {
+          "time": 870,
+          "core": 0,
+          "state": 4,
+          "pc": 4
+        },
+        {
+          "time": 880,
+          "core": 0,
+          "state": 5,
+          "pc": 4
+        },
+        {
+          "time": 890,
+          "core": 0,
+          "state": 6,
+          "pc": 4
+        },
+        {
+          "time": 900,
+          "core": 0,
+          "state": 1,
+          "pc": 5
+        },
+        {
+          "time": 960,
+          "core": 0,
+          "state": 2,
+          "pc": 5
+        },
+        {
+          "time": 970,
+          "core": 0,
+          "state": 3,
+          "pc": 5
+        },
+        {
+          "time": 980,
+          "core": 0,
+          "state": 4,
+          "pc": 5
+        },
+        {
+          "time": 990,
+          "core": 0,
+          "state": 5,
+          "pc": 5
+        },
+        {
+          "time": 1000,
+          "core": 0,
+          "state": 6,
+          "pc": 5
+        },
+        {
+          "time": 1010,
+          "core": 0,
+          "state": 1,
+          "pc": 6
+        },
+        {
+          "time": 1070,
+          "core": 0,
+          "state": 2,
+          "pc": 6
+        },
+        {
+          "time": 1080,
+          "core": 0,
+          "state": 3,
+          "pc": 6
+        },
+        {
+          "time": 1090,
+          "core": 0,
+          "state": 4,
+          "pc": 6
+        },
+        {
+          "time": 1100,
+          "core": 0,
+          "state": 5,
+          "pc": 6
+        },
+        {
+          "time": 1110,
+          "core": 0,
+          "state": 6,
+          "pc": 6
+        },
+        {
+          "time": 1120,
+          "core": 0,
+          "state": 1,
+          "pc": 7
+        },
+        {
+          "time": 1180,
+          "core": 0,
+          "state": 2,
+          "pc": 7
+        },
+        {
+          "time": 1190,
+          "core": 0,
+          "state": 3,
+          "pc": 7
+        },
+        {
+          "time": 1200,
+          "core": 0,
+          "state": 4,
+          "pc": 7
+        },
+        {
+          "time": 1350,
+          "core": 0,
+          "state": 5,
+          "pc": 7
+        },
+        {
+          "time": 1360,
+          "core": 0,
+          "state": 6,
+          "pc": 7
+        },
+        {
+          "time": 1370,
+          "core": 0,
+          "state": 1,
+          "pc": 8
+        },
+        {
+          "time": 1430,
+          "core": 0,
+          "state": 2,
+          "pc": 8
+        },
+        {
+          "time": 1440,
+          "core": 0,
+          "state": 3,
+          "pc": 8
+        },
+        {
+          "time": 1450,
+          "core": 0,
+          "state": 4,
+          "pc": 8
+        },
+        {
+          "time": 1460,
+          "core": 0,
+          "state": 5,
+          "pc": 8
+        },
+        {
+          "time": 1470,
+          "core": 0,
+          "state": 6,
+          "pc": 8
+        },
+        {
+          "time": 1480,
+          "core": 0,
+          "state": 7,
+          "pc": 8
+        }
+      ],
+      "fetches": [
+        {
+          "time": 100,
+          "pc": 0,
+          "word": 29168
+        },
+        {
+          "time": 350,
+          "pc": 1,
+          "word": 37440
+        },
+        {
+          "time": 460,
+          "pc": 2,
+          "word": 12847
+        },
+        {
+          "time": 570,
+          "pc": 3,
+          "word": 29472
+        },
+        {
+          "time": 820,
+          "pc": 4,
+          "word": 13331
+        },
+        {
+          "time": 930,
+          "pc": 5,
+          "word": 38272
+        },
+        {
+          "time": 1040,
+          "pc": 6,
+          "word": 13663
+        },
+        {
+          "time": 1150,
+          "pc": 7,
+          "word": 32852
+        },
+        {
+          "time": 1400,
+          "pc": 8,
+          "word": 61440
+        }
+      ],
+      "outputs": [
+        {
+          "address": 128,
+          "actual": 6,
+          "expected": 6,
+          "match": true
+        },
+        {
+          "address": 129,
+          "actual": 6,
+          "expected": 6,
+          "match": true
+        },
+        {
+          "address": 130,
+          "actual": 9,
+          "expected": 9,
+          "match": true
+        },
+        {
+          "address": 131,
+          "actual": 9,
+          "expected": 9,
+          "match": true
+        }
+      ],
+      "termination": "DONE",
+      "cycles": 145,
+      "time": 1500,
+      "status": "passed",
+      "differences": [],
+      "expectedCommitCount": 28,
+      "expectedTransactionCount": 12,
+      "waveformFile": "kernel-scheduler-reset-default.vcd",
+      "waveformHash": "0b80941f8b63eb2caa136bb56389615a1215d57515205102dbf58fc1535a1b61",
+      "traceFile": "kernel-scheduler-reset-default-teaching.json",
+      "traceHash": "60c39da1c1eb32d96fc11e02513c40fa7acf6cdf8e9b6557fd1ac9952622da07",
+      "logFile": "kernel-scheduler-reset-default.log",
+      "logHash": "72643605c80e982e6754c627ed1e10fb1cae7480921d7b8be697537c53f2e95b",
+      "observedSignals": [
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.core_state[2:0]",
+          "size": 3,
+          "wave": [
+            [
+              "0",
+              "000"
+            ],
+            [
+              "65",
+              "001"
+            ],
+            [
+              "125",
+              "010"
+            ],
+            [
+              "135",
+              "011"
+            ],
+            [
+              "145",
+              "100"
+            ],
+            [
+              "295",
+              "101"
+            ],
+            [
+              "305",
+              "110"
+            ],
+            [
+              "315",
+              "001"
+            ],
+            [
+              "375",
+              "010"
+            ],
+            [
+              "385",
+              "011"
+            ],
+            [
+              "395",
+              "100"
+            ],
+            [
+              "405",
+              "101"
+            ],
+            [
+              "415",
+              "110"
+            ],
+            [
+              "425",
+              "001"
+            ],
+            [
+              "485",
+              "010"
+            ],
+            [
+              "495",
+              "011"
+            ],
+            [
+              "505",
+              "100"
+            ],
+            [
+              "515",
+              "101"
+            ],
+            [
+              "525",
+              "110"
+            ],
+            [
+              "535",
+              "001"
+            ],
+            [
+              "595",
+              "010"
+            ],
+            [
+              "605",
+              "011"
+            ],
+            [
+              "615",
+              "100"
+            ],
+            [
+              "765",
+              "101"
+            ],
+            [
+              "775",
+              "110"
+            ],
+            [
+              "785",
+              "001"
+            ],
+            [
+              "845",
+              "010"
+            ],
+            [
+              "855",
+              "011"
+            ],
+            [
+              "865",
+              "100"
+            ],
+            [
+              "875",
+              "101"
+            ],
+            [
+              "885",
+              "110"
+            ],
+            [
+              "895",
+              "001"
+            ],
+            [
+              "955",
+              "010"
+            ],
+            [
+              "965",
+              "011"
+            ],
+            [
+              "975",
+              "100"
+            ],
+            [
+              "985",
+              "101"
+            ],
+            [
+              "995",
+              "110"
+            ],
+            [
+              "1005",
+              "001"
+            ],
+            [
+              "1065",
+              "010"
+            ],
+            [
+              "1075",
+              "011"
+            ],
+            [
+              "1085",
+              "100"
+            ],
+            [
+              "1095",
+              "101"
+            ],
+            [
+              "1105",
+              "110"
+            ],
+            [
+              "1115",
+              "001"
+            ],
+            [
+              "1175",
+              "010"
+            ],
+            [
+              "1185",
+              "011"
+            ],
+            [
+              "1195",
+              "100"
+            ],
+            [
+              "1345",
+              "101"
+            ],
+            [
+              "1355",
+              "110"
+            ],
+            [
+              "1365",
+              "001"
+            ],
+            [
+              "1425",
+              "010"
+            ],
+            [
+              "1435",
+              "011"
+            ],
+            [
+              "1445",
+              "100"
+            ],
+            [
+              "1455",
+              "101"
+            ],
+            [
+              "1465",
+              "110"
+            ],
+            [
+              "1475",
+              "111"
+            ],
+            [
+              "1495",
+              "000"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[3][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "285",
+              "11"
+            ],
+            [
+              "315",
+              "00"
+            ],
+            [
+              "615",
+              "01"
+            ],
+            [
+              "625",
+              "10"
+            ],
+            [
+              "755",
+              "11"
+            ],
+            [
+              "785",
+              "00"
+            ],
+            [
+              "1195",
+              "01"
+            ],
+            [
+              "1205",
+              "10"
+            ],
+            [
+              "1335",
+              "11"
+            ],
+            [
+              "1365",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[2][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "285",
+              "11"
+            ],
+            [
+              "315",
+              "00"
+            ],
+            [
+              "615",
+              "01"
+            ],
+            [
+              "625",
+              "10"
+            ],
+            [
+              "755",
+              "11"
+            ],
+            [
+              "785",
+              "00"
+            ],
+            [
+              "1195",
+              "01"
+            ],
+            [
+              "1205",
+              "10"
+            ],
+            [
+              "1335",
+              "11"
+            ],
+            [
+              "1365",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[1][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "215",
+              "11"
+            ],
+            [
+              "315",
+              "00"
+            ],
+            [
+              "615",
+              "01"
+            ],
+            [
+              "625",
+              "10"
+            ],
+            [
+              "685",
+              "11"
+            ],
+            [
+              "785",
+              "00"
+            ],
+            [
+              "1195",
+              "01"
+            ],
+            [
+              "1205",
+              "10"
+            ],
+            [
+              "1265",
+              "11"
+            ],
+            [
+              "1365",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[0][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "215",
+              "11"
+            ],
+            [
+              "315",
+              "00"
+            ],
+            [
+              "615",
+              "01"
+            ],
+            [
+              "625",
+              "10"
+            ],
+            [
+              "685",
+              "11"
+            ],
+            [
+              "785",
+              "00"
+            ],
+            [
+              "1195",
+              "01"
+            ],
+            [
+              "1205",
+              "10"
+            ],
+            [
+              "1265",
+              "11"
+            ],
+            [
+              "1365",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.scheduler_instance.unnamedblk1.any_lsu_waiting",
+          "size": 1,
+          "wave": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "155",
+              "1"
+            ],
+            [
+              "295",
+              "0"
+            ],
+            [
+              "625",
+              "1"
+            ],
+            [
+              "765",
+              "0"
+            ],
+            [
+              "1205",
+              "1"
+            ],
+            [
+              "1345",
+              "0"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overflow",
+      "a": [
+        255,
+        128,
+        0,
+        200
+      ],
+      "b": [
+        1,
+        128,
+        255,
+        100
+      ],
+      "latency": 1,
+      "commits": [
+        {
+          "time": 316,
+          "core": 0,
+          "threadId": 3,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 200,
+          "expected": 200,
+          "eventIndex": 19,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 316,
+          "core": 0,
+          "threadId": 2,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 0,
+          "expected": 0,
+          "eventIndex": 18,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 316,
+          "core": 0,
+          "threadId": 1,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 17,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 316,
+          "core": 0,
+          "threadId": 0,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 255,
+          "expected": 255,
+          "eventIndex": 16,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 426,
+          "core": 0,
+          "threadId": 3,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 39,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 426,
+          "core": 0,
+          "threadId": 2,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 38,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 426,
+          "core": 0,
+          "threadId": 1,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 37,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 426,
+          "core": 0,
+          "threadId": 0,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 36,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 536,
+          "core": 0,
+          "threadId": 3,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 67,
+          "expected": 67,
+          "eventIndex": 59,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 536,
+          "core": 0,
+          "threadId": 2,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 66,
+          "expected": 66,
+          "eventIndex": 58,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 536,
+          "core": 0,
+          "threadId": 1,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 65,
+          "expected": 65,
+          "eventIndex": 57,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 536,
+          "core": 0,
+          "threadId": 0,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 56,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 786,
+          "core": 0,
+          "threadId": 3,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 100,
+          "expected": 100,
+          "eventIndex": 79,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 786,
+          "core": 0,
+          "threadId": 2,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 255,
+          "expected": 255,
+          "eventIndex": 78,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 786,
+          "core": 0,
+          "threadId": 1,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 77,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 786,
+          "core": 0,
+          "threadId": 0,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 1,
+          "expected": 1,
+          "eventIndex": 76,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 896,
+          "core": 0,
+          "threadId": 3,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 44,
+          "expected": 44,
+          "eventIndex": 99,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 896,
+          "core": 0,
+          "threadId": 2,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 255,
+          "expected": 255,
+          "eventIndex": 98,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 896,
+          "core": 0,
+          "threadId": 1,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 0,
+          "expected": 0,
+          "eventIndex": 97,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 896,
+          "core": 0,
+          "threadId": 0,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 0,
+          "expected": 0,
+          "eventIndex": 96,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 1006,
+          "core": 0,
+          "threadId": 3,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 119,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1006,
+          "core": 0,
+          "threadId": 2,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 118,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1006,
+          "core": 0,
+          "threadId": 1,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 117,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1006,
+          "core": 0,
+          "threadId": 0,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 116,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1116,
+          "core": 0,
+          "threadId": 3,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 131,
+          "expected": 131,
+          "eventIndex": 139,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 1116,
+          "core": 0,
+          "threadId": 2,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 130,
+          "expected": 130,
+          "eventIndex": 138,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 1116,
+          "core": 0,
+          "threadId": 1,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 129,
+          "expected": 129,
+          "eventIndex": 137,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 1116,
+          "core": 0,
+          "threadId": 0,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 136,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        }
+      ],
+      "transactions": [
+        {
+          "kind": "read",
+          "time": 190,
+          "channel": 0,
+          "address": 0,
+          "actual": 255,
+          "expected": 255,
+          "eventIndex": 12,
+          "threadId": 0,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 190,
+          "channel": 1,
+          "address": 1,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 13,
+          "threadId": 1,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 260,
+          "channel": 0,
+          "address": 2,
+          "actual": 0,
+          "expected": 0,
+          "eventIndex": 14,
+          "threadId": 2,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 260,
+          "channel": 1,
+          "address": 3,
+          "actual": 200,
+          "expected": 200,
+          "eventIndex": 15,
+          "threadId": 3,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 660,
+          "channel": 0,
+          "address": 64,
+          "actual": 1,
+          "expected": 1,
+          "eventIndex": 72,
+          "threadId": 0,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 660,
+          "channel": 1,
+          "address": 65,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 73,
+          "threadId": 1,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 730,
+          "channel": 0,
+          "address": 66,
+          "actual": 255,
+          "expected": 255,
+          "eventIndex": 74,
+          "threadId": 2,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 730,
+          "channel": 1,
+          "address": 67,
+          "actual": 100,
+          "expected": 100,
+          "eventIndex": 75,
+          "threadId": 3,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1240,
+          "channel": 0,
+          "address": 128,
+          "actual": 0,
+          "expected": 0,
+          "eventIndex": 152,
+          "threadId": 0,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1240,
+          "channel": 1,
+          "address": 129,
+          "actual": 0,
+          "expected": 0,
+          "eventIndex": 153,
+          "threadId": 1,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1310,
+          "channel": 0,
+          "address": 130,
+          "actual": 255,
+          "expected": 255,
+          "eventIndex": 154,
+          "threadId": 2,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1310,
+          "channel": 1,
+          "address": 131,
+          "actual": 44,
+          "expected": 44,
+          "eventIndex": 155,
+          "threadId": 3,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        }
+      ],
+      "states": [
+        {
+          "time": 60,
+          "core": 0,
+          "state": 0,
+          "pc": 0
+        },
+        {
+          "time": 70,
+          "core": 0,
+          "state": 1,
+          "pc": 0
+        },
+        {
+          "time": 130,
+          "core": 0,
+          "state": 2,
+          "pc": 0
+        },
+        {
+          "time": 140,
+          "core": 0,
+          "state": 3,
+          "pc": 0
+        },
+        {
+          "time": 150,
+          "core": 0,
+          "state": 4,
+          "pc": 0
+        },
+        {
+          "time": 300,
+          "core": 0,
+          "state": 5,
+          "pc": 0
+        },
+        {
+          "time": 310,
+          "core": 0,
+          "state": 6,
+          "pc": 0
+        },
+        {
+          "time": 320,
+          "core": 0,
+          "state": 1,
+          "pc": 1
+        },
+        {
+          "time": 380,
+          "core": 0,
+          "state": 2,
+          "pc": 1
+        },
+        {
+          "time": 390,
+          "core": 0,
+          "state": 3,
+          "pc": 1
+        },
+        {
+          "time": 400,
+          "core": 0,
+          "state": 4,
+          "pc": 1
+        },
+        {
+          "time": 410,
+          "core": 0,
+          "state": 5,
+          "pc": 1
+        },
+        {
+          "time": 420,
+          "core": 0,
+          "state": 6,
+          "pc": 1
+        },
+        {
+          "time": 430,
+          "core": 0,
+          "state": 1,
+          "pc": 2
+        },
+        {
+          "time": 490,
+          "core": 0,
+          "state": 2,
+          "pc": 2
+        },
+        {
+          "time": 500,
+          "core": 0,
+          "state": 3,
+          "pc": 2
+        },
+        {
+          "time": 510,
+          "core": 0,
+          "state": 4,
+          "pc": 2
+        },
+        {
+          "time": 520,
+          "core": 0,
+          "state": 5,
+          "pc": 2
+        },
+        {
+          "time": 530,
+          "core": 0,
+          "state": 6,
+          "pc": 2
+        },
+        {
+          "time": 540,
+          "core": 0,
+          "state": 1,
+          "pc": 3
+        },
+        {
+          "time": 600,
+          "core": 0,
+          "state": 2,
+          "pc": 3
+        },
+        {
+          "time": 610,
+          "core": 0,
+          "state": 3,
+          "pc": 3
+        },
+        {
+          "time": 620,
+          "core": 0,
+          "state": 4,
+          "pc": 3
+        },
+        {
+          "time": 770,
+          "core": 0,
+          "state": 5,
+          "pc": 3
+        },
+        {
+          "time": 780,
+          "core": 0,
+          "state": 6,
+          "pc": 3
+        },
+        {
+          "time": 790,
+          "core": 0,
+          "state": 1,
+          "pc": 4
+        },
+        {
+          "time": 850,
+          "core": 0,
+          "state": 2,
+          "pc": 4
+        },
+        {
+          "time": 860,
+          "core": 0,
+          "state": 3,
+          "pc": 4
+        },
+        {
+          "time": 870,
+          "core": 0,
+          "state": 4,
+          "pc": 4
+        },
+        {
+          "time": 880,
+          "core": 0,
+          "state": 5,
+          "pc": 4
+        },
+        {
+          "time": 890,
+          "core": 0,
+          "state": 6,
+          "pc": 4
+        },
+        {
+          "time": 900,
+          "core": 0,
+          "state": 1,
+          "pc": 5
+        },
+        {
+          "time": 960,
+          "core": 0,
+          "state": 2,
+          "pc": 5
+        },
+        {
+          "time": 970,
+          "core": 0,
+          "state": 3,
+          "pc": 5
+        },
+        {
+          "time": 980,
+          "core": 0,
+          "state": 4,
+          "pc": 5
+        },
+        {
+          "time": 990,
+          "core": 0,
+          "state": 5,
+          "pc": 5
+        },
+        {
+          "time": 1000,
+          "core": 0,
+          "state": 6,
+          "pc": 5
+        },
+        {
+          "time": 1010,
+          "core": 0,
+          "state": 1,
+          "pc": 6
+        },
+        {
+          "time": 1070,
+          "core": 0,
+          "state": 2,
+          "pc": 6
+        },
+        {
+          "time": 1080,
+          "core": 0,
+          "state": 3,
+          "pc": 6
+        },
+        {
+          "time": 1090,
+          "core": 0,
+          "state": 4,
+          "pc": 6
+        },
+        {
+          "time": 1100,
+          "core": 0,
+          "state": 5,
+          "pc": 6
+        },
+        {
+          "time": 1110,
+          "core": 0,
+          "state": 6,
+          "pc": 6
+        },
+        {
+          "time": 1120,
+          "core": 0,
+          "state": 1,
+          "pc": 7
+        },
+        {
+          "time": 1180,
+          "core": 0,
+          "state": 2,
+          "pc": 7
+        },
+        {
+          "time": 1190,
+          "core": 0,
+          "state": 3,
+          "pc": 7
+        },
+        {
+          "time": 1200,
+          "core": 0,
+          "state": 4,
+          "pc": 7
+        },
+        {
+          "time": 1350,
+          "core": 0,
+          "state": 5,
+          "pc": 7
+        },
+        {
+          "time": 1360,
+          "core": 0,
+          "state": 6,
+          "pc": 7
+        },
+        {
+          "time": 1370,
+          "core": 0,
+          "state": 1,
+          "pc": 8
+        },
+        {
+          "time": 1430,
+          "core": 0,
+          "state": 2,
+          "pc": 8
+        },
+        {
+          "time": 1440,
+          "core": 0,
+          "state": 3,
+          "pc": 8
+        },
+        {
+          "time": 1450,
+          "core": 0,
+          "state": 4,
+          "pc": 8
+        },
+        {
+          "time": 1460,
+          "core": 0,
+          "state": 5,
+          "pc": 8
+        },
+        {
+          "time": 1470,
+          "core": 0,
+          "state": 6,
+          "pc": 8
+        },
+        {
+          "time": 1480,
+          "core": 0,
+          "state": 7,
+          "pc": 8
+        }
+      ],
+      "fetches": [
+        {
+          "time": 100,
+          "pc": 0,
+          "word": 29168
+        },
+        {
+          "time": 350,
+          "pc": 1,
+          "word": 37440
+        },
+        {
+          "time": 460,
+          "pc": 2,
+          "word": 12847
+        },
+        {
+          "time": 570,
+          "pc": 3,
+          "word": 29472
+        },
+        {
+          "time": 820,
+          "pc": 4,
+          "word": 13331
+        },
+        {
+          "time": 930,
+          "pc": 5,
+          "word": 38272
+        },
+        {
+          "time": 1040,
+          "pc": 6,
+          "word": 13663
+        },
+        {
+          "time": 1150,
+          "pc": 7,
+          "word": 32852
+        },
+        {
+          "time": 1400,
+          "pc": 8,
+          "word": 61440
+        }
+      ],
+      "outputs": [
+        {
+          "address": 128,
+          "actual": 0,
+          "expected": 0,
+          "match": true
+        },
+        {
+          "address": 129,
+          "actual": 0,
+          "expected": 0,
+          "match": true
+        },
+        {
+          "address": 130,
+          "actual": 255,
+          "expected": 255,
+          "match": true
+        },
+        {
+          "address": 131,
+          "actual": 44,
+          "expected": 44,
+          "match": true
+        }
+      ],
+      "termination": "DONE",
+      "cycles": 145,
+      "time": 1500,
+      "status": "passed",
+      "differences": [],
+      "expectedCommitCount": 28,
+      "expectedTransactionCount": 12,
+      "waveformFile": "kernel-scheduler-reset-overflow.vcd",
+      "waveformHash": "10cc15262d3ae450d5a072027ea19de1a9ed90577141476a2e36bf65148953ae",
+      "traceFile": "kernel-scheduler-reset-overflow-teaching.json",
+      "traceHash": "bd3e44546156a55e2a6980077a0fc0f526a99bed468e15619c4e4e6f2af48350",
+      "logFile": "kernel-scheduler-reset-overflow.log",
+      "logHash": "0a749ffac872776e8aa6c91c474c05c47e2b50160b4cb93dd803d8083b10303b",
+      "observedSignals": [
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.core_state[2:0]",
+          "size": 3,
+          "wave": [
+            [
+              "0",
+              "000"
+            ],
+            [
+              "65",
+              "001"
+            ],
+            [
+              "125",
+              "010"
+            ],
+            [
+              "135",
+              "011"
+            ],
+            [
+              "145",
+              "100"
+            ],
+            [
+              "295",
+              "101"
+            ],
+            [
+              "305",
+              "110"
+            ],
+            [
+              "315",
+              "001"
+            ],
+            [
+              "375",
+              "010"
+            ],
+            [
+              "385",
+              "011"
+            ],
+            [
+              "395",
+              "100"
+            ],
+            [
+              "405",
+              "101"
+            ],
+            [
+              "415",
+              "110"
+            ],
+            [
+              "425",
+              "001"
+            ],
+            [
+              "485",
+              "010"
+            ],
+            [
+              "495",
+              "011"
+            ],
+            [
+              "505",
+              "100"
+            ],
+            [
+              "515",
+              "101"
+            ],
+            [
+              "525",
+              "110"
+            ],
+            [
+              "535",
+              "001"
+            ],
+            [
+              "595",
+              "010"
+            ],
+            [
+              "605",
+              "011"
+            ],
+            [
+              "615",
+              "100"
+            ],
+            [
+              "765",
+              "101"
+            ],
+            [
+              "775",
+              "110"
+            ],
+            [
+              "785",
+              "001"
+            ],
+            [
+              "845",
+              "010"
+            ],
+            [
+              "855",
+              "011"
+            ],
+            [
+              "865",
+              "100"
+            ],
+            [
+              "875",
+              "101"
+            ],
+            [
+              "885",
+              "110"
+            ],
+            [
+              "895",
+              "001"
+            ],
+            [
+              "955",
+              "010"
+            ],
+            [
+              "965",
+              "011"
+            ],
+            [
+              "975",
+              "100"
+            ],
+            [
+              "985",
+              "101"
+            ],
+            [
+              "995",
+              "110"
+            ],
+            [
+              "1005",
+              "001"
+            ],
+            [
+              "1065",
+              "010"
+            ],
+            [
+              "1075",
+              "011"
+            ],
+            [
+              "1085",
+              "100"
+            ],
+            [
+              "1095",
+              "101"
+            ],
+            [
+              "1105",
+              "110"
+            ],
+            [
+              "1115",
+              "001"
+            ],
+            [
+              "1175",
+              "010"
+            ],
+            [
+              "1185",
+              "011"
+            ],
+            [
+              "1195",
+              "100"
+            ],
+            [
+              "1345",
+              "101"
+            ],
+            [
+              "1355",
+              "110"
+            ],
+            [
+              "1365",
+              "001"
+            ],
+            [
+              "1425",
+              "010"
+            ],
+            [
+              "1435",
+              "011"
+            ],
+            [
+              "1445",
+              "100"
+            ],
+            [
+              "1455",
+              "101"
+            ],
+            [
+              "1465",
+              "110"
+            ],
+            [
+              "1475",
+              "111"
+            ],
+            [
+              "1495",
+              "000"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[3][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "285",
+              "11"
+            ],
+            [
+              "315",
+              "00"
+            ],
+            [
+              "615",
+              "01"
+            ],
+            [
+              "625",
+              "10"
+            ],
+            [
+              "755",
+              "11"
+            ],
+            [
+              "785",
+              "00"
+            ],
+            [
+              "1195",
+              "01"
+            ],
+            [
+              "1205",
+              "10"
+            ],
+            [
+              "1335",
+              "11"
+            ],
+            [
+              "1365",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[2][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "285",
+              "11"
+            ],
+            [
+              "315",
+              "00"
+            ],
+            [
+              "615",
+              "01"
+            ],
+            [
+              "625",
+              "10"
+            ],
+            [
+              "755",
+              "11"
+            ],
+            [
+              "785",
+              "00"
+            ],
+            [
+              "1195",
+              "01"
+            ],
+            [
+              "1205",
+              "10"
+            ],
+            [
+              "1335",
+              "11"
+            ],
+            [
+              "1365",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[1][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "215",
+              "11"
+            ],
+            [
+              "315",
+              "00"
+            ],
+            [
+              "615",
+              "01"
+            ],
+            [
+              "625",
+              "10"
+            ],
+            [
+              "685",
+              "11"
+            ],
+            [
+              "785",
+              "00"
+            ],
+            [
+              "1195",
+              "01"
+            ],
+            [
+              "1205",
+              "10"
+            ],
+            [
+              "1265",
+              "11"
+            ],
+            [
+              "1365",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[0][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "215",
+              "11"
+            ],
+            [
+              "315",
+              "00"
+            ],
+            [
+              "615",
+              "01"
+            ],
+            [
+              "625",
+              "10"
+            ],
+            [
+              "685",
+              "11"
+            ],
+            [
+              "785",
+              "00"
+            ],
+            [
+              "1195",
+              "01"
+            ],
+            [
+              "1205",
+              "10"
+            ],
+            [
+              "1265",
+              "11"
+            ],
+            [
+              "1365",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.scheduler_instance.unnamedblk1.any_lsu_waiting",
+          "size": 1,
+          "wave": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "155",
+              "1"
+            ],
+            [
+              "295",
+              "0"
+            ],
+            [
+              "625",
+              "1"
+            ],
+            [
+              "765",
+              "0"
+            ],
+            [
+              "1205",
+              "1"
+            ],
+            [
+              "1345",
+              "0"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "delayed-memory",
+      "a": [
+        2,
+        5,
+        3,
+        7
+      ],
+      "b": [
+        4,
+        1,
+        6,
+        2
+      ],
+      "latency": 3,
+      "commits": [
+        {
+          "time": 376,
+          "core": 0,
+          "threadId": 3,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 7,
+          "expected": 7,
+          "eventIndex": 19,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 376,
+          "core": 0,
+          "threadId": 2,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 3,
+          "expected": 3,
+          "eventIndex": 18,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 376,
+          "core": 0,
+          "threadId": 1,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 5,
+          "expected": 5,
+          "eventIndex": 17,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 376,
+          "core": 0,
+          "threadId": 0,
+          "pc": 0,
+          "register": "R1",
+          "before": 0,
+          "actual": 2,
+          "expected": 2,
+          "eventIndex": 16,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "time": 506,
+          "core": 0,
+          "threadId": 3,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 39,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 506,
+          "core": 0,
+          "threadId": 2,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 38,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 506,
+          "core": 0,
+          "threadId": 1,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 37,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 506,
+          "core": 0,
+          "threadId": 0,
+          "pc": 1,
+          "register": "R2",
+          "before": 0,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 36,
+          "instruction": "CONST R2, 64",
+          "match": true
+        },
+        {
+          "time": 636,
+          "core": 0,
+          "threadId": 3,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 67,
+          "expected": 67,
+          "eventIndex": 59,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 636,
+          "core": 0,
+          "threadId": 2,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 66,
+          "expected": 66,
+          "eventIndex": 58,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 636,
+          "core": 0,
+          "threadId": 1,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 65,
+          "expected": 65,
+          "eventIndex": 57,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 636,
+          "core": 0,
+          "threadId": 0,
+          "pc": 2,
+          "register": "R2",
+          "before": 64,
+          "actual": 64,
+          "expected": 64,
+          "eventIndex": 56,
+          "instruction": "ADD R2, R2, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 946,
+          "core": 0,
+          "threadId": 3,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 2,
+          "expected": 2,
+          "eventIndex": 79,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 946,
+          "core": 0,
+          "threadId": 2,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 78,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 946,
+          "core": 0,
+          "threadId": 1,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 1,
+          "expected": 1,
+          "eventIndex": 77,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 946,
+          "core": 0,
+          "threadId": 0,
+          "pc": 3,
+          "register": "R3",
+          "before": 0,
+          "actual": 4,
+          "expected": 4,
+          "eventIndex": 76,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "time": 1076,
+          "core": 0,
+          "threadId": 3,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 9,
+          "expected": 9,
+          "eventIndex": 99,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 1076,
+          "core": 0,
+          "threadId": 2,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 9,
+          "expected": 9,
+          "eventIndex": 98,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 1076,
+          "core": 0,
+          "threadId": 1,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 97,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 1076,
+          "core": 0,
+          "threadId": 0,
+          "pc": 4,
+          "register": "R4",
+          "before": 0,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 96,
+          "instruction": "ADD R4, R1, R3",
+          "match": true
+        },
+        {
+          "time": 1206,
+          "core": 0,
+          "threadId": 3,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 119,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1206,
+          "core": 0,
+          "threadId": 2,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 118,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1206,
+          "core": 0,
+          "threadId": 1,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 117,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1206,
+          "core": 0,
+          "threadId": 0,
+          "pc": 5,
+          "register": "R5",
+          "before": 0,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 116,
+          "instruction": "CONST R5, 128",
+          "match": true
+        },
+        {
+          "time": 1336,
+          "core": 0,
+          "threadId": 3,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 131,
+          "expected": 131,
+          "eventIndex": 139,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 1336,
+          "core": 0,
+          "threadId": 2,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 130,
+          "expected": 130,
+          "eventIndex": 138,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 1336,
+          "core": 0,
+          "threadId": 1,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 129,
+          "expected": 129,
+          "eventIndex": 137,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        },
+        {
+          "time": 1336,
+          "core": 0,
+          "threadId": 0,
+          "pc": 6,
+          "register": "R5",
+          "before": 128,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 136,
+          "instruction": "ADD R5, R5, %threadIdx",
+          "match": true
+        }
+      ],
+      "transactions": [
+        {
+          "kind": "read",
+          "time": 230,
+          "channel": 0,
+          "address": 0,
+          "actual": 2,
+          "expected": 2,
+          "eventIndex": 12,
+          "threadId": 0,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 230,
+          "channel": 1,
+          "address": 1,
+          "actual": 5,
+          "expected": 5,
+          "eventIndex": 13,
+          "threadId": 1,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 320,
+          "channel": 0,
+          "address": 2,
+          "actual": 3,
+          "expected": 3,
+          "eventIndex": 14,
+          "threadId": 2,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 320,
+          "channel": 1,
+          "address": 3,
+          "actual": 7,
+          "expected": 7,
+          "eventIndex": 15,
+          "threadId": 3,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 800,
+          "channel": 0,
+          "address": 64,
+          "actual": 4,
+          "expected": 4,
+          "eventIndex": 72,
+          "threadId": 0,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 800,
+          "channel": 1,
+          "address": 65,
+          "actual": 1,
+          "expected": 1,
+          "eventIndex": 73,
+          "threadId": 1,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 890,
+          "channel": 0,
+          "address": 66,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 74,
+          "threadId": 2,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 890,
+          "channel": 1,
+          "address": 67,
+          "actual": 2,
+          "expected": 2,
+          "eventIndex": 75,
+          "threadId": 3,
+          "pc": 3,
+          "instruction": "LDR R3, [R2]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1500,
+          "channel": 0,
+          "address": 128,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 152,
+          "threadId": 0,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1500,
+          "channel": 1,
+          "address": 129,
+          "actual": 6,
+          "expected": 6,
+          "eventIndex": 153,
+          "threadId": 1,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1590,
+          "channel": 0,
+          "address": 130,
+          "actual": 9,
+          "expected": 9,
+          "eventIndex": 154,
+          "threadId": 2,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        },
+        {
+          "kind": "write",
+          "time": 1590,
+          "channel": 1,
+          "address": 131,
+          "actual": 9,
+          "expected": 9,
+          "eventIndex": 155,
+          "threadId": 3,
+          "pc": 7,
+          "instruction": "STR R4, [R5]",
+          "match": true
+        }
+      ],
+      "states": [
+        {
+          "time": 60,
+          "core": 0,
+          "state": 0,
+          "pc": 0
+        },
+        {
+          "time": 70,
+          "core": 0,
+          "state": 1,
+          "pc": 0
+        },
+        {
+          "time": 150,
+          "core": 0,
+          "state": 2,
+          "pc": 0
+        },
+        {
+          "time": 160,
+          "core": 0,
+          "state": 3,
+          "pc": 0
+        },
+        {
+          "time": 170,
+          "core": 0,
+          "state": 4,
+          "pc": 0
+        },
+        {
+          "time": 360,
+          "core": 0,
+          "state": 5,
+          "pc": 0
+        },
+        {
+          "time": 370,
+          "core": 0,
+          "state": 6,
+          "pc": 0
+        },
+        {
+          "time": 380,
+          "core": 0,
+          "state": 1,
+          "pc": 1
+        },
+        {
+          "time": 460,
+          "core": 0,
+          "state": 2,
+          "pc": 1
+        },
+        {
+          "time": 470,
+          "core": 0,
+          "state": 3,
+          "pc": 1
+        },
+        {
+          "time": 480,
+          "core": 0,
+          "state": 4,
+          "pc": 1
+        },
+        {
+          "time": 490,
+          "core": 0,
+          "state": 5,
+          "pc": 1
+        },
+        {
+          "time": 500,
+          "core": 0,
+          "state": 6,
+          "pc": 1
+        },
+        {
+          "time": 510,
+          "core": 0,
+          "state": 1,
+          "pc": 2
+        },
+        {
+          "time": 590,
+          "core": 0,
+          "state": 2,
+          "pc": 2
+        },
+        {
+          "time": 600,
+          "core": 0,
+          "state": 3,
+          "pc": 2
+        },
+        {
+          "time": 610,
+          "core": 0,
+          "state": 4,
+          "pc": 2
+        },
+        {
+          "time": 620,
+          "core": 0,
+          "state": 5,
+          "pc": 2
+        },
+        {
+          "time": 630,
+          "core": 0,
+          "state": 6,
+          "pc": 2
+        },
+        {
+          "time": 640,
+          "core": 0,
+          "state": 1,
+          "pc": 3
+        },
+        {
+          "time": 720,
+          "core": 0,
+          "state": 2,
+          "pc": 3
+        },
+        {
+          "time": 730,
+          "core": 0,
+          "state": 3,
+          "pc": 3
+        },
+        {
+          "time": 740,
+          "core": 0,
+          "state": 4,
+          "pc": 3
+        },
+        {
+          "time": 930,
+          "core": 0,
+          "state": 5,
+          "pc": 3
+        },
+        {
+          "time": 940,
+          "core": 0,
+          "state": 6,
+          "pc": 3
+        },
+        {
+          "time": 950,
+          "core": 0,
+          "state": 1,
+          "pc": 4
+        },
+        {
+          "time": 1030,
+          "core": 0,
+          "state": 2,
+          "pc": 4
+        },
+        {
+          "time": 1040,
+          "core": 0,
+          "state": 3,
+          "pc": 4
+        },
+        {
+          "time": 1050,
+          "core": 0,
+          "state": 4,
+          "pc": 4
+        },
+        {
+          "time": 1060,
+          "core": 0,
+          "state": 5,
+          "pc": 4
+        },
+        {
+          "time": 1070,
+          "core": 0,
+          "state": 6,
+          "pc": 4
+        },
+        {
+          "time": 1080,
+          "core": 0,
+          "state": 1,
+          "pc": 5
+        },
+        {
+          "time": 1160,
+          "core": 0,
+          "state": 2,
+          "pc": 5
+        },
+        {
+          "time": 1170,
+          "core": 0,
+          "state": 3,
+          "pc": 5
+        },
+        {
+          "time": 1180,
+          "core": 0,
+          "state": 4,
+          "pc": 5
+        },
+        {
+          "time": 1190,
+          "core": 0,
+          "state": 5,
+          "pc": 5
+        },
+        {
+          "time": 1200,
+          "core": 0,
+          "state": 6,
+          "pc": 5
+        },
+        {
+          "time": 1210,
+          "core": 0,
+          "state": 1,
+          "pc": 6
+        },
+        {
+          "time": 1290,
+          "core": 0,
+          "state": 2,
+          "pc": 6
+        },
+        {
+          "time": 1300,
+          "core": 0,
+          "state": 3,
+          "pc": 6
+        },
+        {
+          "time": 1310,
+          "core": 0,
+          "state": 4,
+          "pc": 6
+        },
+        {
+          "time": 1320,
+          "core": 0,
+          "state": 5,
+          "pc": 6
+        },
+        {
+          "time": 1330,
+          "core": 0,
+          "state": 6,
+          "pc": 6
+        },
+        {
+          "time": 1340,
+          "core": 0,
+          "state": 1,
+          "pc": 7
+        },
+        {
+          "time": 1420,
+          "core": 0,
+          "state": 2,
+          "pc": 7
+        },
+        {
+          "time": 1430,
+          "core": 0,
+          "state": 3,
+          "pc": 7
+        },
+        {
+          "time": 1440,
+          "core": 0,
+          "state": 4,
+          "pc": 7
+        },
+        {
+          "time": 1630,
+          "core": 0,
+          "state": 5,
+          "pc": 7
+        },
+        {
+          "time": 1640,
+          "core": 0,
+          "state": 6,
+          "pc": 7
+        },
+        {
+          "time": 1650,
+          "core": 0,
+          "state": 1,
+          "pc": 8
+        },
+        {
+          "time": 1730,
+          "core": 0,
+          "state": 2,
+          "pc": 8
+        },
+        {
+          "time": 1740,
+          "core": 0,
+          "state": 3,
+          "pc": 8
+        },
+        {
+          "time": 1750,
+          "core": 0,
+          "state": 4,
+          "pc": 8
+        },
+        {
+          "time": 1760,
+          "core": 0,
+          "state": 5,
+          "pc": 8
+        },
+        {
+          "time": 1770,
+          "core": 0,
+          "state": 6,
+          "pc": 8
+        },
+        {
+          "time": 1780,
+          "core": 0,
+          "state": 7,
+          "pc": 8
+        }
+      ],
+      "fetches": [
+        {
+          "time": 120,
+          "pc": 0,
+          "word": 29168
+        },
+        {
+          "time": 430,
+          "pc": 1,
+          "word": 37440
+        },
+        {
+          "time": 560,
+          "pc": 2,
+          "word": 12847
+        },
+        {
+          "time": 690,
+          "pc": 3,
+          "word": 29472
+        },
+        {
+          "time": 1000,
+          "pc": 4,
+          "word": 13331
+        },
+        {
+          "time": 1130,
+          "pc": 5,
+          "word": 38272
+        },
+        {
+          "time": 1260,
+          "pc": 6,
+          "word": 13663
+        },
+        {
+          "time": 1390,
+          "pc": 7,
+          "word": 32852
+        },
+        {
+          "time": 1700,
+          "pc": 8,
+          "word": 61440
+        }
+      ],
+      "outputs": [
+        {
+          "address": 128,
+          "actual": 6,
+          "expected": 6,
+          "match": true
+        },
+        {
+          "address": 129,
+          "actual": 6,
+          "expected": 6,
+          "match": true
+        },
+        {
+          "address": 130,
+          "actual": 9,
+          "expected": 9,
+          "match": true
+        },
+        {
+          "address": 131,
+          "actual": 9,
+          "expected": 9,
+          "match": true
+        }
+      ],
+      "termination": "DONE",
+      "cycles": 175,
+      "time": 1800,
+      "status": "passed",
+      "differences": [],
+      "expectedCommitCount": 28,
+      "expectedTransactionCount": 12,
+      "waveformFile": "kernel-scheduler-reset-delayed-memory.vcd",
+      "waveformHash": "cf4e9fe3dceb5f7c051cda1c5c91826cdd38bb3b8bdbe6d91f8c34d894f968cd",
+      "traceFile": "kernel-scheduler-reset-delayed-memory-teaching.json",
+      "traceHash": "60c39da1c1eb32d96fc11e02513c40fa7acf6cdf8e9b6557fd1ac9952622da07",
+      "logFile": "kernel-scheduler-reset-delayed-memory.log",
+      "logHash": "21e2f0b54db6835afe374d6edc867ae96003d3f1b7ca0f79a51e7e745d4704b0",
+      "observedSignals": [
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.core_state[2:0]",
+          "size": 3,
+          "wave": [
+            [
+              "0",
+              "000"
+            ],
+            [
+              "65",
+              "001"
+            ],
+            [
+              "145",
+              "010"
+            ],
+            [
+              "155",
+              "011"
+            ],
+            [
+              "165",
+              "100"
+            ],
+            [
+              "355",
+              "101"
+            ],
+            [
+              "365",
+              "110"
+            ],
+            [
+              "375",
+              "001"
+            ],
+            [
+              "455",
+              "010"
+            ],
+            [
+              "465",
+              "011"
+            ],
+            [
+              "475",
+              "100"
+            ],
+            [
+              "485",
+              "101"
+            ],
+            [
+              "495",
+              "110"
+            ],
+            [
+              "505",
+              "001"
+            ],
+            [
+              "585",
+              "010"
+            ],
+            [
+              "595",
+              "011"
+            ],
+            [
+              "605",
+              "100"
+            ],
+            [
+              "615",
+              "101"
+            ],
+            [
+              "625",
+              "110"
+            ],
+            [
+              "635",
+              "001"
+            ],
+            [
+              "715",
+              "010"
+            ],
+            [
+              "725",
+              "011"
+            ],
+            [
+              "735",
+              "100"
+            ],
+            [
+              "925",
+              "101"
+            ],
+            [
+              "935",
+              "110"
+            ],
+            [
+              "945",
+              "001"
+            ],
+            [
+              "1025",
+              "010"
+            ],
+            [
+              "1035",
+              "011"
+            ],
+            [
+              "1045",
+              "100"
+            ],
+            [
+              "1055",
+              "101"
+            ],
+            [
+              "1065",
+              "110"
+            ],
+            [
+              "1075",
+              "001"
+            ],
+            [
+              "1155",
+              "010"
+            ],
+            [
+              "1165",
+              "011"
+            ],
+            [
+              "1175",
+              "100"
+            ],
+            [
+              "1185",
+              "101"
+            ],
+            [
+              "1195",
+              "110"
+            ],
+            [
+              "1205",
+              "001"
+            ],
+            [
+              "1285",
+              "010"
+            ],
+            [
+              "1295",
+              "011"
+            ],
+            [
+              "1305",
+              "100"
+            ],
+            [
+              "1315",
+              "101"
+            ],
+            [
+              "1325",
+              "110"
+            ],
+            [
+              "1335",
+              "001"
+            ],
+            [
+              "1415",
+              "010"
+            ],
+            [
+              "1425",
+              "011"
+            ],
+            [
+              "1435",
+              "100"
+            ],
+            [
+              "1625",
+              "101"
+            ],
+            [
+              "1635",
+              "110"
+            ],
+            [
+              "1645",
+              "001"
+            ],
+            [
+              "1725",
+              "010"
+            ],
+            [
+              "1735",
+              "011"
+            ],
+            [
+              "1745",
+              "100"
+            ],
+            [
+              "1755",
+              "101"
+            ],
+            [
+              "1765",
+              "110"
+            ],
+            [
+              "1775",
+              "111"
+            ],
+            [
+              "1795",
+              "000"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[3][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "165",
+              "01"
+            ],
+            [
+              "175",
+              "10"
+            ],
+            [
+              "345",
+              "11"
+            ],
+            [
+              "375",
+              "00"
+            ],
+            [
+              "735",
+              "01"
+            ],
+            [
+              "745",
+              "10"
+            ],
+            [
+              "915",
+              "11"
+            ],
+            [
+              "945",
+              "00"
+            ],
+            [
+              "1435",
+              "01"
+            ],
+            [
+              "1445",
+              "10"
+            ],
+            [
+              "1615",
+              "11"
+            ],
+            [
+              "1645",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[2][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "165",
+              "01"
+            ],
+            [
+              "175",
+              "10"
+            ],
+            [
+              "345",
+              "11"
+            ],
+            [
+              "375",
+              "00"
+            ],
+            [
+              "735",
+              "01"
+            ],
+            [
+              "745",
+              "10"
+            ],
+            [
+              "915",
+              "11"
+            ],
+            [
+              "945",
+              "00"
+            ],
+            [
+              "1435",
+              "01"
+            ],
+            [
+              "1445",
+              "10"
+            ],
+            [
+              "1615",
+              "11"
+            ],
+            [
+              "1645",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[1][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "165",
+              "01"
+            ],
+            [
+              "175",
+              "10"
+            ],
+            [
+              "255",
+              "11"
+            ],
+            [
+              "375",
+              "00"
+            ],
+            [
+              "735",
+              "01"
+            ],
+            [
+              "745",
+              "10"
+            ],
+            [
+              "825",
+              "11"
+            ],
+            [
+              "945",
+              "00"
+            ],
+            [
+              "1435",
+              "01"
+            ],
+            [
+              "1445",
+              "10"
+            ],
+            [
+              "1525",
+              "11"
+            ],
+            [
+              "1645",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[0][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "165",
+              "01"
+            ],
+            [
+              "175",
+              "10"
+            ],
+            [
+              "255",
+              "11"
+            ],
+            [
+              "375",
+              "00"
+            ],
+            [
+              "735",
+              "01"
+            ],
+            [
+              "745",
+              "10"
+            ],
+            [
+              "825",
+              "11"
+            ],
+            [
+              "945",
+              "00"
+            ],
+            [
+              "1435",
+              "01"
+            ],
+            [
+              "1445",
+              "10"
+            ],
+            [
+              "1525",
+              "11"
+            ],
+            [
+              "1645",
+              "00"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.scheduler_instance.unnamedblk1.any_lsu_waiting",
+          "size": 1,
+          "wave": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "175",
+              "1"
+            ],
+            [
+              "355",
+              "0"
+            ],
+            [
+              "745",
+              "1"
+            ],
+            [
+              "925",
+              "0"
+            ],
+            [
+              "1445",
+              "1"
+            ],
+            [
+              "1625",
+              "0"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "compilerWarnings": "%Warning-NULLPORT: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/dcr.sv:14:1: Null port on module (perhaps extraneous comma)\n   14 | );\n      | ^\n                   ... For warning description see https://verilator.org/warn/NULLPORT?v=5.052\n                   ... Use \"/* verilator lint_off NULLPORT */\" and lint_on around source to disable this message.\n%Warning-NULLPORT: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/fetcher.sv:27:1: Null port on module (perhaps extraneous comma)\n   27 | );\n      | ^\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/core.sv:78:7: Instance has missing pin: '__pinNumber11'\n   78 |     ) fetcher_instance (\n      |       ^~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/fetcher.sv:27:1: ... Location of port declaration\n   27 | );\n      | ^\n                     ... For warning description see https://verilator.org/warn/PINMISSING?v=5.052\n                     ... Use \"/* verilator lint_off PINMISSING */\" and lint_on around source to disable this message.\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/gpu.sv:76:9: Instance has missing pin: '__pinNumber6'\n   76 |     dcr dcr_instance (\n      |         ^~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/dcr.sv:14:1: ... Location of port declaration\n   14 | );\n      | ^\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/gpu.sv:121:7: Instance has missing pin: 'consumer_write_valid'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:23:35: ... Location of port declaration\n   23 |     input reg [NUM_CONSUMERS-1:0] consumer_write_valid,\n      |                                   ^~~~~~~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/gpu.sv:121:7: Instance has missing pin: 'consumer_write_address'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:24:31: ... Location of port declaration\n   24 |     input reg [ADDR_BITS-1:0] consumer_write_address [NUM_CONSUMERS-1:0],\n      |                               ^~~~~~~~~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/gpu.sv:121:7: Instance has missing pin: 'consumer_write_data'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:25:31: ... Location of port declaration\n   25 |     input reg [DATA_BITS-1:0] consumer_write_data [NUM_CONSUMERS-1:0],\n      |                               ^~~~~~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/gpu.sv:121:7: Instance has missing pin: 'consumer_write_ready'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:26:36: ... Location of port declaration\n   26 |     output reg [NUM_CONSUMERS-1:0] consumer_write_ready,\n      |                                    ^~~~~~~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/gpu.sv:121:7: Instance has missing pin: 'mem_write_valid'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:33:35: ... Location of port declaration\n   33 |     output reg [NUM_CHANNELS-1:0] mem_write_valid,\n      |                                   ^~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/gpu.sv:121:7: Instance has missing pin: 'mem_write_address'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:34:32: ... Location of port declaration\n   34 |     output reg [ADDR_BITS-1:0] mem_write_address [NUM_CHANNELS-1:0],\n      |                                ^~~~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/gpu.sv:121:7: Instance has missing pin: 'mem_write_data'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:35:32: ... Location of port declaration\n   35 |     output reg [DATA_BITS-1:0] mem_write_data [NUM_CHANNELS-1:0],\n      |                                ^~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/gpu.sv:121:7: Instance has missing pin: 'mem_write_ready'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:36:34: ... Location of port declaration\n   36 |     input reg [NUM_CHANNELS-1:0] mem_write_ready\n      |                                  ^~~~~~~~~~~~~~~\n%Warning-WIDTHTRUNC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:75:53: Operator ASSIGNDLY expects 1 bits on the Assign RHS, but Assign RHS's VARREF 'j' generates 32 bits.\n                                                                                                                       : ... note: In instance 'kernel_trace_tb.dut.program_memory_controller'\n   75 |                                 current_consumer[i] <= j;\n      |                                                     ^~\n                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.052\n                     ... Use \"/* verilator lint_off WIDTHTRUNC */\" and lint_on around source to disable this message.\n%Warning-WIDTHTRUNC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:85:53: Operator ASSIGNDLY expects 1 bits on the Assign RHS, but Assign RHS's VARREF 'j' generates 32 bits.\n                                                                                                                       : ... note: In instance 'kernel_trace_tb.dut.program_memory_controller'\n   85 |                                 current_consumer[i] <= j;\n      |                                                     ^~\n%Warning-WIDTHTRUNC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:75:53: Operator ASSIGNDLY expects 3 bits on the Assign RHS, but Assign RHS's VARREF 'j' generates 32 bits.\n                                                                                                                       : ... note: In instance 'kernel_trace_tb.dut.data_memory_controller'\n   75 |                                 current_consumer[i] <= j;\n      |                                                     ^~\n%Warning-WIDTHTRUNC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:85:53: Operator ASSIGNDLY expects 3 bits on the Assign RHS, but Assign RHS's VARREF 'j' generates 32 bits.\n                                                                                                                       : ... note: In instance 'kernel_trace_tb.dut.data_memory_controller'\n   85 |                                 current_consumer[i] <= j;\n      |                                                     ^~\n%Warning-WIDTHTRUNC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/dispatch.sv:73:46: Operator ASSIGNDLY expects 3 bits on the Assign RHS, but Assign RHS's COND generates 32 or 8 bits.\n                                                                                                                     : ... note: In instance 'kernel_trace_tb.dut.dispatch_instance'\n   73 |                         core_thread_count[i] <= (blocks_dispatched == total_blocks - 1) \n      |                                              ^~\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:129:32: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARXREF 'core_state' generates 3 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  129 |                     last_state = dut.cores[c].core_instance.core_state;\n      |                                ^\n                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.052\n                      ... Use \"/* verilator lint_off WIDTHEXPAND */\" and lint_on around source to disable this message.\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:130:29: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARXREF 'current_pc' generates 8 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  130 |                     last_pc = dut.cores[c].core_instance.current_pc;\n      |                             ^\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:127:32: Operator NEQ expects 32 bits on the RHS, but RHS's VARXREF 'core_state' generates 3 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  127 |                 if (last_state != dut.cores[c].core_instance.core_state ||\n      |                                ^~\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:128:29: Operator NEQ expects 32 bits on the RHS, but RHS's VARXREF 'current_pc' generates 8 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  128 |                     last_pc != dut.cores[c].core_instance.current_pc) begin\n      |                             ^~\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:143:31: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARXREF 'current_pc' generates 8 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  143 |                     commit_pc = dut.cores[c].core_instance.current_pc;\n      |                               ^\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:144:31: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARXREF 'decoded_rd_address' generates 4 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  144 |                     commit_rd = dut.cores[c].core_instance.decoded_rd_address;\n      |                               ^\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:145:34: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's ARRAYSEL generates 8 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  145 |                     before_value = dut.cores[c].core_instance.threads[lane].register_instance.registers[commit_rd];\n      |                                  ^\n%Warning-UNSIGNED: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/alu.sv:39:83: Comparison is constant due to unsigned arithmetic\n                                                                                                              : ... note: In instance 'kernel_trace_tb.dut.cores[1].core_instance.threads[3].alu_instance'\n   39 |                     alu_out_reg <= {5'b0, (rs - rt > 0), (rs - rt == 0), (rs - rt < 0)};\n      |                                                                                   ^\n                   ... For warning description see https://verilator.org/warn/UNSIGNED?v=5.052\n                   ... Use \"/* verilator lint_off UNSIGNED */\" and lint_on around source to disable this message.\n%Warning-CASEINCOMPLETE: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/controller.sv:69:17: Case values incompletely covered (example pattern 0x1)\n   69 |                 case (controller_state[i])\n      |                 ^~~~\n                         ... For warning description see https://verilator.org/warn/CASEINCOMPLETE?v=5.052\n                         ... Use \"/* verilator lint_off CASEINCOMPLETE */\" and lint_on around source to disable this message.\n%Warning-CASEINCOMPLETE: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/registers.sv:84:21: Case values incompletely covered (example pattern 0x3)\n                                                                                                                          : ... note: In instance 'kernel_trace_tb.dut.cores[0].core_instance'\n   84 |                     case (decoded_reg_input_mux)\n      |                     ^~~~\n%Warning-CASEINCOMPLETE: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/decoder.sv:84:17: Case values incompletely covered (example pattern 0xa)\n                                                                                                                        : ... note: In instance 'kernel_trace_tb.dut.cores[0].core_instance'\n   84 |                 case (instruction[15:12])\n      |                 ^~~~\n%Warning-CASEINCOMPLETE: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-E8ksga/sources/fetcher.sv:39:13: Case values incompletely covered (example pattern 0x3)\n                                                                                                                        : ... note: In instance 'kernel_trace_tb.dut.cores[0].core_instance'\n   39 |             case (fetcher_state)\n      |             ^~~~\n"
+}

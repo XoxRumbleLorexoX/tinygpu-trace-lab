@@ -1,0 +1,1118 @@
+{
+  "format": "tinygpu-kernel-1",
+  "generatedAt": "2026-09-15T23:24:00.841Z",
+  "tool": "Verilator 5.052 2026-09-05 rev vUNKNOWN-built20260905",
+  "variant": "compatibility-baseline",
+  "status": "failed",
+  "scope": "A temporary compatibility copy of the preserved GPU attempts one four-thread vector-add block through dispatcher, program/data controllers, cores, registers, ALUs and LSUs. 11 explicit source adaptations remove trailing commas and express unpacked-array resets as all-zero assignment patterns. No execution-logic fixes are applied. Original files remain unchanged. External testbench memory uses a configurable response delay.",
+  "exclusions": [
+    "Divergent branches",
+    "other kernels",
+    "multiple blocks",
+    "real-device timing",
+    "four-state X/Z equivalence"
+  ],
+  "configuration": {
+    "cores": 2,
+    "threadsPerBlock": 4,
+    "threads": 4,
+    "dataChannels": 2,
+    "programChannels": 1,
+    "clockPeriodNs": 10
+  },
+  "sourceHashes": {
+    "hardware/original/alu.sv": "7179e3d819e6963c36db60b08eeef436c3abc893fa786795ce13797b6e7f8c9a",
+    "hardware/original/controller.sv": "6ed6adddeb2e396dc156b9f2b590a719fd9c37d31beb5ca9068af89a573fb422",
+    "hardware/original/core.sv": "03bcbadfb4b30a2c5381dfb1fa4b7c09cac75ab4c8fbec6257dc102af83010ea",
+    "hardware/original/dcr.sv": "4d50fc4411205a21373de796162d0f07208cde2a591fc52548813404cc46590a",
+    "hardware/original/decoder.sv": "972b42313d97d5f6d82990b495edcf37034ac41b11c8307f3275a2a0d81cf950",
+    "hardware/original/dispatch.sv": "78329ecf4bf7c042cfd68804145c27aa3f6ef33907fffe317cb8823d52ece000",
+    "hardware/original/fetcher.sv": "669d83e6ac19ad542c59d643ca2597a63e113dcc4850eb578bbf8449ed3d26c3",
+    "hardware/original/gpu.sv": "322524dcbbdbd9a975c8ee0c5629cdcdcaece088e4bbfb9855369d1bada1f01c",
+    "hardware/original/lsu.sv": "75f791a30e301ac7bf0e06dcbd906e74195852021d779eaf1db4624750ef9ce3",
+    "hardware/original/pc.sv": "a256a4765c6344e455553b4f68b94ee29145fe051a4840da5289efeead3455fa",
+    "hardware/original/registers.sv": "8df411ddfbd97c33e451a4570c480853f63e54da52ccb3e861412a0d634823b7",
+    "hardware/original/scheduler.sv": "b28755ac2db8fc91c867d46512f32bdd8efcf758e0a2ee580a8b221e99b8375d"
+  },
+  "compiledSourceHashes": {
+    "hardware/original/alu.sv": "7179e3d819e6963c36db60b08eeef436c3abc893fa786795ce13797b6e7f8c9a",
+    "hardware/original/controller.sv": "c0bbedad5dbfdf2908b354a0ff94a3bb04339c3ad28ba515faa3e7944a3455b4",
+    "hardware/original/core.sv": "e84353fc78c6504506bf732217f74b1e80e3e20e3e9afa33f982f33399ce8dac",
+    "hardware/original/dcr.sv": "4d50fc4411205a21373de796162d0f07208cde2a591fc52548813404cc46590a",
+    "hardware/original/decoder.sv": "972b42313d97d5f6d82990b495edcf37034ac41b11c8307f3275a2a0d81cf950",
+    "hardware/original/dispatch.sv": "78329ecf4bf7c042cfd68804145c27aa3f6ef33907fffe317cb8823d52ece000",
+    "hardware/original/fetcher.sv": "669d83e6ac19ad542c59d643ca2597a63e113dcc4850eb578bbf8449ed3d26c3",
+    "hardware/original/gpu.sv": "59ac4cb04d515ebcd4b4a15b1942c74f91182c9def6eb5f468fcc868184ed9b2",
+    "hardware/original/lsu.sv": "75f791a30e301ac7bf0e06dcbd906e74195852021d779eaf1db4624750ef9ce3",
+    "hardware/original/pc.sv": "a256a4765c6344e455553b4f68b94ee29145fe051a4840da5289efeead3455fa",
+    "hardware/original/registers.sv": "8df411ddfbd97c33e451a4570c480853f63e54da52ccb3e861412a0d634823b7",
+    "hardware/original/scheduler.sv": "3898d00de55f89cd944259546f79732257686c25cbf7c2679048c768b3f667e4"
+  },
+  "sourceChanges": [
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 52,
+      "before": "mem_read_address <= 0;",
+      "after": "mem_read_address <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 55,
+      "before": "mem_write_address <= 0;",
+      "after": "mem_write_address <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 56,
+      "before": "mem_write_data <= 0;",
+      "after": "mem_write_data <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 59,
+      "before": "consumer_read_data <= 0;",
+      "after": "consumer_read_data <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 62,
+      "before": "current_consumer <= 0;",
+      "after": "current_consumer <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/controller.sv",
+      "line": 63,
+      "before": "controller_state <= 0;",
+      "after": "controller_state <= '{default: '0};",
+      "reason": "Express all-zero unpacked-array reset as a SystemVerilog assignment pattern"
+    },
+    {
+      "path": "hardware/original/core.sv",
+      "line": 115,
+      "before": ".THREADS_PER_BLOCK(THREADS_PER_BLOCK),\n    ) scheduler_instance",
+      "after": ".THREADS_PER_BLOCK(THREADS_PER_BLOCK)\n    ) scheduler_instance",
+      "reason": "Remove illegal trailing instantiation or parameter comma"
+    },
+    {
+      "path": "hardware/original/core.sv",
+      "line": 174,
+      "before": ".DATA_BITS(DATA_MEM_DATA_BITS),\n            ) register_instance",
+      "after": ".DATA_BITS(DATA_MEM_DATA_BITS)\n            ) register_instance",
+      "reason": "Remove illegal trailing instantiation or parameter comma"
+    },
+    {
+      "path": "hardware/original/gpu.sv",
+      "line": 192,
+      "before": ".THREADS_PER_BLOCK(THREADS_PER_BLOCK),\n            ) core_instance",
+      "after": ".THREADS_PER_BLOCK(THREADS_PER_BLOCK)\n            ) core_instance",
+      "reason": "Remove illegal trailing instantiation or parameter comma"
+    },
+    {
+      "path": "hardware/original/gpu.sv",
+      "line": 133,
+      "before": ".mem_read_data(program_mem_read_data),\n    );",
+      "after": ".mem_read_data(program_mem_read_data)\n    );",
+      "reason": "Remove illegal trailing instantiation or parameter comma"
+    },
+    {
+      "path": "hardware/original/scheduler.sv",
+      "line": 17,
+      "before": "parameter THREADS_PER_BLOCK = 4,\n)",
+      "after": "parameter THREADS_PER_BLOCK = 4\n)",
+      "reason": "Remove illegal trailing instantiation or parameter comma"
+    }
+  ],
+  "executionChanges": [],
+  "originalCompilation": {
+    "status": "failed",
+    "logFile": "kernel-original-compile.log",
+    "logHash": "87a9621ace7bbb868eaac57e7c026faf12c5515867de5184bad8187f0c8d6604"
+  },
+  "testbenchHash": "22ae5449b9dea558fd686bee88a0c98fda55da5754fcaa05ba77c15a03f0195d",
+  "program": {
+    "source": "LDR R1, [%threadIdx]\nCONST R2, 64\nADD R2, R2, %threadIdx\nLDR R3, [R2]\nADD R4, R1, R3\nCONST R5, 128\nADD R5, R5, %threadIdx\nSTR R4, [R5]\nRET",
+    "words": [
+      29168,
+      37440,
+      12847,
+      29472,
+      13331,
+      38272,
+      13663,
+      32852,
+      61440
+    ]
+  },
+  "cases": [
+    {
+      "id": "default",
+      "a": [
+        2,
+        5,
+        3,
+        7
+      ],
+      "b": [
+        4,
+        1,
+        6,
+        2
+      ],
+      "latency": 1,
+      "commits": [],
+      "transactions": [
+        {
+          "kind": "read",
+          "time": 190,
+          "channel": 0,
+          "address": 0,
+          "actual": 2,
+          "expected": 2,
+          "eventIndex": 12,
+          "threadId": 0,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 190,
+          "channel": 1,
+          "address": 1,
+          "actual": 5,
+          "expected": 5,
+          "eventIndex": 13,
+          "threadId": 1,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 260,
+          "channel": 0,
+          "address": 2,
+          "actual": 3,
+          "expected": 3,
+          "eventIndex": 14,
+          "threadId": 2,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 260,
+          "channel": 1,
+          "address": 3,
+          "actual": 7,
+          "expected": 7,
+          "eventIndex": 15,
+          "threadId": 3,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        }
+      ],
+      "states": [
+        {
+          "time": 60,
+          "core": 0,
+          "state": 0,
+          "pc": 0
+        },
+        {
+          "time": 70,
+          "core": 0,
+          "state": 1,
+          "pc": 0
+        },
+        {
+          "time": 130,
+          "core": 0,
+          "state": 2,
+          "pc": 0
+        },
+        {
+          "time": 140,
+          "core": 0,
+          "state": 3,
+          "pc": 0
+        },
+        {
+          "time": 150,
+          "core": 0,
+          "state": 4,
+          "pc": 0
+        }
+      ],
+      "fetches": [
+        {
+          "time": 100,
+          "pc": 0,
+          "word": 29168
+        }
+      ],
+      "outputs": [
+        {
+          "address": 128,
+          "actual": 0,
+          "expected": 6,
+          "match": false
+        },
+        {
+          "address": 129,
+          "actual": 0,
+          "expected": 6,
+          "match": false
+        },
+        {
+          "address": 130,
+          "actual": 0,
+          "expected": 9,
+          "match": false
+        },
+        {
+          "address": 131,
+          "actual": 0,
+          "expected": 9,
+          "match": false
+        }
+      ],
+      "termination": "TIMEOUT",
+      "cycles": 4096,
+      "time": 41010,
+      "status": "failed",
+      "differences": [
+        "Hardware did not assert done before the cycle budget.",
+        "Missing register commit: 0:0:R1.",
+        "Missing register commit: 1:0:R1.",
+        "Missing register commit: 2:0:R1.",
+        "Missing register commit: 3:0:R1.",
+        "Missing register commit: 0:1:R2.",
+        "Missing register commit: 1:1:R2.",
+        "Missing register commit: 2:1:R2.",
+        "Missing register commit: 3:1:R2.",
+        "Missing register commit: 0:2:R2.",
+        "Missing register commit: 1:2:R2.",
+        "Missing register commit: 2:2:R2.",
+        "Missing register commit: 3:2:R2.",
+        "Missing register commit: 0:3:R3.",
+        "Missing register commit: 1:3:R3.",
+        "Missing register commit: 2:3:R3.",
+        "Missing register commit: 3:3:R3.",
+        "Missing register commit: 0:4:R4.",
+        "Missing register commit: 1:4:R4.",
+        "Missing register commit: 2:4:R4.",
+        "Missing register commit: 3:4:R4.",
+        "Missing register commit: 0:5:R5.",
+        "Missing register commit: 1:5:R5.",
+        "Missing register commit: 2:5:R5.",
+        "Missing register commit: 3:5:R5.",
+        "Missing register commit: 0:6:R5.",
+        "Missing register commit: 1:6:R5.",
+        "Missing register commit: 2:6:R5.",
+        "Missing register commit: 3:6:R5.",
+        "Missing 1 memory transaction(s): read:64.",
+        "Missing 1 memory transaction(s): read:65.",
+        "Missing 1 memory transaction(s): read:66.",
+        "Missing 1 memory transaction(s): read:67.",
+        "Missing 1 memory transaction(s): write:128.",
+        "Missing 1 memory transaction(s): write:129.",
+        "Missing 1 memory transaction(s): write:130.",
+        "Missing 1 memory transaction(s): write:131.",
+        "Output mismatch or missing sample at address 128.",
+        "Output mismatch or missing sample at address 129.",
+        "Output mismatch or missing sample at address 130.",
+        "Output mismatch or missing sample at address 131.",
+        "Instruction fetch stream does not match the complete encoded program."
+      ],
+      "expectedCommitCount": 28,
+      "expectedTransactionCount": 12,
+      "waveformFile": "kernel-default.vcd",
+      "waveformHash": "51a358906ee8a31d1cfae456562ccce9ee5ae191df6ef021e0262a2678ba39b3",
+      "traceFile": "kernel-default-teaching.json",
+      "traceHash": "60c39da1c1eb32d96fc11e02513c40fa7acf6cdf8e9b6557fd1ac9952622da07",
+      "logFile": "kernel-default.log",
+      "logHash": "7b93a5a8080bd89e0dac74b2ca19ab28105c281c60113697d759fc0991e3ec04",
+      "observedSignals": [
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.core_state[2:0]",
+          "size": 3,
+          "wave": [
+            [
+              "0",
+              "000"
+            ],
+            [
+              "65",
+              "001"
+            ],
+            [
+              "125",
+              "010"
+            ],
+            [
+              "135",
+              "011"
+            ],
+            [
+              "145",
+              "100"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[3][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "285",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[2][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "285",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[1][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "215",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[0][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "215",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.scheduler_instance.unnamedblk1.any_lsu_waiting",
+          "size": 1,
+          "wave": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "155",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overflow",
+      "a": [
+        255,
+        128,
+        0,
+        200
+      ],
+      "b": [
+        1,
+        128,
+        255,
+        100
+      ],
+      "latency": 1,
+      "commits": [],
+      "transactions": [
+        {
+          "kind": "read",
+          "time": 190,
+          "channel": 0,
+          "address": 0,
+          "actual": 255,
+          "expected": 255,
+          "eventIndex": 12,
+          "threadId": 0,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 190,
+          "channel": 1,
+          "address": 1,
+          "actual": 128,
+          "expected": 128,
+          "eventIndex": 13,
+          "threadId": 1,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 260,
+          "channel": 0,
+          "address": 2,
+          "actual": 0,
+          "expected": 0,
+          "eventIndex": 14,
+          "threadId": 2,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 260,
+          "channel": 1,
+          "address": 3,
+          "actual": 200,
+          "expected": 200,
+          "eventIndex": 15,
+          "threadId": 3,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        }
+      ],
+      "states": [
+        {
+          "time": 60,
+          "core": 0,
+          "state": 0,
+          "pc": 0
+        },
+        {
+          "time": 70,
+          "core": 0,
+          "state": 1,
+          "pc": 0
+        },
+        {
+          "time": 130,
+          "core": 0,
+          "state": 2,
+          "pc": 0
+        },
+        {
+          "time": 140,
+          "core": 0,
+          "state": 3,
+          "pc": 0
+        },
+        {
+          "time": 150,
+          "core": 0,
+          "state": 4,
+          "pc": 0
+        }
+      ],
+      "fetches": [
+        {
+          "time": 100,
+          "pc": 0,
+          "word": 29168
+        }
+      ],
+      "outputs": [
+        {
+          "address": 128,
+          "actual": 0,
+          "expected": 0,
+          "match": true
+        },
+        {
+          "address": 129,
+          "actual": 0,
+          "expected": 0,
+          "match": true
+        },
+        {
+          "address": 130,
+          "actual": 0,
+          "expected": 255,
+          "match": false
+        },
+        {
+          "address": 131,
+          "actual": 0,
+          "expected": 44,
+          "match": false
+        }
+      ],
+      "termination": "TIMEOUT",
+      "cycles": 4096,
+      "time": 41010,
+      "status": "failed",
+      "differences": [
+        "Hardware did not assert done before the cycle budget.",
+        "Missing register commit: 0:0:R1.",
+        "Missing register commit: 1:0:R1.",
+        "Missing register commit: 2:0:R1.",
+        "Missing register commit: 3:0:R1.",
+        "Missing register commit: 0:1:R2.",
+        "Missing register commit: 1:1:R2.",
+        "Missing register commit: 2:1:R2.",
+        "Missing register commit: 3:1:R2.",
+        "Missing register commit: 0:2:R2.",
+        "Missing register commit: 1:2:R2.",
+        "Missing register commit: 2:2:R2.",
+        "Missing register commit: 3:2:R2.",
+        "Missing register commit: 0:3:R3.",
+        "Missing register commit: 1:3:R3.",
+        "Missing register commit: 2:3:R3.",
+        "Missing register commit: 3:3:R3.",
+        "Missing register commit: 0:4:R4.",
+        "Missing register commit: 1:4:R4.",
+        "Missing register commit: 2:4:R4.",
+        "Missing register commit: 3:4:R4.",
+        "Missing register commit: 0:5:R5.",
+        "Missing register commit: 1:5:R5.",
+        "Missing register commit: 2:5:R5.",
+        "Missing register commit: 3:5:R5.",
+        "Missing register commit: 0:6:R5.",
+        "Missing register commit: 1:6:R5.",
+        "Missing register commit: 2:6:R5.",
+        "Missing register commit: 3:6:R5.",
+        "Missing 1 memory transaction(s): read:64.",
+        "Missing 1 memory transaction(s): read:65.",
+        "Missing 1 memory transaction(s): read:66.",
+        "Missing 1 memory transaction(s): read:67.",
+        "Missing 1 memory transaction(s): write:128.",
+        "Missing 1 memory transaction(s): write:129.",
+        "Missing 1 memory transaction(s): write:130.",
+        "Missing 1 memory transaction(s): write:131.",
+        "Output mismatch or missing sample at address 130.",
+        "Output mismatch or missing sample at address 131.",
+        "Instruction fetch stream does not match the complete encoded program."
+      ],
+      "expectedCommitCount": 28,
+      "expectedTransactionCount": 12,
+      "waveformFile": "kernel-overflow.vcd",
+      "waveformHash": "57c9f01507a9fcb40b6b8c4428b38f4caab2bed78b388de71001002cda187fd0",
+      "traceFile": "kernel-overflow-teaching.json",
+      "traceHash": "bd3e44546156a55e2a6980077a0fc0f526a99bed468e15619c4e4e6f2af48350",
+      "logFile": "kernel-overflow.log",
+      "logHash": "d6cc6daf431a539e19627b373a13d2524abb97bfdeffefe05e460d68e06972a7",
+      "observedSignals": [
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.core_state[2:0]",
+          "size": 3,
+          "wave": [
+            [
+              "0",
+              "000"
+            ],
+            [
+              "65",
+              "001"
+            ],
+            [
+              "125",
+              "010"
+            ],
+            [
+              "135",
+              "011"
+            ],
+            [
+              "145",
+              "100"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[3][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "285",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[2][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "285",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[1][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "215",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[0][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "145",
+              "01"
+            ],
+            [
+              "155",
+              "10"
+            ],
+            [
+              "215",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.scheduler_instance.unnamedblk1.any_lsu_waiting",
+          "size": 1,
+          "wave": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "155",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "delayed-memory",
+      "a": [
+        2,
+        5,
+        3,
+        7
+      ],
+      "b": [
+        4,
+        1,
+        6,
+        2
+      ],
+      "latency": 3,
+      "commits": [],
+      "transactions": [
+        {
+          "kind": "read",
+          "time": 230,
+          "channel": 0,
+          "address": 0,
+          "actual": 2,
+          "expected": 2,
+          "eventIndex": 12,
+          "threadId": 0,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 230,
+          "channel": 1,
+          "address": 1,
+          "actual": 5,
+          "expected": 5,
+          "eventIndex": 13,
+          "threadId": 1,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 320,
+          "channel": 0,
+          "address": 2,
+          "actual": 3,
+          "expected": 3,
+          "eventIndex": 14,
+          "threadId": 2,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        },
+        {
+          "kind": "read",
+          "time": 320,
+          "channel": 1,
+          "address": 3,
+          "actual": 7,
+          "expected": 7,
+          "eventIndex": 15,
+          "threadId": 3,
+          "pc": 0,
+          "instruction": "LDR R1, [%threadIdx]",
+          "match": true
+        }
+      ],
+      "states": [
+        {
+          "time": 60,
+          "core": 0,
+          "state": 0,
+          "pc": 0
+        },
+        {
+          "time": 70,
+          "core": 0,
+          "state": 1,
+          "pc": 0
+        },
+        {
+          "time": 150,
+          "core": 0,
+          "state": 2,
+          "pc": 0
+        },
+        {
+          "time": 160,
+          "core": 0,
+          "state": 3,
+          "pc": 0
+        },
+        {
+          "time": 170,
+          "core": 0,
+          "state": 4,
+          "pc": 0
+        }
+      ],
+      "fetches": [
+        {
+          "time": 120,
+          "pc": 0,
+          "word": 29168
+        }
+      ],
+      "outputs": [
+        {
+          "address": 128,
+          "actual": 0,
+          "expected": 6,
+          "match": false
+        },
+        {
+          "address": 129,
+          "actual": 0,
+          "expected": 6,
+          "match": false
+        },
+        {
+          "address": 130,
+          "actual": 0,
+          "expected": 9,
+          "match": false
+        },
+        {
+          "address": 131,
+          "actual": 0,
+          "expected": 9,
+          "match": false
+        }
+      ],
+      "termination": "TIMEOUT",
+      "cycles": 4096,
+      "time": 41010,
+      "status": "failed",
+      "differences": [
+        "Hardware did not assert done before the cycle budget.",
+        "Missing register commit: 0:0:R1.",
+        "Missing register commit: 1:0:R1.",
+        "Missing register commit: 2:0:R1.",
+        "Missing register commit: 3:0:R1.",
+        "Missing register commit: 0:1:R2.",
+        "Missing register commit: 1:1:R2.",
+        "Missing register commit: 2:1:R2.",
+        "Missing register commit: 3:1:R2.",
+        "Missing register commit: 0:2:R2.",
+        "Missing register commit: 1:2:R2.",
+        "Missing register commit: 2:2:R2.",
+        "Missing register commit: 3:2:R2.",
+        "Missing register commit: 0:3:R3.",
+        "Missing register commit: 1:3:R3.",
+        "Missing register commit: 2:3:R3.",
+        "Missing register commit: 3:3:R3.",
+        "Missing register commit: 0:4:R4.",
+        "Missing register commit: 1:4:R4.",
+        "Missing register commit: 2:4:R4.",
+        "Missing register commit: 3:4:R4.",
+        "Missing register commit: 0:5:R5.",
+        "Missing register commit: 1:5:R5.",
+        "Missing register commit: 2:5:R5.",
+        "Missing register commit: 3:5:R5.",
+        "Missing register commit: 0:6:R5.",
+        "Missing register commit: 1:6:R5.",
+        "Missing register commit: 2:6:R5.",
+        "Missing register commit: 3:6:R5.",
+        "Missing 1 memory transaction(s): read:64.",
+        "Missing 1 memory transaction(s): read:65.",
+        "Missing 1 memory transaction(s): read:66.",
+        "Missing 1 memory transaction(s): read:67.",
+        "Missing 1 memory transaction(s): write:128.",
+        "Missing 1 memory transaction(s): write:129.",
+        "Missing 1 memory transaction(s): write:130.",
+        "Missing 1 memory transaction(s): write:131.",
+        "Output mismatch or missing sample at address 128.",
+        "Output mismatch or missing sample at address 129.",
+        "Output mismatch or missing sample at address 130.",
+        "Output mismatch or missing sample at address 131.",
+        "Instruction fetch stream does not match the complete encoded program."
+      ],
+      "expectedCommitCount": 28,
+      "expectedTransactionCount": 12,
+      "waveformFile": "kernel-delayed-memory.vcd",
+      "waveformHash": "45a922ae70b447e8c2d8cadcd236e0e3bb0aaaedc43555a1bff0db6aaa754588",
+      "traceFile": "kernel-delayed-memory-teaching.json",
+      "traceHash": "60c39da1c1eb32d96fc11e02513c40fa7acf6cdf8e9b6557fd1ac9952622da07",
+      "logFile": "kernel-delayed-memory.log",
+      "logHash": "70f52d7bd71e625ab854ffefa95b2cfc91157df04f3308c6820684f4d9388779",
+      "observedSignals": [
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.core_state[2:0]",
+          "size": 3,
+          "wave": [
+            [
+              "0",
+              "000"
+            ],
+            [
+              "65",
+              "001"
+            ],
+            [
+              "145",
+              "010"
+            ],
+            [
+              "155",
+              "011"
+            ],
+            [
+              "165",
+              "100"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[3][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "165",
+              "01"
+            ],
+            [
+              "175",
+              "10"
+            ],
+            [
+              "345",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[2][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "165",
+              "01"
+            ],
+            [
+              "175",
+              "10"
+            ],
+            [
+              "345",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[1][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "165",
+              "01"
+            ],
+            [
+              "175",
+              "10"
+            ],
+            [
+              "255",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.lsu_state[0][1:0]",
+          "size": 2,
+          "wave": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "165",
+              "01"
+            ],
+            [
+              "175",
+              "10"
+            ],
+            [
+              "255",
+              "11"
+            ]
+          ]
+        },
+        {
+          "name": "kernel_trace_tb.dut.cores[0].core_instance.scheduler_instance.unnamedblk1.any_lsu_waiting",
+          "size": 1,
+          "wave": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "175",
+              "1"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "compilerWarnings": "%Warning-NULLPORT: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/dcr.sv:14:1: Null port on module (perhaps extraneous comma)\n   14 | );\n      | ^\n                   ... For warning description see https://verilator.org/warn/NULLPORT?v=5.052\n                   ... Use \"/* verilator lint_off NULLPORT */\" and lint_on around source to disable this message.\n%Warning-NULLPORT: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/fetcher.sv:27:1: Null port on module (perhaps extraneous comma)\n   27 | );\n      | ^\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/core.sv:78:7: Instance has missing pin: '__pinNumber11'\n   78 |     ) fetcher_instance (\n      |       ^~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/fetcher.sv:27:1: ... Location of port declaration\n   27 | );\n      | ^\n                     ... For warning description see https://verilator.org/warn/PINMISSING?v=5.052\n                     ... Use \"/* verilator lint_off PINMISSING */\" and lint_on around source to disable this message.\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/gpu.sv:76:9: Instance has missing pin: '__pinNumber6'\n   76 |     dcr dcr_instance (\n      |         ^~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/dcr.sv:14:1: ... Location of port declaration\n   14 | );\n      | ^\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/gpu.sv:121:7: Instance has missing pin: 'consumer_write_valid'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:23:35: ... Location of port declaration\n   23 |     input reg [NUM_CONSUMERS-1:0] consumer_write_valid,\n      |                                   ^~~~~~~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/gpu.sv:121:7: Instance has missing pin: 'consumer_write_address'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:24:31: ... Location of port declaration\n   24 |     input reg [ADDR_BITS-1:0] consumer_write_address [NUM_CONSUMERS-1:0],\n      |                               ^~~~~~~~~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/gpu.sv:121:7: Instance has missing pin: 'consumer_write_data'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:25:31: ... Location of port declaration\n   25 |     input reg [DATA_BITS-1:0] consumer_write_data [NUM_CONSUMERS-1:0],\n      |                               ^~~~~~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/gpu.sv:121:7: Instance has missing pin: 'consumer_write_ready'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:26:36: ... Location of port declaration\n   26 |     output reg [NUM_CONSUMERS-1:0] consumer_write_ready,\n      |                                    ^~~~~~~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/gpu.sv:121:7: Instance has missing pin: 'mem_write_valid'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:33:35: ... Location of port declaration\n   33 |     output reg [NUM_CHANNELS-1:0] mem_write_valid,\n      |                                   ^~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/gpu.sv:121:7: Instance has missing pin: 'mem_write_address'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:34:32: ... Location of port declaration\n   34 |     output reg [ADDR_BITS-1:0] mem_write_address [NUM_CHANNELS-1:0],\n      |                                ^~~~~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/gpu.sv:121:7: Instance has missing pin: 'mem_write_data'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:35:32: ... Location of port declaration\n   35 |     output reg [DATA_BITS-1:0] mem_write_data [NUM_CHANNELS-1:0],\n      |                                ^~~~~~~~~~~~~~\n%Warning-PINMISSING: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/gpu.sv:121:7: Instance has missing pin: 'mem_write_ready'\n  121 |     ) program_memory_controller (\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~\n                     /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:36:34: ... Location of port declaration\n   36 |     input reg [NUM_CHANNELS-1:0] mem_write_ready\n      |                                  ^~~~~~~~~~~~~~~\n%Warning-IMPLICITSTATIC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/scheduler.sv:79:25: Variable's lifetime implicitly set to static (IEEE 1800-2023 6.21)\n                                                                                                                          : ... The initializer value will only be set once\n                                                                                                                          : ... Suggest use 'static' before variable declaration'\n   79 |                     reg any_lsu_waiting = 1'b0;\n      |                         ^~~~~~~~~~~~~~~\n                         ... For warning description see https://verilator.org/warn/IMPLICITSTATIC?v=5.052\n                         ... Use \"/* verilator lint_off IMPLICITSTATIC */\" and lint_on around source to disable this message.\n%Warning-WIDTHTRUNC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:75:53: Operator ASSIGNDLY expects 1 bits on the Assign RHS, but Assign RHS's VARREF 'j' generates 32 bits.\n                                                                                                                       : ... note: In instance 'kernel_trace_tb.dut.program_memory_controller'\n   75 |                                 current_consumer[i] <= j;\n      |                                                     ^~\n                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.052\n                     ... Use \"/* verilator lint_off WIDTHTRUNC */\" and lint_on around source to disable this message.\n%Warning-WIDTHTRUNC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:85:53: Operator ASSIGNDLY expects 1 bits on the Assign RHS, but Assign RHS's VARREF 'j' generates 32 bits.\n                                                                                                                       : ... note: In instance 'kernel_trace_tb.dut.program_memory_controller'\n   85 |                                 current_consumer[i] <= j;\n      |                                                     ^~\n%Warning-WIDTHTRUNC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:75:53: Operator ASSIGNDLY expects 3 bits on the Assign RHS, but Assign RHS's VARREF 'j' generates 32 bits.\n                                                                                                                       : ... note: In instance 'kernel_trace_tb.dut.data_memory_controller'\n   75 |                                 current_consumer[i] <= j;\n      |                                                     ^~\n%Warning-WIDTHTRUNC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:85:53: Operator ASSIGNDLY expects 3 bits on the Assign RHS, but Assign RHS's VARREF 'j' generates 32 bits.\n                                                                                                                       : ... note: In instance 'kernel_trace_tb.dut.data_memory_controller'\n   85 |                                 current_consumer[i] <= j;\n      |                                                     ^~\n%Warning-WIDTHTRUNC: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/dispatch.sv:73:46: Operator ASSIGNDLY expects 3 bits on the Assign RHS, but Assign RHS's COND generates 32 or 8 bits.\n                                                                                                                     : ... note: In instance 'kernel_trace_tb.dut.dispatch_instance'\n   73 |                         core_thread_count[i] <= (blocks_dispatched == total_blocks - 1) \n      |                                              ^~\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:129:32: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARXREF 'core_state' generates 3 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  129 |                     last_state = dut.cores[c].core_instance.core_state;\n      |                                ^\n                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.052\n                      ... Use \"/* verilator lint_off WIDTHEXPAND */\" and lint_on around source to disable this message.\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:130:29: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARXREF 'current_pc' generates 8 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  130 |                     last_pc = dut.cores[c].core_instance.current_pc;\n      |                             ^\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:127:32: Operator NEQ expects 32 bits on the RHS, but RHS's VARXREF 'core_state' generates 3 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  127 |                 if (last_state != dut.cores[c].core_instance.core_state ||\n      |                                ^~\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:128:29: Operator NEQ expects 32 bits on the RHS, but RHS's VARXREF 'current_pc' generates 8 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  128 |                     last_pc != dut.cores[c].core_instance.current_pc) begin\n      |                             ^~\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:143:31: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARXREF 'current_pc' generates 8 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  143 |                     commit_pc = dut.cores[c].core_instance.current_pc;\n      |                               ^\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:144:31: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARXREF 'decoded_rd_address' generates 4 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  144 |                     commit_rd = dut.cores[c].core_instance.decoded_rd_address;\n      |                               ^\n%Warning-WIDTHEXPAND: hardware/validation/kernel_trace_tb.sv:145:34: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's ARRAYSEL generates 8 bits.\n                                                                   : ... note: In instance 'kernel_trace_tb'\n  145 |                     before_value = dut.cores[c].core_instance.threads[lane].register_instance.registers[commit_rd];\n      |                                  ^\n%Warning-UNSIGNED: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/alu.sv:39:83: Comparison is constant due to unsigned arithmetic\n                                                                                                              : ... note: In instance 'kernel_trace_tb.dut.cores[1].core_instance.threads[3].alu_instance'\n   39 |                     alu_out_reg <= {5'b0, (rs - rt > 0), (rs - rt == 0), (rs - rt < 0)};\n      |                                                                                   ^\n                   ... For warning description see https://verilator.org/warn/UNSIGNED?v=5.052\n                   ... Use \"/* verilator lint_off UNSIGNED */\" and lint_on around source to disable this message.\n%Warning-CASEINCOMPLETE: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/controller.sv:69:17: Case values incompletely covered (example pattern 0x1)\n   69 |                 case (controller_state[i])\n      |                 ^~~~\n                         ... For warning description see https://verilator.org/warn/CASEINCOMPLETE?v=5.052\n                         ... Use \"/* verilator lint_off CASEINCOMPLETE */\" and lint_on around source to disable this message.\n%Warning-CASEINCOMPLETE: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/registers.sv:84:21: Case values incompletely covered (example pattern 0x3)\n                                                                                                                          : ... note: In instance 'kernel_trace_tb.dut.cores[0].core_instance'\n   84 |                     case (decoded_reg_input_mux)\n      |                     ^~~~\n%Warning-CASEINCOMPLETE: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/decoder.sv:84:17: Case values incompletely covered (example pattern 0xa)\n                                                                                                                        : ... note: In instance 'kernel_trace_tb.dut.cores[0].core_instance'\n   84 |                 case (instruction[15:12])\n      |                 ^~~~\n%Warning-CASEINCOMPLETE: /var/folders/pz/_pqtkbt144ggqr0q95njkc880000gn/T/tinygpu-kernel-aMPgk6/sources/fetcher.sv:39:13: Case values incompletely covered (example pattern 0x3)\n                                                                                                                        : ... note: In instance 'kernel_trace_tb.dut.cores[0].core_instance'\n   39 |             case (fetcher_state)\n      |             ^~~~\n"
+}

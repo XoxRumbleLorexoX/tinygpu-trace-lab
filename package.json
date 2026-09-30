@@ -1,0 +1,25 @@
+{
+  "name": "tinygpu-trace-lab",
+  "private": true,
+  "version": "0.1.0",
+  "description": "An interactive 3D GPU architecture simulator for learning how GPUs execute instructions, move data, schedule threads, and process workloads.",
+  "workspaces": [
+    "simulator",
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm --workspace web run dev",
+    "build": "npm --workspace simulator run build && npm --workspace web run build",
+    "test": "npm --workspace simulator run test",
+    "validate:hardware": "npm --workspace simulator run build && node scripts/validate-hardware.mjs",
+    "validate:kernel": "npm --workspace simulator run build && node scripts/validate-kernel.mjs",
+    "validate:kernel:experiment": "npm --workspace simulator run build && node scripts/validate-kernel.mjs --scheduler-reset",
+    "test:browser": "playwright test",
+    "typecheck": "npm --workspace simulator run typecheck && npm --workspace web run typecheck"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "prettier": "^3.6.2"
+  }
+}

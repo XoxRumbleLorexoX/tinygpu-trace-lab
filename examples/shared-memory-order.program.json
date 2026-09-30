@@ -1,0 +1,12 @@
+{
+  "format": "tinygpu-program-1",
+  "modelVersion": "teaching-1",
+  "name": "Shared memory ordering",
+  "source": "; No synchronization: the execution order matters\nLDR R0, [0]\nADD R0, R0, 1\nADD R1, %threadIdx, 128\nSTR R0, [R1]\nSTR R0, [0]\nRET",
+  "initialMemory": { "0": 0 },
+  "expectedMemory": { "128": 1, "129": 2 },
+  "blockDim": 2,
+  "blockCount": 1,
+  "laneWidth": 1,
+  "numberMode": "integer"
+}
