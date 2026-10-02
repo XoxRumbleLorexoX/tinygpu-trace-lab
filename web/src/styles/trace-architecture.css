@@ -1,0 +1,31 @@
+.trace-architecture {
+  min-width: 0;
+}
+.architecture-levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 10px 12px;
+  border-block: 1px solid #ccd7d0;
+  background: #f5f8f6;
+}
+.architecture-levels button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: #263d32;
+  font-size: 12px;
+}
+.architecture-levels button[aria-pressed="true"] {
+  background: #d5eddf;
+  border-color: #287448;
+}
+.architecture-levels button svg {
+  flex: 0 0 auto;
+}

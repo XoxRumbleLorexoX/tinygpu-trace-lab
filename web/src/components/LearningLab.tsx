@@ -40,6 +40,7 @@ import { LabArchitecture, type Inspection } from "./LabArchitecture";
 import { GraphLab } from "./GraphLab";
 import { HardwareLab } from "./HardwareLab";
 import { ProgramStudio } from "./ProgramStudio";
+import { TraceArchitecture, type ArchitectureLevel } from "./TraceArchitecture";
 import "../styles/lab.css";
 
 type View = "learn" | "compare" | "graph" | "studio" | "hardware" | "explorer";
@@ -53,9 +54,14 @@ const tabs = [
   { id: "explorer", label: "Classic explorer", icon: Layers },
 ] as const;
 
-export function LearningLab({ explorer }: { explorer: ReactNode }) {
+export function LearningLab({
+  explorer,
+}: {
+  explorer: (active: boolean) => ReactNode;
+}) {
   const [view, setView] = useState<View>("learn");
   const [studioOpened, setStudioOpened] = useState(false);
+  const [explorerOpened, setExplorerOpened] = useState(false);
   const [lessonId, setLessonId] = useState<LessonId>("vector-add");
   const [a, setA] = useState(defaultA);
   const [b, setB] = useState(defaultB);
@@ -67,6 +73,8 @@ export function LearningLab({ explorer }: { explorer: ReactNode }) {
   const [loop, setLoop] = useState(false);
   const [focusedThread, setFocusedThread] = useState(0);
   const [spatial, setSpatial] = useState(false);
+  const [architectureLevel, setArchitectureLevel] =
+    useState<ArchitectureLevel>("GPU Overview");
   const [inspection, setInspection] = useState<Inspection>("program");
   const [prediction, setPrediction] = useState("");
   const [predictionStatus, setPredictionStatus] = useState<
@@ -80,6 +88,8 @@ export function LearningLab({ explorer }: { explorer: ReactNode }) {
     () => matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
   const fileRef = useRef<HTMLInputElement>(null);
+  const sourceFocusPending = useRef(false);
+  const executionRef = useRef<HTMLElement>(null);
   const lesson = lessons.find((item) => item.id === lessonId)!;
   const execution = useMemo(() => {
     try {
@@ -115,6 +125,12 @@ export function LearningLab({ explorer }: { explorer: ReactNode }) {
       ) ?? result?.trace[eventIndex];
   const expected = expectedOutput(lessonId, a, b);
   const answer = expected[lessonId === "prefix-sum" ? 3 : 0];
+
+  useEffect(() => {
+    if (view !== "learn" || !sourceFocusPending.current) return;
+    sourceFocusPending.current = false;
+    executionRef.current?.focus();
+  }, [view]);
 
   useEffect(() => {
     setFrame(0);
@@ -331,6 +347,7 @@ export function LearningLab({ explorer }: { explorer: ReactNode }) {
             onClick={() => {
               setView(id);
               if (id === "studio") setStudioOpened(true);
+              if (id === "explorer") setExplorerOpened(true);
               setPlaying(false);
             }}
           >
@@ -349,9 +366,12 @@ export function LearningLab({ explorer }: { explorer: ReactNode }) {
           <ProgramStudio active={view === "studio"} />
         </div>
       )}
-      {view === "studio" ? null : view === "explorer" ? (
-        <div className="legacy-container">{explorer}</div>
-      ) : (
+      {explorerOpened && (
+        <div className="legacy-container" hidden={view !== "explorer"}>
+          {explorer(view === "explorer")}
+        </div>
+      )}
+      {view === "studio" || view === "explorer" ? null : (
         <div className="lab-layout">
           <aside className="lesson-rail">
             <div className="rail-heading">
@@ -510,8 +530,14 @@ export function LearningLab({ explorer }: { explorer: ReactNode }) {
                 b={b}
                 lessonId={lessonId}
                 onSource={(index) => {
+                  const source = result.trace[index];
+                  const sourceFrame = frames.findIndex((i) => i >= index);
+                  if (!source || sourceFrame < 0) return;
+                  setFocusedThread(source.threadId);
+                  setInspection("registers");
+                  sourceFocusPending.current = true;
                   setView("learn");
-                  seek(frames.findIndex((i) => i >= index));
+                  seek(sourceFrame);
                 }}
               />
             )}
@@ -520,7 +546,9 @@ export function LearningLab({ explorer }: { explorer: ReactNode }) {
               <div className="learning-grid">
                 <section
                   className="execution-workspace"
-                  aria-label="Visual execution"
+                  ref={executionRef}
+                  tabIndex={-1}
+                  aria-label={`Visual execution: thread ${event.threadId}, PC ${event.pc}, ${event.stage}`}
                 >
                   <div className="workspace-toolbar">
                     <div>
@@ -536,14 +564,20 @@ export function LearningLab({ explorer }: { explorer: ReactNode }) {
                     >
                       <button
                         className={!spatial ? "active" : ""}
-                        onClick={() => setSpatial(false)}
+                        onClick={() => {
+                          setSpatial(false);
+                          setArchitectureLevel("GPU Overview");
+                        }}
                       >
                         <CircuitBoard size={15} />
                         2D
                       </button>
                       <button
                         className={spatial ? "active" : ""}
-                        onClick={() => setSpatial(true)}
+                        onClick={() => {
+                          setSpatial(true);
+                          setArchitectureLevel("GPU Overview");
+                        }}
                       >
                         <Box size={15} />
                         3D
@@ -560,12 +594,29 @@ export function LearningLab({ explorer }: { explorer: ReactNode }) {
                       Reduce motion
                     </label>
                   </div>
-                  <LabArchitecture
-                    event={event}
-                    spatial={spatial}
-                    reducedMotion={reducedMotion}
-                    inspect={setInspection}
-                  />
+                  <TraceArchitecture
+                    result={result}
+                    index={result.trace.indexOf(event)}
+                    level={architectureLevel}
+                    onLevel={(level) => {
+                      setPlaying(false);
+                      setArchitectureLevel(level);
+                    }}
+                    onSeek={(index) => {
+                      const selected = result.trace[index];
+                      const selectedFrame = frames.findIndex((i) => i >= index);
+                      if (!selected || selectedFrame < 0) return;
+                      setFocusedThread(selected.threadId);
+                      seek(selectedFrame);
+                    }}
+                  >
+                    <LabArchitecture
+                      event={event}
+                      spatial={spatial}
+                      reducedMotion={reducedMotion}
+                      inspect={setInspection}
+                    />
+                  </TraceArchitecture>
                   <div className="lab-stages">
                     {stages.map((stage, i) => (
                       <button

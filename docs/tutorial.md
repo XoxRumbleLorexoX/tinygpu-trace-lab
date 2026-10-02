@@ -66,3 +66,8 @@ The ALU report validates selected component behavior only. It does not predict h
 6. Try the overflow fixture. Explain why 200 + 100 produces 44 in unsigned 8-bit arithmetic.
 
 Both variants use temporary compatibility copies, not directly compilable original files. The experimental scheduler change is separate from those compatibility adaptations. Expand **Source provenance and fidelity** for exact before/after text; raw logs and VCDs are downloadable. Details and reproduction commands: [Hardware](../hardware/README.md).
+
+Continue with the [visual evidence guide](hardware-evidence-guide.md) for a
+value-flow diagram, prediction checks and evidence boundaries. The
+[isolated reproduction record](hardware-reproduction.md) explains how to rerun
+HDL checks without replacing the application's bundled artifacts.

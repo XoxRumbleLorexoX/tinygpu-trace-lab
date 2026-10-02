@@ -3,6 +3,7 @@ import { CheckCircle2, CircuitBoard, Download } from "lucide-react";
 import type { ExecutionResult } from "@tinygpu-trace-lab/simulator";
 import { WaveformLab, type Waveform } from "./WaveformLab";
 import { KernelEvidence } from "./KernelEvidence";
+import { AdderCircuit } from "./AdderCircuit";
 
 interface HardwareReport {
   generatedAt: string;
@@ -32,7 +33,6 @@ export function HardwareLab({ result }: { result: ExecutionResult | null }) {
   const [error, setError] = useState("");
   const [left, setLeft] = useState(2),
     [right, setRight] = useState(4);
-  const [selected, setSelected] = useState(0);
   const [selectedSample, setSelectedSample] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
@@ -63,18 +63,6 @@ export function HardwareLab({ result }: { result: ExecutionResult | null }) {
       ) ?? [],
     [result],
   );
-  const bits = useMemo(() => {
-    let carry = 0;
-    return Array.from({ length: 8 }, (_, bit) => {
-      const a = (left >> bit) & 1,
-        b = (right >> bit) & 1,
-        carryIn = carry;
-      const xor = a ^ b;
-      const sum = xor ^ carryIn;
-      carry = (a & b) | (carryIn & xor);
-      return { bit, a, b, carryIn, xor, sum, carry };
-    });
-  }, [left, right]);
   return (
     <section className="hardware-lab">
       <div className="graph-toolbar">
@@ -127,38 +115,7 @@ export function HardwareLab({ result }: { result: ExecutionResult | null }) {
           </span>
         </div>
       </div>
-      <div className="bit-grid">
-        {[...bits].reverse().map((bit) => (
-          <button
-            key={bit.bit}
-            className={selected === bit.bit ? "selected" : ""}
-            onClick={() => setSelected(bit.bit)}
-            aria-label={`Inspect adder bit ${bit.bit}`}
-          >
-            <small>BIT {bit.bit}</small>
-            <span>
-              {bit.a} + {bit.b}
-            </span>
-            <strong>{bit.sum}</strong>
-            <small>
-              carry {bit.carryIn} / {bit.carry}
-            </small>
-          </button>
-        ))}
-      </div>
-      <div className="gate-detail">
-        <div>
-          <span className="eyebrow">FULL ADDER / BIT {selected}</span>
-          <h3>XOR, AND, OR</h3>
-        </div>
-        <code>
-          sum = ({bits[selected].a} XOR {bits[selected].b}) XOR{" "}
-          {bits[selected].carryIn} = {bits[selected].sum}
-        </code>
-        <code>
-          carry = (A AND B) OR (carry-in AND (A XOR B)) = {bits[selected].carry}
-        </code>
-      </div>
+      <AdderCircuit left={left} right={right} />
       <section className="trace-alu-operands">
         <h3>Arithmetic from the current program</h3>
         <select

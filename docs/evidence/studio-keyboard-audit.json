@@ -1,0 +1,306 @@
+{
+  "generatedAt": "2026-10-01T22:08:13.474Z",
+  "url": "http://127.0.0.1:5175/tinygpu-trace-lab/",
+  "method": "Keyboard-only measured application actions; navigation and viewport setup via Playwright. DOM reads inspect state. No click, focus(), fill or selectOption.",
+  "limitations": [
+    "Headless Chromium, not a screen-reader session",
+    "Default vector-add program only",
+    "Hardware native-select probe was inconclusive and is excluded"
+  ],
+  "protectedFileHashes": {
+    "GOAL.md": "dcec1b3f69adc37135f5cbbec5a031608e6ea19e0c8c505a40f9fd7288ef3d2a",
+    "hardware/README.md": "0e7a7bda8c46fc44d63676097853c1591d7b53af8f20e04e2e155598c75a919e",
+    "hardware/original/UPSTREAM.md": "cdfe8f57f619446951d52210987edc2ad970fbbdce4e260a8b3bda23c48f799c",
+    "hardware/original/alu.sv": "7179e3d819e6963c36db60b08eeef436c3abc893fa786795ce13797b6e7f8c9a",
+    "hardware/original/controller.sv": "6ed6adddeb2e396dc156b9f2b590a719fd9c37d31beb5ca9068af89a573fb422",
+    "hardware/original/core.sv": "03bcbadfb4b30a2c5381dfb1fa4b7c09cac75ab4c8fbec6257dc102af83010ea",
+    "hardware/original/dcr.sv": "4d50fc4411205a21373de796162d0f07208cde2a591fc52548813404cc46590a",
+    "hardware/original/decoder.sv": "972b42313d97d5f6d82990b495edcf37034ac41b11c8307f3275a2a0d81cf950",
+    "hardware/original/dispatch.sv": "78329ecf4bf7c042cfd68804145c27aa3f6ef33907fffe317cb8823d52ece000",
+    "hardware/original/fetcher.sv": "669d83e6ac19ad542c59d643ca2597a63e113dcc4850eb578bbf8449ed3d26c3",
+    "hardware/original/gpu.sv": "322524dcbbdbd9a975c8ee0c5629cdcdcaece088e4bbfb9855369d1bada1f01c",
+    "hardware/original/lsu.sv": "75f791a30e301ac7bf0e06dcbd906e74195852021d779eaf1db4624750ef9ce3",
+    "hardware/original/pc.sv": "a256a4765c6344e455553b4f68b94ee29145fe051a4840da5289efeead3455fa",
+    "hardware/original/registers.sv": "8df411ddfbd97c33e451a4570c480853f63e54da52ccb3e861412a0d634823b7",
+    "hardware/original/scheduler.sv": "b28755ac2db8fc91c867d46512f32bdd8efcf758e0a2ee580a8b221e99b8375d",
+    "hardware/validation/alu_trace_tb.sv": "8188d4695d289cd6b2699af6c0e023169d4841c7949fb57fdb2faf18fce15fb1",
+    "hardware/validation/kernel_trace_tb.sv": "22ae5449b9dea558fd686bee88a0c98fda55da5754fcaa05ba77c15a03f0195d",
+    "simulator/src/engine.ts": "a76a579e40a46faace2229c41ed5d10ab982767760a82d264e84ee8ebf95c780",
+    "simulator/src/execution.ts": "fbc85966e880d3df10cdee5eaebdf0138fecd49b04f47186069210b8ac045c4b",
+    "simulator/src/experiment.ts": "9d4474762d4270161c388eff6f0e625a8f5411e1149700847a887cc3769dbf66",
+    "simulator/src/graph.ts": "0769b929506e835265d51200dedcb30d61011b08463722d30c232b4eca6fe86c",
+    "simulator/src/index.ts": "505c420f8beddfac2758e24b858ac0a4e02a560a153a2a5c9e380df58c80a960",
+    "simulator/src/lessons.ts": "7351dc89a0430ae16be6eb54389d30341542fd153e40673cbe00af6a31432d3e",
+    "simulator/src/parser.ts": "209a3d9d43bc29ea4048ca2eb9aab06d0e5a0fa78dc1a25990b579695e5c6742",
+    "simulator/src/programs.ts": "f57b53c9f0ab37af5d7ce48a8b7344ee026f691c2cb8711d5a539c55e1774615",
+    "simulator/src/types.ts": "87603efac2c92e5e57810b00ecee8c9f8920248eeeed54648098b4a562af4212",
+    "web/public/favicon.svg": "f0adadfeed79f8c66eceb3425d8d0582a96e45c975851cf5fad412c07e1511cf",
+    "web/public/hardware-teaching-trace.json": "28b96bcc4507d2e353d00fdaec19eb5345c45aefad1205ebdd9745aed319203e",
+    "web/public/hardware-validation.json": "a3164ab0b6d2e2032daf486eeb4bbc4507be0ed3e3c933556c44bb208c85688d",
+    "web/public/hardware-waveform.vcd": "50a4ce86561d640f3b988dd5db79c23f6b38754474cb20cef2fdf406d128f87b",
+    "web/public/kernel-default-teaching.json": "60c39da1c1eb32d96fc11e02513c40fa7acf6cdf8e9b6557fd1ac9952622da07",
+    "web/public/kernel-default.log": "7b93a5a8080bd89e0dac74b2ca19ab28105c281c60113697d759fc0991e3ec04",
+    "web/public/kernel-default.vcd": "51a358906ee8a31d1cfae456562ccce9ee5ae191df6ef021e0262a2678ba39b3",
+    "web/public/kernel-delayed-memory-teaching.json": "60c39da1c1eb32d96fc11e02513c40fa7acf6cdf8e9b6557fd1ac9952622da07",
+    "web/public/kernel-delayed-memory.log": "70f52d7bd71e625ab854ffefa95b2cfc91157df04f3308c6820684f4d9388779",
+    "web/public/kernel-delayed-memory.vcd": "45a922ae70b447e8c2d8cadcd236e0e3bb0aaaedc43555a1bff0db6aaa754588",
+    "web/public/kernel-original-compile.log": "87a9621ace7bbb868eaac57e7c026faf12c5515867de5184bad8187f0c8d6604",
+    "web/public/kernel-overflow-teaching.json": "bd3e44546156a55e2a6980077a0fc0f526a99bed468e15619c4e4e6f2af48350",
+    "web/public/kernel-overflow.log": "d6cc6daf431a539e19627b373a13d2524abb97bfdeffefe05e460d68e06972a7",
+    "web/public/kernel-overflow.vcd": "57c9f01507a9fcb40b6b8c4428b38f4caab2bed78b388de71001002cda187fd0",
+    "web/public/kernel-scheduler-reset-default-teaching.json": "60c39da1c1eb32d96fc11e02513c40fa7acf6cdf8e9b6557fd1ac9952622da07",
+    "web/public/kernel-scheduler-reset-default.log": "72643605c80e982e6754c627ed1e10fb1cae7480921d7b8be697537c53f2e95b",
+    "web/public/kernel-scheduler-reset-default.vcd": "0b80941f8b63eb2caa136bb56389615a1215d57515205102dbf58fc1535a1b61",
+    "web/public/kernel-scheduler-reset-delayed-memory-teaching.json": "60c39da1c1eb32d96fc11e02513c40fa7acf6cdf8e9b6557fd1ac9952622da07",
+    "web/public/kernel-scheduler-reset-delayed-memory.log": "21e2f0b54db6835afe374d6edc867ae96003d3f1b7ca0f79a51e7e745d4704b0",
+    "web/public/kernel-scheduler-reset-delayed-memory.vcd": "cf4e9fe3dceb5f7c051cda1c5c91826cdd38bb3b8bdbe6d91f8c34d894f968cd",
+    "web/public/kernel-scheduler-reset-overflow-teaching.json": "bd3e44546156a55e2a6980077a0fc0f526a99bed468e15619c4e4e6f2af48350",
+    "web/public/kernel-scheduler-reset-overflow.log": "0a749ffac872776e8aa6c91c474c05c47e2b50160b4cb93dd803d8083b10303b",
+    "web/public/kernel-scheduler-reset-overflow.vcd": "10cc15262d3ae450d5a072027ea19de1a9ed90577141476a2e36bf65148953ae",
+    "web/public/kernel-scheduler-reset-validation.json": "c4ed195ae2f99c244e54a69be3abb38fdf9a6cf75df77659e1340c84550d99e9",
+    "web/public/kernel-validation.json": "5eefc7f27fa40510ac79e57258d2b65c117909d5f2542fa0d26a0f8eb6bfe092",
+    "web/src/App.tsx": "2001f566663c1d47af9b8c4942c09d2111c0e872c23ed80c4720847729a5c712",
+    "web/src/components/AdderCircuit.tsx": "b6da64efbf3f6723ae9351050842eb8347d296481409c7c1656196c856c7bf49",
+    "web/src/components/ClassicDetail.tsx": "49df1b6683e78936bca040a2bfee5b31c053ea7fc207bbef45737bfc0f6e4b8a",
+    "web/src/components/Controls.tsx": "c4f16b3ddf8dec670fa68c46e805a14904a4982167d582f9b0adf3b26039c839",
+    "web/src/components/GpuScene.tsx": "ff52faabee8a57c0ab833a493b926c2ac493b07c972db1935667c32b0128a679",
+    "web/src/components/GraphLab.tsx": "1efedea4ba4927416a79700b35755c797c2db19bee6ee789fbd885529404b4ed",
+    "web/src/components/HardwareLab.tsx": "b70d4e513392d7e42280204bfada85f5e1bdf6374d43b803fdfe0509379e1e6e",
+    "web/src/components/Inspector.tsx": "bcc4be8bff4e4aef119a51cf8e67862dae3188f4b3c666d16af6e3e850275738",
+    "web/src/components/KernelEvidence.tsx": "751d34ee238b1a0f4dd1cf3dd744da975f4ac0dc13d98a119d63e99c9dcb4f54",
+    "web/src/components/LabArchitecture.tsx": "7b61f5bd77835a25dbe0f83076beecbfc36bf78780647fda42d3ea9e339c0e32",
+    "web/src/components/LearningLab.tsx": "b5dcf5be9ede631995e50587b512eb39654c02f23c9a041529b5931926df101b",
+    "web/src/components/ProgramStudio.tsx": "21bb056b56d3977e98f71396018af76453b523e033b97b2f8e724f5ac4bbec52",
+    "web/src/components/Timeline.tsx": "bde5046c07dd1cc6b27cda0194cb6793769ad340163f09c6b229c89670460737",
+    "web/src/components/WaveformLab.tsx": "bb5d61ef18dd17c8eb37df0986a1a294817a4178eeea581f65f84e74f9276c9e",
+    "web/src/data/glossary.ts": "0ee543ef6d5b935cc33b6f2fe6061a4e60d9a0053e8917df8cfaf1ea7d4c9596",
+    "web/src/data/views.ts": "64168ad666f866be922781be857f19300954eb8d7f348bfbaddc1372c047e8ab",
+    "web/src/main.tsx": "cf8144420e867c48484f1a31e1dac465daf4966dc807ef01c38fb617e7d0982b",
+    "web/src/styles/classic-detail.css": "4cdfbe28258f062a9e80f4562f940a4f1e3447c373ea3d95704810b42ab85ca8",
+    "web/src/styles/global.css": "f597bade482959ea6f193cbb55b57e9b12efa49398783952c07a7039ed0091b0",
+    "web/src/styles/lab.css": "dddc23b869ad60c570a4258804a1a42894a31d1cf466ae70d7b455d46d17571b",
+    "web/src/styles/studio.css": "b296fc9a32c5bd8f71bc8a64e2d894578c595c33c9dfb8f07c08e92b56751a63",
+    "web/src/vcd-parser.d.ts": "5ed5fd8946fd49aa1834b3a47d18dbec1a867ea39b8d5dc51d94efc61beb7f47",
+    "web/src/vite-env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+    "web/src/workers/experiment.ts": "06ef1a22aa69a72c20c490876770aa59d3f9d2552da6d4127ffeed304ca90162",
+    "web/src/workers/waveform.ts": "b77468c741775385dfc826f68903a07bb233268a19925b7424ba05bd7a3f5f59"
+  },
+  "observations": [
+    {
+      "id": "output-provenance",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true,
+      "evidence": {
+        "graph": "SELECTED OPERATION\nSTR T3\nSTR R4, [R5]\nInputs\nR4\n9\nt3-op4\nR5\n131\nt3-op6\nDependencies\nt3-op4\nt3-op6\nResult\n\nmemory[131] = 9\n\nView source event"
+      }
+    },
+    {
+      "id": "source-identity",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true,
+      "evidence": {
+        "replayText": "Event 160/180\nWriteback / Thread 3 / PC 7\nSTR R4, [R5]\n\nThread 3 advances to PC 8.\n\nSource line 8\nWriteback\nTHREAD 3 / PC 7\nProgram memory\nPC 7 / STR\nRegister file\nR0 - R12 / T3\nALU / LSU\nSTR = 9\nData memory\naddress 131\n4 active lanes\nNo masked lanes in this issue\nDATA MOVEMENT / LOGICAL CONNECTIONS\nInstruction\nMemory\nComputation\nProgram\nRegisters\nMemory\nOperands\nR0\n0\nR1\n7\nR2\n67\nR3\n2\nR4\n9\nR5\n131\nR6\n0\nR7\n0\nR8\n0\nR9\n0\nR10\n0\nR11\n0\nR12\n0"
+      }
+    },
+    {
+      "id": "source-destination-focus",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": false,
+      "evidence": {
+        "destination": {
+          "tag": "BODY",
+          "label": null,
+          "text": "TinyGPU Trace LabCOMPUTATION, MADE VISIBLELocal simulationLearning labCompareComputation graphProgram studioHardwareClas",
+          "bounds": {
+            "x": 0,
+            "y": -396,
+            "width": 1440,
+            "height": 1395.796875
+          }
+        },
+        "nextTab": {
+          "tag": "BUTTON",
+          "label": "First program event",
+          "text": "",
+          "bounds": {
+            "x": 388,
+            "y": 292.296875,
+            "width": 34,
+            "height": 34
+          }
+        }
+      }
+    },
+    {
+      "id": "invalid-draft-preserves-result",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true,
+      "evidence": {
+        "alert": "Unsupported opcode 'BOGUS' in Follow a sum at line 1",
+        "statuses": [
+          "Draft changed. Displayed results belong to the last run.",
+          "Local execution"
+        ],
+        "replayUnchanged": true,
+        "focus": {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "Run experiment",
+          "bounds": {
+            "x": 1279.484375,
+            "y": 154.140625,
+            "width": 136.515625,
+            "height": 36
+          }
+        }
+      }
+    },
+    {
+      "id": "corrected-draft-reruns",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true,
+      "evidence": {
+        "resultText": "Last run: Follow a sum\nLocal execution\nSequential\n36 issues / 36 operations\n4/4 expectations match\nSIMD\n9 issues / 36 operations\n4/4 expectations match\nSIMT\n9 issues / 36 operations\n4/4 expectations match\n\nThread groups take turns issuing. Lanes at the lowest ready program counter run together; other lanes are masked. This is a teaching scheduler, not a vendor GPU.\n\nMemory outputs / final\nAddress\tObserved\tExpected\tCheck\n\n128\t6\t6\tMatch\n\n129\t6\t6\tMatch\n\n130\t9\t9\tMatch\n\n131\t9\t9\tMatch\nExecution replay\nExtracted graph\nEvent 1/180\nFetch / Thread 0 / PC 0\nLDR R1, [%threadIdx]\n\nThread 0 fetches LDR R1, [%threadIdx]. No register or memory value changes yet.\n\nSource line 1\nFetch\nTHREAD 0 / PC 0\nProgram memory\nPC 0 / LDR\nRegister file\nR0 - R12 / T0\nALU / LSU\nLDR\nData memory\naddress 0\n4 active lanes\nNo masked lanes in this issue\nDATA MOVEMENT / LOGICAL CONNECTIONS\nInstruction\nMemory\nComputation\nProgram\nRegisters\nMemory\nOperands\nR0\n0\nR1\n0\nR2\n0\nR3\n0\nR4\n0\nR5\n0\nR6\n0\nR7\n0\nR8\n0\nR9\n0\nR10\n0\nR11\n0\nR12\n0",
+        "focus": {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "Run experiment",
+          "bounds": {
+            "x": 1279.484375,
+            "y": 154.140625,
+            "width": 136.515625,
+            "height": 36
+          }
+        },
+        "keyboardActionCount": 153
+      }
+    },
+    {
+      "id": "output-provenance",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "evidence": {
+        "graph": "SELECTED OPERATION\nSTR T3\nSTR R4, [R5]\nInputs\nR4\n9\nt3-op4\nR5\n131\nt3-op6\nDependencies\nt3-op4\nt3-op6\nResult\n\nmemory[131] = 9\n\nView source event"
+      }
+    },
+    {
+      "id": "source-identity",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "evidence": {
+        "replayText": "Event 160/180\nWriteback / Thread 3 / PC 7\nSTR R4, [R5]\n\nThread 3 advances to PC 8.\n\nSource line 8\nWriteback\nTHREAD 3 / PC 7\nProgram memory\nPC 7 / STR\nRegister file\nR0 - R12 / T3\nALU / LSU\nSTR = 9\nData memory\naddress 131\n4 active lanes\nNo masked lanes in this issue\nInstruction\nMemory\nComputation\nProgram\nRegisters\nMemory\nOperands\nR0\n0\nR1\n7\nR2\n67\nR3\n2\nR4\n9\nR5\n131\nR6\n0\nR7\n0\nR8\n0\nR9\n0\nR10\n0\nR11\n0\nR12\n0"
+      }
+    },
+    {
+      "id": "source-destination-focus",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": false,
+      "evidence": {
+        "destination": {
+          "tag": "BODY",
+          "label": null,
+          "text": "TinyGPU Trace LabCOMPUTATION, MADE VISIBLELocal simulationLearning labCompareComputation graphProgram studioHardwareClas",
+          "bounds": {
+            "x": 0,
+            "y": -1034,
+            "width": 390,
+            "height": 1877.6875
+          }
+        },
+        "nextTab": {
+          "tag": "BUTTON",
+          "label": "First program event",
+          "text": "",
+          "bounds": {
+            "x": 16,
+            "y": 404.6875,
+            "width": 34,
+            "height": 34
+          }
+        }
+      }
+    },
+    {
+      "id": "invalid-draft-preserves-result",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "evidence": {
+        "alert": "Unsupported opcode 'BOGUS' in Follow a sum at line 1",
+        "statuses": [
+          "Draft changed. Displayed results belong to the last run.",
+          "Local execution"
+        ],
+        "replayUnchanged": true,
+        "focus": {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "Run experiment",
+          "bounds": {
+            "x": 96,
+            "y": 144.6875,
+            "width": 128.515625,
+            "height": 36
+          }
+        }
+      }
+    },
+    {
+      "id": "corrected-draft-reruns",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "evidence": {
+        "resultText": "Last run: Follow a sum\nLocal execution\nSequential\n36 issues / 36 operations\n4/4 expectations match\nSIMD\n9 issues / 36 operations\n4/4 expectations match\nSIMT\n9 issues / 36 operations\n4/4 expectations match\n\nThread groups take turns issuing. Lanes at the lowest ready program counter run together; other lanes are masked. This is a teaching scheduler, not a vendor GPU.\n\nMemory outputs / final\nAddress\tObserved\tExpected\tCheck\n\n128\t6\t6\tMatch\n\n129\t6\t6\tMatch\n\n130\t9\t9\tMatch\n\n131\t9\t9\tMatch\nExecution replay\nExtracted graph\nEvent 1/180\nFetch / Thread 0 / PC 0\nLDR R1, [%threadIdx]\n\nThread 0 fetches LDR R1, [%threadIdx]. No register or memory value changes yet.\n\nSource line 1\nFetch\nTHREAD 0 / PC 0\nProgram memory\nPC 0 / LDR\nRegister file\nR0 - R12 / T0\nALU / LSU\nLDR\nData memory\naddress 0\n4 active lanes\nNo masked lanes in this issue\nInstruction\nMemory\nComputation\nProgram\nRegisters\nMemory\nOperands\nR0\n0\nR1\n0\nR2\n0\nR3\n0\nR4\n0\nR5\n0\nR6\n0\nR7\n0\nR8\n0\nR9\n0\nR10\n0\nR11\n0\nR12\n0",
+        "focus": {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "Run experiment",
+          "bounds": {
+            "x": 96,
+            "y": 8.6875,
+            "width": 128.515625,
+            "height": 36
+          }
+        },
+        "keyboardActionCount": 179
+      }
+    }
+  ],
+  "errors": [],
+  "browser": "153.0.8010.12",
+  "changedProtectedFiles": [],
+  "counts": {
+    "observed": 10,
+    "passed": 8,
+    "failed": 2
+  }
+}

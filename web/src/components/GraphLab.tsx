@@ -255,6 +255,23 @@ export function GraphLab({
                       key={node.id}
                       role="button"
                       tabIndex={0}
+                      onFocus={(e) => {
+                        const container =
+                          e.currentTarget.closest(".graph-canvas");
+                        if (!container) return;
+                        const item = e.currentTarget.getBoundingClientRect();
+                        const bounds = container.getBoundingClientRect();
+                        const margin = 8;
+                        // SVG focus scrolling can expose only part of a node.
+                        container.scrollLeft +=
+                          item.left < bounds.left + margin
+                            ? item.left - bounds.left - margin
+                            : Math.max(0, item.right - bounds.right + margin);
+                        container.scrollTop +=
+                          item.top < bounds.top + margin
+                            ? item.top - bounds.top - margin
+                            : Math.max(0, item.bottom - bounds.bottom + margin);
+                      }}
                       aria-label={`${node.id}: ${node.instruction}`}
                       className={`graph-node ${node.id === selected ? "selected" : ""} ${ancestors.has(node.id) ? "ancestor" : ""}`}
                       onClick={() => setSelected(node.id)}

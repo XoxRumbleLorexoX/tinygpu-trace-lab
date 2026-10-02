@@ -20,6 +20,21 @@ The source contains one `ADD` instruction. Its executed graph contains three dis
 
 The replay selects individual lane events, unlike the guided lesson's grouped-stage playback. Memory and register displays show only changes committed up to the selected event. An event index is not a hardware clock cycle.
 
+## Inspect The Same Operation
+
+After choosing **View source event**, inspect **Cores**, **Pipeline**,
+**Registers** or **Gates** in replay. These views use this program's run, not
+Classic's separate example. Changing level pauses playback. Pipeline stages
+belong to the selected operation, including its specific loop iteration.
+Register values reflect commits through the selected event.
+
+For the counted loop, select the third ADD: R1 is 4 at Fetch and 6 after its
+register commit. More processing units cannot remove those dependent additions.
+The gate circuit supports unsigned 8-bit ADD only. With operands 250 and 20,
+the circuit yields 14 with carry 1; integer execution records 270, while uint8
+execution records 14. This is a combinational explanation, not gate-delay or
+transistor simulation.
+
 ## Same Program Can Produce Different Results
 
 Import [shared-memory-order.program.json](../examples/shared-memory-order.program.json). Two threads load the same shared counter, increment it and store both a private output and the shared counter. Lane width is one. There is no synchronization.

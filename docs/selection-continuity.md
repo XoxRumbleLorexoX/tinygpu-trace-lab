@@ -1,5 +1,10 @@
 # Selection Continuity Audit
 
+October 1 follow-up: the local application now contains repairs for S1/S2.
+See [Navigation Repair Verification](navigation-repairs.md) for distinct classic
+detail views, retained replay state and regression coverage. The observations
+below remain the historical pre-repair record.
+
 Recorded September 16, 2026. Status: partial evidence, two confirmed gaps.
 Documentation and generated evidence only; application code remains unchanged.
 
@@ -95,3 +100,12 @@ documentation-only restriction does not authorize. Human beginner and
 screen-reader sessions also remain necessary. The next implementation step is
 to resolve that scope restriction, then repair the confirmed defects with
 regression coverage before extending the architecture hierarchy.
+
+## Authorized Implementation Follow-Up
+
+The restriction described above was subsequently lifted. S1/S2 and K1-K5 have
+local application repairs recorded in [Navigation Repair Verification](navigation-repairs.md).
+Learning and Studio now inspect their own selected operations through shared
+core, pipeline, register and ADD gate views. This does not merge the independent
+Learning and Classic simulations. The observations above remain historical;
+human beginner sessions and actual screen-reader evaluation remain pending.

@@ -1,4 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+  type RefObject,
+} from "react";
 import {
   Code2,
   Download,
@@ -31,6 +38,7 @@ import {
 } from "@tinygpu-trace-lab/simulator";
 import { GraphLab } from "./GraphLab";
 import { LabArchitecture, type Inspection } from "./LabArchitecture";
+import { TraceArchitecture, type ArchitectureLevel } from "./TraceArchitecture";
 import "../styles/studio.css";
 
 type Draft = Omit<ProgramExperiment, "initialMemory" | "expectedMemory"> & {
@@ -87,6 +95,8 @@ export function ProgramStudio({ active }: { active: boolean }) {
   const [reportKey, setReportKey] = useState("");
   const [selectedModel, setSelectedModel] = useState<ExecutionModel>("simt");
   const [view, setView] = useState<"execution" | "graph">("execution");
+  const [architectureLevel, setArchitectureLevel] =
+    useState<ArchitectureLevel>("GPU Overview");
   const [eventIndex, setEventIndex] = useState(0);
   const [outputAddress, setOutputAddress] = useState(128);
   const [busy, setBusy] = useState(false);
@@ -99,9 +109,17 @@ export function ProgramStudio({ active }: { active: boolean }) {
   const timeout = useRef<number>();
   const source = useRef<HTMLTextAreaElement>(null);
   const file = useRef<HTMLInputElement>(null);
+  const replayRef = useRef<HTMLElement>(null);
+  const sourceFocusPending = useRef(false);
   const dirty = reportKey !== "" && JSON.stringify(draft) !== reportKey;
   const run = report?.runs.find((run) => run.model === selectedModel);
   const result = run?.result;
+
+  useEffect(() => {
+    if (view !== "execution" || !sourceFocusPending.current) return;
+    sourceFocusPending.current = false;
+    replayRef.current?.focus();
+  }, [view]);
 
   function cancel() {
     worker.current?.terminate();
@@ -695,6 +713,7 @@ export function ProgramStudio({ active }: { active: boolean }) {
                       result={result}
                       outputAddress={outputAddress}
                       onSource={(index) => {
+                        sourceFocusPending.current = true;
                         setEventIndex(index);
                         setView("execution");
                       }}
@@ -707,6 +726,9 @@ export function ProgramStudio({ active }: { active: boolean }) {
                       setEventIndex={setEventIndex}
                       active={active && !busy}
                       focusLine={dirty ? undefined : focusLine}
+                      replayRef={replayRef}
+                      architectureLevel={architectureLevel}
+                      setArchitectureLevel={setArchitectureLevel}
                     />
                   )}
                 </>
@@ -725,13 +747,20 @@ function ProgramReplay({
   setEventIndex,
   active,
   focusLine,
+  replayRef,
+  architectureLevel,
+  setArchitectureLevel,
 }: {
   result: ExecutionResult;
   eventIndex: number;
   setEventIndex: (index: number) => void;
   active: boolean;
   focusLine?: (line: number) => void;
+  replayRef: RefObject<HTMLElement>;
+  architectureLevel: ArchitectureLevel;
+  setArchitectureLevel: (level: ArchitectureLevel) => void;
 }) {
+  const descriptionId = useId();
   const [playing, setPlaying] = useState(false);
   const [inspection, setInspection] = useState<Inspection>("registers");
   const index = Math.min(eventIndex, result.trace.length - 1);
@@ -755,7 +784,13 @@ function ProgramReplay({
     setEventIndex(Math.max(0, Math.min(result.trace.length - 1, next)));
   }
   return (
-    <section className="studio-replay" aria-label="Program execution replay">
+    <section
+      className="studio-replay"
+      ref={replayRef}
+      tabIndex={-1}
+      aria-label="Program execution replay"
+      aria-describedby={descriptionId}
+    >
       <div className="studio-replay-controls">
         <button
           className="icon-button"
@@ -816,7 +851,7 @@ function ProgramReplay({
           onChange={(event) => seek(Number(event.currentTarget.value))}
         />
       </div>
-      <div className="studio-event">
+      <div className="studio-event" id={descriptionId}>
         <span>
           {event.stage} / Thread {event.threadId} / PC {event.pc}
         </span>
@@ -831,12 +866,23 @@ function ProgramReplay({
           Source line {instruction.lineNumber ?? event.pc + 1}
         </button>
       </div>
-      <LabArchitecture
-        event={event}
-        spatial={false}
-        reducedMotion={matchMedia("(prefers-reduced-motion: reduce)").matches}
-        inspect={setInspection}
-      />
+      <TraceArchitecture
+        result={result}
+        index={index}
+        level={architectureLevel}
+        onLevel={(level) => {
+          setPlaying(false);
+          setArchitectureLevel(level);
+        }}
+        onSeek={seek}
+      >
+        <LabArchitecture
+          event={event}
+          spatial={false}
+          reducedMotion={matchMedia("(prefers-reduced-motion: reduce)").matches}
+          inspect={setInspection}
+        />
+      </TraceArchitecture>
       <div className="studio-state-tabs segmented">
         {(["program", "registers", "memory", "arithmetic"] as const).map(
           (item) => (

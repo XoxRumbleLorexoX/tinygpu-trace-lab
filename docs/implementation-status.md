@@ -1,6 +1,23 @@
 # Implementation Status
 
-Updated September 16, 2026 (Europe/London). This records the current implementation, not completion of every ambition in GOAL.md or the original specification.
+Updated October 1, 2026 (Europe/London). This records the current implementation, not completion of every ambition in GOAL.md or the original specification.
+
+## Publication Checkpoint
+
+The public repository `XoxRumbleLorexoX/tinygpu-trace-lab` now contains commit `3333dab29b1728bf69f5c4904f644f3daf8d2aed` on `main`; local and remote commit IDs were verified equal. The September 30 publication check reran `npm test` (53 passing), `npm run typecheck` and `npm run build` successfully. The existing Vite bundle-size warning remains. Browser and HDL execution suites were not rerun for this publication check.
+
+GitHub Actions run `36772735773` reached Pages deployment but failed on September 30 at 20:27 UTC with `Failed to create deployment (status: 404)`. The log directs the owner to ensure GitHub Pages is enabled. Source publication is verified; a live website is not. No Pages settings were changed. Application and original specification files were unchanged during publication.
+
+October 1 release recheck, 22:16 UTC: GitHub still lists exactly one workflow
+run, the completed failure above; no deployment is currently running. Deploy
+job `110083148280` found the uploaded artifact but failed while creating its
+Pages deployment. The expected site at
+`https://xoxrumblelorexox.github.io/tinygpu-trace-lab/` independently returned
+HTTP 404. This is a publication blocker, not a pending build. Next release
+action: enable Pages for the existing Actions workflow, then rerun deployment.
+Acceptance still requires a successful run, a reachable application and working
+hosted evidence downloads. This documentation-only recheck changed no repository
+settings and started no deployment.
 
 | Roadmap stage            | Implemented                                                                                                                                                                  | Remaining gate or boundary                                 |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
@@ -10,7 +27,72 @@ Updated September 16, 2026 (Europe/London). This records the current implementat
 | Extraction and mapping   | Editable teaching-assembly studio, observed-path graphs, backward/forward provenance, source-line replay, two scheduling policies, configurable units, systolic matrix model | No arbitrary-language or all-path extraction               |
 | Hardware exploration     | Ripple-carry ADD, 31-case preserved-ALU comparison, full-GPU baseline/experiment reports, source-linked commits and transfers, observed scheduler signals, VCD import        | Original GPU fails; passing experiment covers one workload |
 
-## Verification
+## October 1 Verification
+
+The local [navigation repairs](navigation-repairs.md) passed 53 simulator tests,
+type checking and the final production build. The final production browser run
+passed 41 checks, with one intentionally skipped duplicate viewport matrix.
+Development passed the earlier 40-check full run, then all nine navigation
+checks after the tablet repair. A cold-start test verified the corrected
+Playwright server command. Screenshots of the new detail views were inspected.
+
+The main JavaScript bundle is now 1,110.13 kB before gzip, 308.95 kB compressed;
+the existing large-chunk warning remains. No fresh HDL tool execution or new
+public deployment was performed. `GOAL.md` and `hardware/original` remain
+unchanged; the original specification suffix checksum still matches.
+
+## October 1 Hardware Reproduction
+
+A subsequent documentation-only pass [reran the HDL checks in an isolated
+copy](hardware-reproduction.md). The fresh ALU run passed all 31 cases. All three
+compatibility-baseline kernel fixtures reproduced the 4,096-period timeout;
+the separately labeled scheduler-reset experiment passed at 145, 145 and 175
+periods. Seven focused evidence tests passed against the fresh artifacts;
+before/after hashes confirmed 39 protected files unchanged.
+The [visual evidence guide](hardware-evidence-guide.md) adds a value-flow
+diagram, prediction checks and explicit limits. No application or bundled public
+artifacts were replaced. These results do not complete the remaining learner,
+accessibility, architecture-continuity or deployment gates.
+
+## October 1 Studio Keyboard Follow-Up
+
+A documentation-only [keyboard audit](studio-keyboard-audit.md) recorded eight
+passing observations and two reproductions of K5: Program Studio's graph source
+action restores the correct thread/instruction but drops focus to `BODY`.
+Keyboard error recovery works at both measured viewport sizes. Before/after
+hashes confirmed 76 protected files unchanged. K5 was unfixed at that audit
+checkpoint; the authorized application follow-up below repairs it. The historical
+audit does not establish screen-reader usability or complete keyboard coverage.
+
+## Authorized Application Follow-Up
+
+The documentation-only restriction was lifted while retaining the original
+specification. Program Studio now focuses its labelled replay region after graph
+source navigation; its accessible description identifies the selected event.
+Ordinary execution-model selection retains focus on its own control.
+
+Learning Lab and Program Studio now share Machine, Cores, Pipeline, Registers
+and Gates inspection for their own execution result. Switching detail levels
+pauses playback, preserves the selected operation and survives laboratory-tab
+round trips. Pipeline navigation retains repeated-loop iteration identity.
+Learning maps individual source events into its grouped replay frames; Studio
+retains individual events. Core assignment is not a hardware concurrency claim.
+ADD details distinguish the 8-bit circuit result from integer or uint8 execution.
+
+These changes do not merge Learning and Classic configurations, implement gates
+for every opcode, or satisfy human learning/accessibility acceptance gates.
+See [Navigation Repair Verification](navigation-repairs.md) for final checks.
+
+Final follow-up verification: 53 simulator tests, type checking and production
+build passed. The complete production browser suite passed 52 checks with two
+intentional duplicate viewport-matrix skips, including the final tablet label
+repair. Desktop/mobile 3D pixel, motion and orbit checks passed; narrow gate and
+tablet pipeline screenshots were inspected. The main bundle is 1,112.89 kB
+(309.69 kB gzip); the existing chunk-size warning remains. No new HDL run,
+commit, push or deployment was performed. The full `GOAL.md` SHA-256 remains
+`dcec1b3f69adc37135f5cbbec5a031608e6ea19e0c8c505a40f9fd7288ef3d2a`.
+
+## Earlier Verification
 
 - `npm test`: 53 passing simulator, replay, lesson, graph, systolic, program-experiment and stored hardware-evidence tests. Kernel tests verify source adaptations, raw logs, hashes, waveform/commit agreement and baseline failure separately from the experiment.
 - `npm run test:browser`: 32 passing checks against the development server and 32 against the production build using `LAB_TEST_URL=http://127.0.0.1:5176/tinygpu-trace-lab/`. Covers guided execution, model comparison, provenance, waveform import, trace import, classic replay, 3D pixels, motion, orbit, layout, kernel source variants, source-linked commits/transfers and unavailable evidence. The eight studio checks cover editable programs, assertions, loop extraction, source navigation, replay, portable files, invalid input, event limits and model-order disagreements. All eight also passed on development after the final long-source navigation refinement.
@@ -28,13 +110,13 @@ The [Roadmap Evidence Audit](roadmap-evidence.md) maps the numbered gates and su
 
 ## Keyboard Audit
 
-The [Keyboard Workflow Audit](keyboard-audit.md) exercised key learning, graph, comparison, studio, hardware and classic workflows using keyboard-only actions in local headless Chromium. Four findings remain: graph source navigation keeps the previously inspected thread, the same transition loses keyboard focus, narrow graph nodes can remain partly clipped when focused, and the classic comparison selector lacks an accessible name. The Thread 3 source-navigation reproduction shows Thread 0's result until the user manually selects Thread 3; this limits the source-linked navigation claim above.
+The historical [Keyboard Workflow Audit](keyboard-audit.md) identified four defects in source-thread selection, destination focus, focused graph-node visibility and the classic comparison selector's accessible name. The local working tree now repairs all four. [Navigation Repair Verification](navigation-repairs.md) maps each finding to executable regression coverage, including source navigation under all three models and desktop/mobile graph traversal.
 
-The exploratory record contains 25 passed checks, seven failed observations across those four findings and five superseded probes. No browser page errors were captured. These observations are not a new full regression run or accessibility certification; real screen-reader and learner sessions remain unperformed. This increment changes documentation and generated audit evidence only, not application code.
+The historical exploratory record remains intact: 25 passed checks, seven failed observations and five superseded probes. The new regression checks use programmatic setup as well as keyboard events; they do not establish complete keyboard accessibility or real screen-reader announcements. Screen-reader and learner sessions remain unperformed.
 
 ## Architecture Navigation
 
-The [Selection Continuity Audit](selection-continuity.md) adds six passing local learning-view transitions and two confirmed classic-view gaps. The classic Abstraction buttons only change selected styling; they do not render another detail level. Leaving Classic explorer resets its replay and abstraction state on return. These findings contradict a claim of complete multilevel exploration, even though the tested learning view preserves Thread 3, writeback position and Registers inspection across 2D/3D and laboratory-tab round trips. Application fixes remain outside the current documentation-only scope.
+The historical [Selection Continuity Audit](selection-continuity.md) recorded six passing learning-view transitions and two classic-view gaps. The local repairs now render Core, Pipeline, Register and unsigned 8-bit ADD gate details from the selected classic operation. Replay, abstraction, comparison and adder-bit selection survive tab departure/return; hidden playback stops. Tablet clipping discovered during verification is also repaired, with panel-bound checks at 320, 390, 768, 1024 and 1440px. Learning and Classic remain independent simulations; this is not a claim of a unified hierarchy or shared cursor between them.
 
 ## Editable Computation Extraction
 

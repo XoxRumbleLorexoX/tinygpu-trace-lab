@@ -1,0 +1,169 @@
+.classic-detail {
+  min-width: 0;
+  padding: 20px;
+  border-block: 1px solid #42545d;
+  background: #f5f8f6;
+  color: #22372e;
+  min-height: 340px;
+  overflow-wrap: anywhere;
+}
+.classic-detail-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.classic-detail h2 {
+  margin: 0;
+  font-size: 18px;
+}
+.classic-detail-heading span,
+.classic-detail p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.classic-detail button {
+  color: inherit;
+}
+.classic-cores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.classic-cores h3 {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 15px;
+}
+.classic-lane {
+  display: grid;
+  grid-template-columns: 28px 1fr 1fr;
+  gap: 8px;
+  border-bottom: 1px solid #ccdbd2;
+  padding: 12px 8px;
+  font-size: 13px;
+}
+.classic-lane > :last-child {
+  grid-column: 2 / -1;
+}
+.classic-lane.issuing {
+  background: #d5eddf;
+}
+.classic-lane[aria-current] {
+  box-shadow: inset 3px 0 #287448;
+}
+.classic-operation {
+  display: block;
+  padding-block: 8px;
+  font-size: 14px;
+}
+.classic-pipeline {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+  gap: 6px;
+}
+.classic-pipeline button {
+  width: 100%;
+  min-height: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid #adbdaf;
+  border-radius: 4px;
+  background: #fff;
+  text-align: left;
+}
+.classic-pipeline button[aria-current] {
+  background: #d5eddf;
+  border-color: #25704c;
+}
+.classic-pipeline span,
+.classic-pipeline small {
+  font-size: 12px;
+}
+.classic-registers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.classic-registers > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid #c5d0c9;
+  border-radius: 4px;
+  background: #fff;
+}
+.classic-registers strong {
+  font-size: 22px;
+}
+.classic-registers small {
+  min-height: 32px;
+  font-size: 11px;
+}
+.classic-registers .read {
+  border-color: #c38c23;
+  background: #fff4d9;
+}
+.classic-registers .committed {
+  border-color: #287448;
+  background: #d5eddf;
+}
+.classic-command {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #9eb7a7;
+  border-radius: 4px;
+  background: #fff;
+}
+.classic-equation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding-block: 16px;
+  font-size: 22px;
+}
+.classic-equation small {
+  font-size: 13px;
+}
+.classic-detail .bit-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.classic-detail .bit-grid button {
+  min-width: 0;
+}
+.classic-detail .gate-detail code {
+  white-space: normal;
+}
+@media (max-width: 700px) {
+  .classic-detail {
+    padding: 12px;
+  }
+  .classic-cores {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .classic-pipeline {
+    grid-template-columns: 1fr;
+  }
+  .classic-pipeline button {
+    min-height: 56px;
+  }
+  .classic-registers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .classic-detail .bit-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

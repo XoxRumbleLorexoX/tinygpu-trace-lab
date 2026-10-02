@@ -46,6 +46,154 @@ async function importDocument(page: Page, document: unknown) {
   ).toBeVisible();
 }
 
+test("graph source focuses the replay without losing thread identity in any model", async ({
+  page,
+}) => {
+  for (const model of ["Sequential", "SIMD", "SIMT"]) {
+    const modelButton = page.getByRole("button", {
+      name: `Inspect ${model} program run`,
+      exact: true,
+    });
+    await modelButton.focus();
+    await page.keyboard.press("Enter");
+    await expect(modelButton).toBeFocused();
+    await page
+      .getByRole("button", { name: "Trace program output 131", exact: true })
+      .click();
+    const source = page.getByRole("button", {
+      name: "View source event",
+      exact: true,
+    });
+    await source.focus();
+    await page.keyboard.press("Enter");
+    const replay = page.getByRole("region", {
+      name: "Program execution replay",
+      exact: true,
+    });
+    await expect(replay).toBeFocused();
+    await expect(replay).toHaveAccessibleDescription(
+      /Writeback \/ Thread 3 \/ PC 7.*STR R4, \[R5\]/,
+    );
+    await expect(replay.locator(".studio-event")).toContainText(
+      "Writeback / Thread 3 / PC 7",
+    );
+    await page.keyboard.press("Tab");
+    await expect(
+      page.getByRole("button", { name: "First program event", exact: true }),
+    ).toBeFocused();
+  }
+});
+
+test("loop drilldown preserves the selected iteration through stages and views", async ({
+  page,
+}, info) => {
+  await importDocument(
+    page,
+    experiment(
+      "CONST R0, 3\nCONST R1, 0\nLOOP:\nADD R1, R1, 2\nSUB R0, R0, 1\nCMP R0, 0\nBRnzp p LOOP\nSTR R1, [200]\nRET",
+    ),
+  );
+  await expect(page.locator(".studio-result-heading")).toContainText(
+    "Counted loop",
+  );
+  await page
+    .getByRole("button", { name: "Trace program output 200", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: /: ADD R1, R1, 2$/ })
+    .last()
+    .click();
+  await page
+    .getByRole("button", { name: "View source event", exact: true })
+    .click();
+  const architecture = page.getByRole("region", {
+    name: "Selected operation architecture",
+    exact: true,
+  });
+  const levels = architecture.getByRole("group", {
+    name: "Architecture level",
+    exact: true,
+  });
+  const operation = await architecture.getAttribute("data-operation-id");
+  const commit = await architecture.getAttribute("data-event-id");
+  await levels.getByRole("button", { name: "Pipeline", exact: true }).click();
+  await architecture.getByRole("button", { name: /^Fetch/ }).click();
+  await expect(architecture).toHaveAttribute("data-operation-id", operation!);
+  await levels.getByRole("button", { name: "Registers", exact: true }).click();
+  await expect(
+    architecture
+      .locator(".classic-registers > div")
+      .filter({ has: page.locator("span", { hasText: /^R1$/ }) })
+      .locator("strong"),
+  ).toHaveText("4");
+  await architecture
+    .getByRole("button", { name: "Inspect register commit", exact: true })
+    .click();
+  await expect(architecture).toHaveAttribute("data-event-id", commit!);
+  await expect(
+    architecture.locator(".classic-registers .committed strong"),
+  ).toHaveText("6");
+  await levels.getByRole("button", { name: "Gates", exact: true }).click();
+  await expect(architecture.locator(".classic-equation strong")).toHaveText(
+    "6",
+  );
+  await page.getByRole("button", { name: "Learning lab", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Program studio", exact: true })
+    .click();
+  await expect(
+    levels.getByRole("button", { name: "Gates", exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
+  await expect(architecture).toHaveAttribute("data-event-id", commit!);
+  await architecture.screenshot({
+    path: info.outputPath("studio-loop-gates.png"),
+  });
+});
+
+test("gate explanation distinguishes integer overflow from uint8 wrapping", async ({
+  page,
+}) => {
+  for (const numberMode of ["integer", "uint8"]) {
+    const expected = numberMode === "uint8" ? 14 : 270;
+    await importDocument(
+      page,
+      experiment("CONST R0, 250\nADD R1, R0, 20\nSTR R1, [200]\nRET", {
+        name: `Overflow ${numberMode}`,
+        numberMode,
+        expectedMemory: { 200: expected },
+      }),
+    );
+    await expect(page.locator(".studio-result-heading")).toContainText(
+      `Overflow ${numberMode}`,
+    );
+    await page
+      .getByRole("button", { name: "Trace program output 200", exact: true })
+      .click();
+    await page.getByRole("button", { name: /: ADD R1, R0, 20$/ }).click();
+    await page
+      .getByRole("button", { name: "View source event", exact: true })
+      .click();
+    const architecture = page.getByRole("region", {
+      name: "Selected operation architecture",
+      exact: true,
+    });
+    await architecture
+      .getByRole("button", { name: "Gates", exact: true })
+      .click();
+    await expect(architecture.locator(".classic-equation strong")).toHaveText(
+      "14",
+    );
+    await expect(architecture).toContainText(
+      `Recorded ${numberMode} result: ${expected}`,
+    );
+    await expect(architecture).toContainText(
+      numberMode === "uint8"
+        ? "Both results agree"
+        : "The 8-bit circuit wraps; the integer simulator does not",
+    );
+  }
+});
+
 test("editable program compares expected values, extracts provenance, links source", async ({
   page,
 }, info) => {

@@ -30,7 +30,10 @@ test("guided lesson predicts, observes commits, rewinds, changes inputs", async 
   await page.getByRole("button", { name: "Observe a load" }).click();
   await page.getByRole("button", { name: "Inspect arithmetic" }).click();
   await expect(page.locator(".event-explanation")).toContainText("6");
-  await page.getByRole("button", { name: "Registers", exact: true }).click();
+  await page
+    .locator(".state-tabs")
+    .getByRole("button", { name: "Registers", exact: true })
+    .click();
   await expect(
     page
       .locator(".state-registers > div")

@@ -242,6 +242,7 @@ button.selected,
   overflow: auto;
   padding: 14px;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto auto auto minmax(390px, 1.35fr) auto auto auto;
   gap: 12px;
 }
@@ -952,6 +953,18 @@ input[type='range'] {
 
   .topbar {
     flex-wrap: wrap;
+  }
+
+  .status-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .warp-band {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .warp-band > :last-child {
+    grid-column: 1 / -1;
   }
 
   .inspector {

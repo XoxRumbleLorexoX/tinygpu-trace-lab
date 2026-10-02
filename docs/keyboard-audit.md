@@ -3,6 +3,15 @@
 Recorded September 16, 2026. Status: partial coverage, four confirmed findings.
 Application code, examples, hardware and GOAL.md were not changed by this audit.
 
+October 1 follow-up: the local application now contains repairs for K1-K4.
+See [Navigation Repair Verification](navigation-repairs.md) for regression
+coverage and limits. The observations below remain the historical pre-repair
+record; no screen-reader certification is implied by the follow-up.
+
+The subsequent [Program Studio keyboard follow-up](studio-keyboard-audit.md)
+records K5: graph source navigation drops focus in Studio, while retaining the
+correct computation. Eight other observations pass. This does not reopen K1-K4.
+
 ## Scope And Evidence
 
 Local development URL: `http://127.0.0.1:5175/tinygpu-trace-lab/`.
@@ -127,7 +136,8 @@ and all trace sizes were not evaluated.
   downloads, every lesson, every validation state and 3D keyboard manipulation
   are not covered by this keyboard pass.
 
-Next work: repair K1-K4 when application changes are in scope, preserve these
-reproductions as regression checks, then run human keyboard/screen-reader
-evaluation and the [beginner study](beginner-study.md). Accessibility and the
-overall roadmap remain incomplete.
+Historical next action at this audit's date was to repair K1-K4. Those repairs
+now have the October 1 verification linked above. Current next actions are K5,
+broader keyboard coverage, human keyboard/screen-reader evaluation and the
+[beginner study](beginner-study.md). Accessibility and the overall roadmap
+remain incomplete.

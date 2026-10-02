@@ -33,7 +33,7 @@ export default defineConfig({
   webServer: process.env.LAB_TEST_URL
     ? undefined
     : {
-        command: "npm run dev -- --port 5175 --strictPort",
+        command: "npm --workspace web run dev -- --port 5175 --strictPort",
         url: "http://127.0.0.1:5175/tinygpu-trace-lab/",
         reuseExistingServer: !process.env.CI,
       },

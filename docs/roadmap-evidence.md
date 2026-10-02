@@ -2,7 +2,7 @@
 
 Status: incomplete. This audit records what the current application and checks establish, what still needs observation, and what is explicitly outside the initial roadmap. It does not convert implemented controls into evidence of learning.
 
-The authoritative scope is the staged roadmap and supporting requirements in [GOAL.md](../GOAL.md). Its preserved original specification is also a longer-term backlog, not proof that its complete feature list exists. The active request's documentation-only restriction applies to this audit: application, examples and hardware files are unchanged.
+The authoritative scope is the staged roadmap and supporting requirements in [GOAL.md](../GOAL.md). Its preserved original specification is also a longer-term backlog, not proof that its complete feature list exists. The initial audits were documentation-only. Following application-change authorization, the October 1 local repair pass is recorded separately in [Navigation Repair Verification](navigation-repairs.md); original specification and hardware files remain unchanged.
 
 ## Reading The Evidence
 
@@ -13,6 +13,18 @@ The authoritative scope is the staged roadmap and supporting requirements in [GO
 The preceding production run completed 32 browser checks across desktop and mobile. Its command output and screenshots were reviewed; `test-results/.last-run.json` alone records a pass, not the test count, build identity or coverage. The recorded 53 simulator tests and build results are described in [Implementation Status](implementation-status.md). This documentation pass rechecked default and changed-input vector-add outputs and model issue counts from the local compiled simulator; it did not rerun HDL tools or a new full browser suite.
 
 ## Numbered Roadmap Gates
+
+October 1 follow-up: the final local production build passed 41 browser checks
+with one intentional duplicate viewport skip. Simulator tests passed 53;
+type checking and build passed. [Navigation Repair Verification](navigation-repairs.md)
+records the tested fixes and boundaries. No learner or screen-reader session
+and no fresh HDL execution was substituted by these automated checks.
+
+Authorized shared-view follow-up: the final production build passed 52 browser
+checks with two intentional duplicate viewport-matrix skips. Simulator tests
+passed 53; type checking and build passed. This covers Studio focus, Learning
+and Studio architecture continuity, loop-iteration identity and responsive stage
+labels. It does not add learner-study, screen-reader or deployment evidence.
 
 | Gate                            | Authoritative evidence available                                                                                                                                                                                             | What it proves                                                                                                                                                                                                | Still required or limited                                                                                                                                                                                        |
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -33,8 +45,8 @@ For gate 3, direct local checks returned `[6, 6, 9, 9]` for default vector addit
 | Pause, step, rewind and change view without altering computation | Browser tests exercise playback and retain the selected frame across 2D/3D; execution tests verify deterministic replay. No claim of exhaustive cross-view or multilevel zoom coverage                                                                                                       |
 | 2D alternative and readable responsive views                     | The learning workflow runs in 2D. Desktop/mobile screenshots and 320/768/1920px checks cover current layouts. They do not establish screen-reader usability                                                                                                                                  |
 | Reduced motion and non-color indicators                          | Controls, text labels and state values exist; 3D tests exercise reduced motion and camera orbit. Motion suppression for every component has not been comprehensively audited                                                                                                                 |
-| Keyboard navigation                                              | [Keyboard Workflow Audit](keyboard-audit.md) covers key paths on desktop and a narrow viewport. Confirmed gaps: source-thread continuity, destination focus, clipped focused graph nodes and an unnamed classic selector. Complete coverage and real screen-reader evaluation remain pending |
-| Progressive architecture detail with preserved selection         | [Selection Continuity Audit](selection-continuity.md): six learning-view transitions preserve selected state. Classic abstraction buttons do not render different detail; leaving Classic resets replay/view state. The complete hierarchy remains unimplemented                             |
+| Keyboard navigation | [Navigation Repair Verification](navigation-repairs.md) covers local repairs for K1-K4: source thread, destination focus, node visibility and the classic selector name. Complete keyboard coverage and real screen-reader evaluation remain pending. |
+| Progressive architecture detail with preserved selection | Classic, Learning and Studio render trace-backed Core, Pipeline, Register and ADD gate views. Each uses its own execution result; selected operations and tested view state survive tab changes. Repeated Studio loop iterations retain identity. Independent simulations and unsupported gate operations remain boundaries. |
 | Explain cause, change and next action                            | Lesson questions, execution explanations and provenance expose these facts. Their clarity for beginners remains an empirical question, addressed by the study rather than by code assertions                                                                                                 |
 | Keep timing and results honest                                   | [Architecture](architecture.md) and [Trace Format](trace-format.md) distinguish logical ticks, event indices and HDL time; unsupported cache/latency/vendor measurements are not validated metrics                                                                                           |
 | Reproduce and bound experiments                                  | Input/configuration import reruns the engine; invalid input preserves the last result. Studio tests cover source lines, loops, import/export, event limits and model-order disagreement                                                                                                      |
@@ -45,10 +57,17 @@ For gate 3, direct local checks returned `[6, 6, 9, 9]` for default vector addit
 
 ## Evidence Needed Next
 
+An October 1 [isolated HDL reproduction](hardware-reproduction.md) now supplies
+fresh execution evidence: 31 ALU cases agree, all baseline kernel fixtures
+time out, all scheduler-reset fixtures complete, and seven focused evidence
+tests pass. The [visual companion](hardware-evidence-guide.md) turns those
+observations into prediction and explanation exercises. This closes a fresh-run
+evidence gap only; it does not close the gates below or establish other kernels.
+
 1. Run five eligible beginner sessions on one identified build using the protocol and [session record](beginner-study-session.md). Retain the raw observations, timings, explanations and help log before aggregating results.
-2. Resolve the four findings in the [Keyboard Workflow Audit](keyboard-audit.md), then extend keyboard-only coverage and evaluate with an appropriate screen reader. The local exploratory pass covers key paths, not all controls: source navigation loses thread identity and focus, a narrow graph node stays clipped, and the classic comparison selector is unnamed. No real screen-reader evaluation has been performed.
-3. Resolve S1/S2 in the [Selection Continuity Audit](selection-continuity.md): classic abstraction controls do not render another detail level, and classic replay/view state resets after leaving. Six tested learning-view transitions preserve selection, but do not establish a shared computation across the independent learning/classic simulations. The current documentation-only scope must change before implementing these repairs or the missing hierarchy.
-4. When publication is authorized, retain the exact build/version, successful deployment result and reachable URL, then verify the downloadable evidence there. Until then, describe evidence as local rather than publicly published.
+2. Extend keyboard-only coverage and evaluate with an appropriate screen reader. K1-K5 now have local repairs and desktop/mobile regression coverage. The [Studio audit](studio-keyboard-audit.md) preserves the pre-fix K5 evidence and records the authorized follow-up. The focus regression uses explicit locator focus; full keyboard-only traversal and actual screen-reader announcements still require evaluation.
+3. Extend architecture coverage beyond current detail views. Learning and Studio now inspect their own selected computation through Cores, Pipeline, Registers and ADD gates, preserving repeated-loop iteration identity and pausing playback on inspection. Learning/classic simulations remain independent; a shared cursor between them, every opcode's gates and the full architectural hierarchy are not established.
+4. Public source publication is verified at commit `3333dab29b1728bf69f5c4904f644f3daf8d2aed` in `XoxRumbleLorexoX/tinygpu-trace-lab`. Pages deployment run `36772735773` failed with HTTP 404 on September 30, 2026; its log requests enabling GitHub Pages. Website publication still requires a successful deployment, reachable URL and verification of downloadable evidence there. Public source availability does not establish a working hosted application.
 
 The bundle-size warning remains an optimization issue, not a substitute for these evidence gates. Additional languages, larger accelerators, transistor simulation and AR/VR remain separate research tracks as stated in GOAL.md. Their absence must not be used to hide an unmet initial gate or expand the initial gate indefinitely.
 

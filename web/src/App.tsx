@@ -8,6 +8,7 @@ import {
 import { LearningLab } from "./components/LearningLab";
 import { Controls } from "./components/Controls";
 import { GpuScene } from "./components/GpuScene";
+import { ClassicDetail } from "./components/ClassicDetail";
 import { Inspector } from "./components/Inspector";
 import { Timeline } from "./components/Timeline";
 import {
@@ -24,10 +25,10 @@ import {
 type ExampleKey = keyof typeof exampleLabels;
 
 export function App() {
-  return <LearningLab explorer={<Explorer />} />;
+  return <LearningLab explorer={(active) => <Explorer active={active} />} />;
 }
 
-function Explorer() {
+function Explorer({ active }: { active: boolean }) {
   const [example, setExample] = useState<ExampleKey>("vectorAdd");
   const [cycle, setCycle] = useState(18);
   const [playing, setPlaying] = useState(false);
@@ -72,6 +73,10 @@ function Explorer() {
   const comparisonDetails = comparisonCopy(comparison);
 
   useEffect(() => {
+    if (!active) setPlaying(false);
+  }, [active]);
+
+  useEffect(() => {
     setCycle((current) => Math.min(current, maxCycle));
     setRange(([start, end]) => {
       const nextStart = Math.min(start, maxCycle);
@@ -81,7 +86,7 @@ function Explorer() {
   }, [maxCycle]);
 
   useEffect(() => {
-    if (!playing) return;
+    if (!playing || !active) return;
     const timer = window.setInterval(() => {
       setCycle((current) => {
         if (current < range[0]) return range[0];
@@ -90,7 +95,7 @@ function Explorer() {
       });
     }, 420 / speed);
     return () => window.clearInterval(timer);
-  }, [loop, playing, range, speed]);
+  }, [active, loop, playing, range, speed]);
 
   return (
     <main className="app-shell">
@@ -156,6 +161,7 @@ function Explorer() {
               type="button"
               key={item}
               className={item === level ? "selected" : ""}
+              aria-pressed={item === level}
               onClick={() => setLevel(item)}
             >
               <Layers size={15} />
@@ -167,6 +173,7 @@ function Explorer() {
           <h2>Comparison Mode</h2>
           <GitCompareArrows size={17} />
           <select
+            aria-label="Comparison mode"
             value={comparison}
             onChange={(event) =>
               setComparison(
@@ -214,7 +221,19 @@ function Explorer() {
           ))}
         </div>
 
-        <GpuScene event={event} cameraMode={cameraMode} />
+        {level === "GPU Overview" ? (
+          active && <GpuScene event={event} cameraMode={cameraMode} />
+        ) : (
+          <ClassicDetail
+            level={level}
+            result={result}
+            index={safeCycle}
+            onSeek={(index) => {
+              setPlaying(false);
+              setCycle(index);
+            }}
+          />
+        )}
 
         <div className="warp-band" aria-label="Warp Visualization">
           {warps.map(({ warpId, active, complete }) => (
