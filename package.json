@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "dev": "npm --workspace web run dev",
+    "preview": "npm --workspace web run preview --",
     "build": "npm --workspace simulator run build && npm --workspace web run build",
     "test": "npm --workspace simulator run test",
     "validate:hardware": "npm --workspace simulator run build && node scripts/validate-hardware.mjs",

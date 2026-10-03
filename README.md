@@ -26,6 +26,16 @@ npm run dev
 
 Then open the Vite URL printed by the command.
 
+To preview the production build locally:
+
+```bash
+npm run build
+npm run preview
+```
+
+Open the printed URL with `/tinygpu-trace-lab/` appended. To use another port,
+run `npm run preview -- --port 4174 --strictPort`.
+
 ## Validation
 
 ```bash
