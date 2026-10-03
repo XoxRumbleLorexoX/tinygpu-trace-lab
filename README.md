@@ -33,7 +33,7 @@ npm run build
 npm run preview
 ```
 
-Open the printed URL with `/tinygpu-trace-lab/` appended. To use another port,
+The default preview URL is `http://127.0.0.1:4173/tinygpu-trace-lab/`. To use another port,
 run `npm run preview -- --port 4174 --strictPort`.
 
 ## Validation

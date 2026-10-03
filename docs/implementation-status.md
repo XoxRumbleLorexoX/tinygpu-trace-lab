@@ -1,6 +1,27 @@
 # Implementation Status
 
-Updated October 1, 2026 (Europe/London). This records the current implementation, not completion of every ambition in GOAL.md or the original specification.
+Updated October 3, 2026 (Europe/London). This records the current implementation, not completion of every ambition in GOAL.md or the original specification.
+
+## October 3 Release Verification
+
+GitHub Pages is now enabled with GitHub Actions as its build source. Deployment
+run `37107729682` succeeded for commit `ee1e34e2c57f02033aecf9d2a27c13dad22e2f3d`.
+The application is live at `https://xoxrumblelorexox.github.io/tinygpu-trace-lab/`.
+This supersedes the historical publication blockers below.
+
+The root `npm run preview` command now forwards to the web workspace, including
+custom port arguments. Production build passed with the existing bundle-size
+warning. Six production-preview browser checks and the same six live-site checks
+passed across desktop and mobile: guided lesson, 3D rendering and interaction,
+and baseline-versus-experiment hardware evidence. Six hosted evidence downloads
+returned HTTP 200 with SHA-256 hashes matching local files: the ALU report,
+waveform, teaching trace, both kernel reports and delayed-memory experiment VCD.
+
+The preceding full verification at `5469ea8` passed 53 simulator tests, type
+checking and 52 browser checks, with two intentionally skipped duplicate viewport
+matrices. Original specification and hardware files remain unchanged. No fresh
+HDL execution, beginner sessions or screen-reader evaluation occurred during
+this release check. The overall goal remains incomplete.
 
 ## Publication Checkpoint
 
